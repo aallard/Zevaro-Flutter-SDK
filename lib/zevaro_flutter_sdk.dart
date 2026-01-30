@@ -26,8 +26,16 @@ export 'src/utils/date_utils.dart';
 // Models - Auth
 export 'src/models/auth/auth_models.dart';
 
+// Models - User
+export 'src/models/user/user_models.dart';
+
+// Models - Tenant
+export 'src/models/tenant/tenant_models.dart';
+
 // Services
 export 'src/services/auth_service.dart';
+export 'src/services/user_service.dart';
+export 'src/services/tenant_service.dart';
 
 // Storage
 export 'src/storage/secure_storage_service.dart';
