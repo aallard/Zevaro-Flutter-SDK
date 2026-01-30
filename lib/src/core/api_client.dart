@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 
 import '../config/sdk_config.dart';
+import '../storage/secure_storage_service.dart';
 import 'api_exception.dart';
 import 'interceptors/auth_interceptor.dart';
 import 'interceptors/logging_interceptor.dart';
@@ -18,8 +19,15 @@ class ApiClient {
   /// The SDK configuration.
   final SdkConfig config;
 
+  /// The secure storage service.
+  final SecureStorageService storage;
+
   /// Creates an API client with the given configuration.
-  ApiClient(this.config) {
+  ///
+  /// Optionally accepts a [SecureStorageService] instance. If not provided,
+  /// a default instance will be created.
+  ApiClient(this.config, {SecureStorageService? storageService})
+      : storage = storageService ?? SecureStorageService() {
     _dio = Dio(
       BaseOptions(
         baseUrl: config.baseUrl,
@@ -34,8 +42,8 @@ class ApiClient {
 
     // Add interceptors in order
     _dio.interceptors.addAll([
-      AuthInterceptor(),
-      TenantInterceptor(),
+      AuthInterceptor(storage),
+      TenantInterceptor(storage),
       if (config.enableLogging) LoggingInterceptor(),
     ]);
   }

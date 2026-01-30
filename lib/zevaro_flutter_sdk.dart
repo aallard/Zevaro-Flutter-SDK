@@ -22,3 +22,12 @@ export 'src/core/interceptors/logging_interceptor.dart';
 // Utils
 export 'src/utils/logger.dart';
 export 'src/utils/date_utils.dart';
+
+// Models - Auth
+export 'src/models/auth/auth_models.dart';
+
+// Services
+export 'src/services/auth_service.dart';
+
+// Storage
+export 'src/storage/secure_storage_service.dart';

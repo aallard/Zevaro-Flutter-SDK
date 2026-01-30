@@ -1,20 +1,17 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../../config/constants.dart';
+import '../../storage/secure_storage_service.dart';
 
 /// Interceptor that adds tenant identification headers to requests.
 ///
 /// Reads the tenant ID from secure storage and adds it as
 /// the X-Tenant-ID header.
 class TenantInterceptor extends Interceptor {
-  final FlutterSecureStorage _storage;
+  final SecureStorageService _storage;
 
   /// Creates a tenant interceptor.
-  ///
-  /// Optionally accepts a custom [FlutterSecureStorage] instance.
-  TenantInterceptor([FlutterSecureStorage? storage])
-      : _storage = storage ?? const FlutterSecureStorage();
+  TenantInterceptor(this._storage);
 
   @override
   Future<void> onRequest(
@@ -22,7 +19,7 @@ class TenantInterceptor extends Interceptor {
     RequestInterceptorHandler handler,
   ) async {
     // Read tenant ID from secure storage
-    final tenantId = await _storage.read(key: ZevaroConstants.tenantIdKey);
+    final tenantId = await _storage.getTenantId();
 
     if (tenantId != null && tenantId.isNotEmpty) {
       options.headers[ZevaroConstants.tenantHeader] = tenantId;
