@@ -35,11 +35,15 @@ export 'src/models/tenant/tenant_models.dart';
 // Models - Team
 export 'src/models/team/team_models.dart';
 
+// Models - Outcome
+export 'src/models/outcome/outcome_models.dart';
+
 // Services
 export 'src/services/auth_service.dart';
 export 'src/services/user_service.dart';
 export 'src/services/tenant_service.dart';
 export 'src/services/team_service.dart';
+export 'src/services/outcome_service.dart';
 
 // Storage
 export 'src/storage/secure_storage_service.dart';
