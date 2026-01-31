@@ -114,4 +114,19 @@ class PaginatedResponse<T> {
 
   /// Whether the content is not empty.
   bool get isNotEmpty => content.isNotEmpty;
+
+  /// Merges this response with another page of content.
+  ///
+  /// Used for infinite scroll/load more patterns.
+  PaginatedResponse<T> merge(PaginatedResponse<T> other) {
+    return PaginatedResponse(
+      content: [...content, ...other.content],
+      page: other.page,
+      size: other.size,
+      totalElements: other.totalElements,
+      totalPages: other.totalPages,
+      first: first,
+      last: other.last,
+    );
+  }
 }

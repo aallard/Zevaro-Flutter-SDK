@@ -59,3 +59,9 @@ export 'src/services/stakeholder_service.dart';
 
 // Storage
 export 'src/storage/secure_storage_service.dart';
+
+// Providers
+export 'src/providers/providers.dart';
+
+// Re-export Riverpod for convenience
+export 'package:flutter_riverpod/flutter_riverpod.dart';
