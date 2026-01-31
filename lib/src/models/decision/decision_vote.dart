@@ -15,7 +15,7 @@ class DecisionVote with _$DecisionVote {
     required String decisionId,
 
     /// ID of the user who voted.
-    required String odId,
+    required String userId,
 
     /// The vote value (e.g., "APPROVE", "REJECT", "ABSTAIN", or option ID).
     required String vote,
