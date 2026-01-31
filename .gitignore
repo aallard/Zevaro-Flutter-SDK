@@ -28,9 +28,10 @@ build/
 .pub-cache/
 .pub/
 
-# Generated files
-*.g.dart
-*.freezed.dart
+# Generated files - DO NOT ignore for library packages
+# These must be committed so consuming apps can use them via git dependency
+# *.g.dart
+# *.freezed.dart
 
 # Test coverage
 coverage/
