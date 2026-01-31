@@ -44,6 +44,9 @@ export 'src/models/hypothesis/hypothesis_models.dart';
 // Models - Decision (CORE)
 export 'src/models/decision/decision_models.dart';
 
+// Models - Stakeholder
+export 'src/models/stakeholder/stakeholder_models.dart';
+
 // Services
 export 'src/services/auth_service.dart';
 export 'src/services/user_service.dart';
@@ -52,6 +55,7 @@ export 'src/services/team_service.dart';
 export 'src/services/outcome_service.dart';
 export 'src/services/hypothesis_service.dart';
 export 'src/services/decision_service.dart';
+export 'src/services/stakeholder_service.dart';
 
 // Storage
 export 'src/storage/secure_storage_service.dart';
