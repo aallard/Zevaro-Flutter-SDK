@@ -6,6 +6,9 @@ enum DecisionType {
   /// Architecture, tech choices.
   TECHNICAL,
 
+  /// System architecture decisions.
+  ARCHITECTURAL,
+
   /// UX/UI decisions.
   DESIGN,
 
@@ -28,6 +31,8 @@ extension DecisionTypeExtension on DecisionType {
         return 'Product';
       case DecisionType.TECHNICAL:
         return 'Technical';
+      case DecisionType.ARCHITECTURAL:
+        return 'Architectural';
       case DecisionType.DESIGN:
         return 'Design';
       case DecisionType.BUSINESS:
@@ -46,6 +51,8 @@ extension DecisionTypeExtension on DecisionType {
         return '📦';
       case DecisionType.TECHNICAL:
         return '⚙️';
+      case DecisionType.ARCHITECTURAL:
+        return '🏗️';
       case DecisionType.DESIGN:
         return '🎨';
       case DecisionType.BUSINESS:

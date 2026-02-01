@@ -22,7 +22,7 @@ class TeamService {
   }) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/teams',
+        '/v1/teams/paged',
         queryParameters: {
           'page': page,
           'size': size,
@@ -99,7 +99,7 @@ class TeamService {
   /// Gets teams the current user is a member of.
   Future<List<Team>> getMyTeams() async {
     try {
-      final response = await _apiClient.dio.get('/v1/teams/mine');
+      final response = await _apiClient.dio.get('/v1/teams/my-teams');
       return (response.data as List)
           .map((json) => Team.fromJson(json as Map<String, dynamic>))
           .toList();

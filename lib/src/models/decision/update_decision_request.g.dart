@@ -43,6 +43,7 @@ const _$DecisionUrgencyEnumMap = {
 const _$DecisionTypeEnumMap = {
   DecisionType.PRODUCT: 'PRODUCT',
   DecisionType.TECHNICAL: 'TECHNICAL',
+  DecisionType.ARCHITECTURAL: 'ARCHITECTURAL',
   DecisionType.DESIGN: 'DESIGN',
   DecisionType.BUSINESS: 'BUSINESS',
   DecisionType.PROCESS: 'PROCESS',

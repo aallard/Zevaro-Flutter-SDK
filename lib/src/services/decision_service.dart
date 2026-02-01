@@ -30,7 +30,7 @@ class DecisionService {
   }) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/decisions',
+        '/v1/decisions/paged',
         queryParameters: {
           'page': page,
           'size': size,

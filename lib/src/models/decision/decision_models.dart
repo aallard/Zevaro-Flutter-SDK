@@ -6,6 +6,7 @@ library;
 export 'create_decision_request.dart';
 export 'decision.dart';
 export 'decision_comment.dart';
+export 'embedded_models.dart';
 export 'decision_status.dart';
 export 'decision_type.dart';
 export 'decision_urgency.dart';

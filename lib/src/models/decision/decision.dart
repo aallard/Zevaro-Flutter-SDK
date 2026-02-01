@@ -5,6 +5,7 @@ import 'decision_status.dart';
 import 'decision_type.dart';
 import 'decision_urgency.dart';
 import 'decision_vote.dart';
+import 'embedded_models.dart';
 
 part 'decision.freezed.dart';
 part 'decision.g.dart';
@@ -19,60 +20,101 @@ class Decision with _$Decision {
     /// Unique identifier.
     required String id,
 
-    /// ID of the tenant this decision belongs to.
-    required String tenantId,
-
-    /// ID of the hypothesis this decision is blocking.
-    required String hypothesisId,
-
-    /// ID of the team that owns this decision.
-    required String teamId,
-
-    // Core fields
-
     /// Decision title.
     required String title,
 
     /// Detailed description of what needs to be decided.
-    required String description,
+    String? description,
+
+    /// Background information/context.
+    String? context,
+
+    /// Available choices/options.
+    List<DecisionOption>? options,
 
     /// Current Kanban status.
     required DecisionStatus status,
 
-    /// Urgency level (determines SLA).
-    required DecisionUrgency urgency,
+    /// Priority level (BLOCKING, HIGH, MEDIUM, LOW, CRITICAL).
+    required String priority,
 
     /// Category of decision.
-    required DecisionType type,
+    @JsonKey(name: 'decisionType') required DecisionType type,
 
-    // Context
+    /// Owner of the decision.
+    EmbeddedUser? owner,
 
-    /// Background information.
-    String? context,
+    /// User assigned to make the decision.
+    EmbeddedUser? assignedTo,
 
-    /// Available choices/options.
-    List<String>? options,
+    /// Related outcome.
+    EmbeddedOutcome? outcome,
 
-    /// Final decision (when DECIDED).
-    String? selectedOption,
+    /// Related hypothesis.
+    EmbeddedHypothesis? hypothesis,
+
+    /// Team that owns this decision.
+    EmbeddedTeam? team,
+
+    /// Decision queue this belongs to.
+    EmbeddedQueue? queue,
+
+    /// Primary stakeholder.
+    EmbeddedStakeholder? stakeholder,
+
+    /// SLA in hours.
+    int? slaHours,
+
+    /// When the decision is due.
+    DateTime? dueAt,
+
+    /// Whether the decision is overdue.
+    @Default(false) bool overdue,
+
+    /// Hours waiting for decision.
+    double? waitTimeHours,
+
+    /// Current escalation level.
+    @Default(0) int escalationLevel,
+
+    /// When the decision was escalated.
+    DateTime? escalatedAt,
+
+    /// User it was escalated to.
+    EmbeddedUser? escalatedTo,
+
+    /// User who made the final decision.
+    EmbeddedUser? decidedBy,
+
+    /// When the decision was made.
+    DateTime? decidedAt,
 
     /// Rationale for the decision.
-    String? rationale,
+    String? decisionRationale,
 
-    // Ownership
+    /// The selected option ID.
+    String? selectedOption,
 
-    /// ID of the user who raised the decision.
-    required String requesterId,
+    /// Resolution summary.
+    String? resolution,
 
-    /// ID of the user who made final call (when DECIDED).
-    String? deciderId,
+    /// Whether decision was escalated at any point.
+    @Default(false) bool wasEscalated,
 
-    // Stakeholders
+    /// Items blocked by this decision.
+    List<String>? blockedItems,
 
-    /// IDs of users who need to weigh in.
-    required List<String> stakeholderIds,
+    /// Number of comments.
+    @Default(0) int commentCount,
 
-    // SLA tracking
+    /// Number of votes cast.
+    @Default(0) int voteCount,
+
+    /// External references (e.g., Jira, Confluence).
+    Map<String, String>? externalRefs,
+
+    /// Tags for categorization.
+    List<String>? tags,
 
     /// When the decision was created.
     required DateTime createdAt,
@@ -80,44 +122,11 @@ class Decision with _$Decision {
     /// When the decision was last updated.
     required DateTime updatedAt,
 
-    /// When SLA expires.
-    DateTime? slaDeadline,
-
-    /// When decision was made.
-    DateTime? decidedAt,
-
-    // Metrics
-
-    /// Number of votes cast.
-    required int voteCount,
-
-    /// Number of comments.
-    required int commentCount,
-
-    // Optional embedded data
-
-    /// Votes on this decision.
+    /// Votes on this decision (when loaded).
     List<DecisionVote>? votes,
 
-    /// Comments on this decision.
+    /// Comments on this decision (when loaded).
     List<DecisionComment>? comments,
-
-    // Embedded info
-
-    /// Requester's display name.
-    String? requesterName,
-
-    /// Requester's avatar URL.
-    String? requesterAvatarUrl,
-
-    /// Decider's display name.
-    String? deciderName,
-
-    /// Hypothesis statement for context.
-    String? hypothesisStatement,
-
-    /// Team's display name.
-    String? teamName,
   }) = _Decision;
 
   /// Creates a decision from JSON.
@@ -127,6 +136,23 @@ class Decision with _$Decision {
 
 /// Extension methods for [Decision].
 extension DecisionExtension on Decision {
+  /// Get the urgency enum from priority string for backwards compatibility.
+  DecisionUrgency get urgency {
+    switch (priority.toUpperCase()) {
+      case 'BLOCKING':
+      case 'CRITICAL':
+        return DecisionUrgency.BLOCKING;
+      case 'HIGH':
+        return DecisionUrgency.HIGH;
+      case 'MEDIUM':
+      case 'NORMAL':
+        return DecisionUrgency.NORMAL;
+      case 'LOW':
+      default:
+        return DecisionUrgency.LOW;
+    }
+  }
+
   /// Whether this decision is still pending.
   bool get isPending => status.isPending;
 
@@ -141,16 +167,13 @@ extension DecisionExtension on Decision {
 
   /// Time remaining until SLA breach.
   Duration? get timeToSla {
-    if (slaDeadline == null || isResolved) return null;
-    final remaining = slaDeadline!.difference(DateTime.now());
+    if (dueAt == null || isResolved) return null;
+    final remaining = dueAt!.difference(DateTime.now());
     return remaining.isNegative ? Duration.zero : remaining;
   }
 
   /// Whether the SLA has been breached.
-  bool get isSlaBreached {
-    if (slaDeadline == null || isResolved) return false;
-    return DateTime.now().isAfter(slaDeadline!);
-  }
+  bool get isSlaBreached => overdue;
 
   /// How long this decision has been pending.
   Duration get pendingDuration => DateTime.now().difference(createdAt);
@@ -178,12 +201,19 @@ extension DecisionExtension on Decision {
     if (isSlaBreached) return '#EF4444'; // Red
     final remaining = timeToSla;
     if (remaining == null) return '#9CA3AF'; // Gray
-    // Warning if < 25% time remaining
-    final threshold = urgency.slaDuration.inMinutes * 0.25;
-    if (remaining.inMinutes < threshold) return '#F59E0B'; // Amber
+    if (remaining.inHours < 4) return '#F59E0B'; // Amber - warning
     return '#3B82F6'; // Blue
   }
 
-  /// Whether all stakeholders have voted.
-  bool get allStakeholdersVoted => voteCount >= stakeholderIds.length;
+  /// Get team ID if available.
+  String? get teamId => team?.id;
+
+  /// Get hypothesis ID if available.
+  String? get hypothesisId => hypothesis?.id;
+
+  /// Get owner ID if available.
+  String? get ownerId => owner?.id;
+
+  /// Get assigned user ID if available.
+  String? get assignedToId => assignedTo?.id;
 }

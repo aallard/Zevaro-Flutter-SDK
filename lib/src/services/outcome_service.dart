@@ -25,7 +25,7 @@ class OutcomeService {
   }) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/outcomes',
+        '/v1/outcomes/paged',
         queryParameters: {
           'page': page,
           'size': size,
@@ -118,7 +118,7 @@ class OutcomeService {
   /// Gets outcomes owned by the current user.
   Future<List<Outcome>> getMyOutcomes() async {
     try {
-      final response = await _apiClient.dio.get('/v1/outcomes/mine');
+      final response = await _apiClient.dio.get('/v1/outcomes/my-outcomes');
       return (response.data as List)
           .map((json) => Outcome.fromJson(json as Map<String, dynamic>))
           .toList();

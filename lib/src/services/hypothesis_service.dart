@@ -26,7 +26,7 @@ class HypothesisService {
   }) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/hypotheses',
+        '/v1/hypotheses/paged',
         queryParameters: {
           'page': page,
           'size': size,
@@ -152,7 +152,7 @@ class HypothesisService {
   /// Gets hypotheses owned by the current user.
   Future<List<Hypothesis>> getMyHypotheses() async {
     try {
-      final response = await _apiClient.dio.get('/v1/hypotheses/mine');
+      final response = await _apiClient.dio.get('/v1/hypotheses/my-hypotheses');
       return (response.data as List)
           .map((json) => Hypothesis.fromJson(json as Map<String, dynamic>))
           .toList();
