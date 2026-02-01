@@ -9,27 +9,17 @@ part of 'team_member.dart';
 _$TeamMemberImpl _$$TeamMemberImplFromJson(Map<String, dynamic> json) =>
     _$TeamMemberImpl(
       id: json['id'] as String,
-      teamId: json['teamId'] as String,
-      userId: json['userId'] as String,
-      role: $enumDecode(_$TeamMemberRoleEnumMap, json['role']),
+      user: UserSummary.fromJson(json['user'] as Map<String, dynamic>),
+      teamRole: $enumDecode(_$TeamMemberRoleEnumMap, json['teamRole']),
       joinedAt: DateTime.parse(json['joinedAt'] as String),
-      userEmail: json['userEmail'] as String?,
-      userFirstName: json['userFirstName'] as String?,
-      userLastName: json['userLastName'] as String?,
-      userAvatarUrl: json['userAvatarUrl'] as String?,
     );
 
 Map<String, dynamic> _$$TeamMemberImplToJson(_$TeamMemberImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'teamId': instance.teamId,
-      'userId': instance.userId,
-      'role': _$TeamMemberRoleEnumMap[instance.role]!,
+      'user': instance.user,
+      'teamRole': _$TeamMemberRoleEnumMap[instance.teamRole]!,
       'joinedAt': instance.joinedAt.toIso8601String(),
-      'userEmail': instance.userEmail,
-      'userFirstName': instance.userFirstName,
-      'userLastName': instance.userLastName,
-      'userAvatarUrl': instance.userAvatarUrl,
     };
 
 const _$TeamMemberRoleEnumMap = {

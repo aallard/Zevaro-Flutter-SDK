@@ -23,29 +23,14 @@ mixin _$TeamMember {
   /// Unique identifier for this team membership.
   String get id => throw _privateConstructorUsedError;
 
-  /// ID of the team.
-  String get teamId => throw _privateConstructorUsedError;
-
-  /// ID of the user.
-  String get userId => throw _privateConstructorUsedError;
+  /// The user who is a member of the team.
+  UserSummary get user => throw _privateConstructorUsedError;
 
   /// Role within the team.
-  TeamMemberRole get role => throw _privateConstructorUsedError;
+  TeamMemberRole get teamRole => throw _privateConstructorUsedError;
 
   /// When the user joined the team.
   DateTime get joinedAt => throw _privateConstructorUsedError;
-
-  /// User's email (embedded for display).
-  String? get userEmail => throw _privateConstructorUsedError;
-
-  /// User's first name (embedded for display).
-  String? get userFirstName => throw _privateConstructorUsedError;
-
-  /// User's last name (embedded for display).
-  String? get userLastName => throw _privateConstructorUsedError;
-
-  /// User's avatar URL (embedded for display).
-  String? get userAvatarUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -61,14 +46,11 @@ abstract class $TeamMemberCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String teamId,
-      String userId,
-      TeamMemberRole role,
-      DateTime joinedAt,
-      String? userEmail,
-      String? userFirstName,
-      String? userLastName,
-      String? userAvatarUrl});
+      UserSummary user,
+      TeamMemberRole teamRole,
+      DateTime joinedAt});
+
+  $UserSummaryCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -85,53 +67,36 @@ class _$TeamMemberCopyWithImpl<$Res, $Val extends TeamMember>
   @override
   $Res call({
     Object? id = null,
-    Object? teamId = null,
-    Object? userId = null,
-    Object? role = null,
+    Object? user = null,
+    Object? teamRole = null,
     Object? joinedAt = null,
-    Object? userEmail = freezed,
-    Object? userFirstName = freezed,
-    Object? userLastName = freezed,
-    Object? userAvatarUrl = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      teamId: null == teamId
-          ? _value.teamId
-          : teamId // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserSummary,
+      teamRole: null == teamRole
+          ? _value.teamRole
+          : teamRole // ignore: cast_nullable_to_non_nullable
               as TeamMemberRole,
       joinedAt: null == joinedAt
           ? _value.joinedAt
           : joinedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      userEmail: freezed == userEmail
-          ? _value.userEmail
-          : userEmail // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userFirstName: freezed == userFirstName
-          ? _value.userFirstName
-          : userFirstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userLastName: freezed == userLastName
-          ? _value.userLastName
-          : userLastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userAvatarUrl: freezed == userAvatarUrl
-          ? _value.userAvatarUrl
-          : userAvatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserSummaryCopyWith<$Res> get user {
+    return $UserSummaryCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
@@ -145,14 +110,12 @@ abstract class _$$TeamMemberImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String teamId,
-      String userId,
-      TeamMemberRole role,
-      DateTime joinedAt,
-      String? userEmail,
-      String? userFirstName,
-      String? userLastName,
-      String? userAvatarUrl});
+      UserSummary user,
+      TeamMemberRole teamRole,
+      DateTime joinedAt});
+
+  @override
+  $UserSummaryCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -167,52 +130,27 @@ class __$$TeamMemberImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? teamId = null,
-    Object? userId = null,
-    Object? role = null,
+    Object? user = null,
+    Object? teamRole = null,
     Object? joinedAt = null,
-    Object? userEmail = freezed,
-    Object? userFirstName = freezed,
-    Object? userLastName = freezed,
-    Object? userAvatarUrl = freezed,
   }) {
     return _then(_$TeamMemberImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      teamId: null == teamId
-          ? _value.teamId
-          : teamId // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserSummary,
+      teamRole: null == teamRole
+          ? _value.teamRole
+          : teamRole // ignore: cast_nullable_to_non_nullable
               as TeamMemberRole,
       joinedAt: null == joinedAt
           ? _value.joinedAt
           : joinedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      userEmail: freezed == userEmail
-          ? _value.userEmail
-          : userEmail // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userFirstName: freezed == userFirstName
-          ? _value.userFirstName
-          : userFirstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userLastName: freezed == userLastName
-          ? _value.userLastName
-          : userLastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userAvatarUrl: freezed == userAvatarUrl
-          ? _value.userAvatarUrl
-          : userAvatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -222,14 +160,9 @@ class __$$TeamMemberImplCopyWithImpl<$Res>
 class _$TeamMemberImpl implements _TeamMember {
   const _$TeamMemberImpl(
       {required this.id,
-      required this.teamId,
-      required this.userId,
-      required this.role,
-      required this.joinedAt,
-      this.userEmail,
-      this.userFirstName,
-      this.userLastName,
-      this.userAvatarUrl});
+      required this.user,
+      required this.teamRole,
+      required this.joinedAt});
 
   factory _$TeamMemberImpl.fromJson(Map<String, dynamic> json) =>
       _$$TeamMemberImplFromJson(json);
@@ -238,41 +171,21 @@ class _$TeamMemberImpl implements _TeamMember {
   @override
   final String id;
 
-  /// ID of the team.
+  /// The user who is a member of the team.
   @override
-  final String teamId;
-
-  /// ID of the user.
-  @override
-  final String userId;
+  final UserSummary user;
 
   /// Role within the team.
   @override
-  final TeamMemberRole role;
+  final TeamMemberRole teamRole;
 
   /// When the user joined the team.
   @override
   final DateTime joinedAt;
 
-  /// User's email (embedded for display).
-  @override
-  final String? userEmail;
-
-  /// User's first name (embedded for display).
-  @override
-  final String? userFirstName;
-
-  /// User's last name (embedded for display).
-  @override
-  final String? userLastName;
-
-  /// User's avatar URL (embedded for display).
-  @override
-  final String? userAvatarUrl;
-
   @override
   String toString() {
-    return 'TeamMember(id: $id, teamId: $teamId, userId: $userId, role: $role, joinedAt: $joinedAt, userEmail: $userEmail, userFirstName: $userFirstName, userLastName: $userLastName, userAvatarUrl: $userAvatarUrl)';
+    return 'TeamMember(id: $id, user: $user, teamRole: $teamRole, joinedAt: $joinedAt)';
   }
 
   @override
@@ -281,25 +194,16 @@ class _$TeamMemberImpl implements _TeamMember {
         (other.runtimeType == runtimeType &&
             other is _$TeamMemberImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.teamId, teamId) || other.teamId == teamId) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.role, role) || other.role == role) &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.teamRole, teamRole) ||
+                other.teamRole == teamRole) &&
             (identical(other.joinedAt, joinedAt) ||
-                other.joinedAt == joinedAt) &&
-            (identical(other.userEmail, userEmail) ||
-                other.userEmail == userEmail) &&
-            (identical(other.userFirstName, userFirstName) ||
-                other.userFirstName == userFirstName) &&
-            (identical(other.userLastName, userLastName) ||
-                other.userLastName == userLastName) &&
-            (identical(other.userAvatarUrl, userAvatarUrl) ||
-                other.userAvatarUrl == userAvatarUrl));
+                other.joinedAt == joinedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, teamId, userId, role,
-      joinedAt, userEmail, userFirstName, userLastName, userAvatarUrl);
+  int get hashCode => Object.hash(runtimeType, id, user, teamRole, joinedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -318,14 +222,9 @@ class _$TeamMemberImpl implements _TeamMember {
 abstract class _TeamMember implements TeamMember {
   const factory _TeamMember(
       {required final String id,
-      required final String teamId,
-      required final String userId,
-      required final TeamMemberRole role,
-      required final DateTime joinedAt,
-      final String? userEmail,
-      final String? userFirstName,
-      final String? userLastName,
-      final String? userAvatarUrl}) = _$TeamMemberImpl;
+      required final UserSummary user,
+      required final TeamMemberRole teamRole,
+      required final DateTime joinedAt}) = _$TeamMemberImpl;
 
   factory _TeamMember.fromJson(Map<String, dynamic> json) =
       _$TeamMemberImpl.fromJson;
@@ -336,36 +235,16 @@ abstract class _TeamMember implements TeamMember {
   String get id;
   @override
 
-  /// ID of the team.
-  String get teamId;
-  @override
-
-  /// ID of the user.
-  String get userId;
+  /// The user who is a member of the team.
+  UserSummary get user;
   @override
 
   /// Role within the team.
-  TeamMemberRole get role;
+  TeamMemberRole get teamRole;
   @override
 
   /// When the user joined the team.
   DateTime get joinedAt;
-  @override
-
-  /// User's email (embedded for display).
-  String? get userEmail;
-  @override
-
-  /// User's first name (embedded for display).
-  String? get userFirstName;
-  @override
-
-  /// User's last name (embedded for display).
-  String? get userLastName;
-  @override
-
-  /// User's avatar URL (embedded for display).
-  String? get userAvatarUrl;
   @override
   @JsonKey(ignore: true)
   _$$TeamMemberImplCopyWith<_$TeamMemberImpl> get copyWith =>

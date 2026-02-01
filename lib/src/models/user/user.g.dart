@@ -72,17 +72,15 @@ const _$UserDepartmentEnumMap = {
 _$UserSummaryImpl _$$UserSummaryImplFromJson(Map<String, dynamic> json) =>
     _$UserSummaryImpl(
       id: json['id'] as String,
-      email: json['email'] as String,
-      firstName: json['firstName'] as String,
-      lastName: json['lastName'] as String,
+      fullName: json['fullName'] as String?,
+      title: json['title'] as String?,
       avatarUrl: json['avatarUrl'] as String?,
     );
 
 Map<String, dynamic> _$$UserSummaryImplToJson(_$UserSummaryImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'email': instance.email,
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
+      'fullName': instance.fullName,
+      'title': instance.title,
       'avatarUrl': instance.avatarUrl,
     };

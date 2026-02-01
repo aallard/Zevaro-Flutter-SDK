@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../user/user.dart';
 import 'team_member.dart';
 
 part 'team.freezed.dart';
@@ -13,20 +14,23 @@ class Team with _$Team {
     /// Unique identifier.
     required String id,
 
-    /// ID of the tenant this team belongs to.
-    String? tenantId,
-
     /// Team name.
     required String name,
+
+    /// URL-friendly slug.
+    String? slug,
 
     /// Team description.
     String? description,
 
-    /// URL of the team's avatar image.
-    String? avatarUrl,
+    /// URL of the team's icon image.
+    String? iconUrl,
 
     /// Hex color for UI display (e.g., "#FF5733").
     String? color,
+
+    /// Team lead (optional).
+    UserSummary? lead,
 
     /// Number of members in the team.
     @Default(0) int memberCount,
@@ -38,13 +42,13 @@ class Team with _$Team {
     @Default(0) int activeHypothesisCount,
 
     /// Whether the team is active.
-    @Default(true) bool isActive,
+    @Default(true) bool active,
 
     /// When the team was created.
-    required DateTime createdAt,
+    DateTime? createdAt,
 
     /// When the team was last updated.
-    required DateTime updatedAt,
+    DateTime? updatedAt,
 
     /// Team members (optional, included in detail view).
     List<TeamMember>? members,
@@ -59,9 +63,9 @@ extension TeamExtension on Team {
   /// Whether the team has any members.
   bool get hasMembers => memberCount > 0;
 
-  /// Whether the team has any outcomes.
-  bool get hasOutcomes => outcomeCount > 0;
+  /// Gets the team's avatar URL (alias for iconUrl).
+  String? get avatarUrl => iconUrl;
 
-  /// Whether the team has active work (hypotheses in progress).
-  bool get hasActiveWork => activeHypothesisCount > 0;
+  /// Whether the team is active (alias for active field).
+  bool get isActive => active;
 }

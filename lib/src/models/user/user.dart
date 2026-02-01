@@ -85,9 +85,8 @@ class UserSummary with _$UserSummary {
   /// Creates a user summary.
   const factory UserSummary({
     required String id,
-    required String email,
-    required String firstName,
-    required String lastName,
+    String? fullName,
+    String? title,
     String? avatarUrl,
   }) = _UserSummary;
 
@@ -95,11 +94,14 @@ class UserSummary with _$UserSummary {
   factory UserSummary.fromJson(Map<String, dynamic> json) =>
       _$UserSummaryFromJson(json);
 
-  /// Full name of the user.
-  String get fullName => '$firstName $lastName';
-
   /// Initials of the user.
-  String get initials =>
-      '${firstName.isNotEmpty ? firstName[0] : ""}${lastName.isNotEmpty ? lastName[0] : ""}'
-          .toUpperCase();
+  String get initials {
+    final name = fullName;
+    if (name == null || name.isEmpty) return '??';
+    final parts = name.split(' ');
+    if (parts.length >= 2) {
+      return '${parts[0][0]}${parts[1][0]}'.toUpperCase();
+    }
+    return name.substring(0, 1).toUpperCase();
+  }
 }

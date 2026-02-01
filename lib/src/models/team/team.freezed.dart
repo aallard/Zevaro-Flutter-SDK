@@ -23,20 +23,23 @@ mixin _$Team {
   /// Unique identifier.
   String get id => throw _privateConstructorUsedError;
 
-  /// ID of the tenant this team belongs to.
-  String? get tenantId => throw _privateConstructorUsedError;
-
   /// Team name.
   String get name => throw _privateConstructorUsedError;
+
+  /// URL-friendly slug.
+  String? get slug => throw _privateConstructorUsedError;
 
   /// Team description.
   String? get description => throw _privateConstructorUsedError;
 
-  /// URL of the team's avatar image.
-  String? get avatarUrl => throw _privateConstructorUsedError;
+  /// URL of the team's icon image.
+  String? get iconUrl => throw _privateConstructorUsedError;
 
   /// Hex color for UI display (e.g., "#FF5733").
   String? get color => throw _privateConstructorUsedError;
+
+  /// Team lead (optional).
+  UserSummary? get lead => throw _privateConstructorUsedError;
 
   /// Number of members in the team.
   int get memberCount => throw _privateConstructorUsedError;
@@ -48,13 +51,13 @@ mixin _$Team {
   int get activeHypothesisCount => throw _privateConstructorUsedError;
 
   /// Whether the team is active.
-  bool get isActive => throw _privateConstructorUsedError;
+  bool get active => throw _privateConstructorUsedError;
 
   /// When the team was created.
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
 
   /// When the team was last updated.
-  DateTime get updatedAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   /// Team members (optional, included in detail view).
   List<TeamMember>? get members => throw _privateConstructorUsedError;
@@ -71,18 +74,21 @@ abstract class $TeamCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String? tenantId,
       String name,
+      String? slug,
       String? description,
-      String? avatarUrl,
+      String? iconUrl,
       String? color,
+      UserSummary? lead,
       int memberCount,
       int outcomeCount,
       int activeHypothesisCount,
-      bool isActive,
-      DateTime createdAt,
-      DateTime updatedAt,
+      bool active,
+      DateTime? createdAt,
+      DateTime? updatedAt,
       List<TeamMember>? members});
+
+  $UserSummaryCopyWith<$Res>? get lead;
 }
 
 /// @nodoc
@@ -99,17 +105,18 @@ class _$TeamCopyWithImpl<$Res, $Val extends Team>
   @override
   $Res call({
     Object? id = null,
-    Object? tenantId = freezed,
     Object? name = null,
+    Object? slug = freezed,
     Object? description = freezed,
-    Object? avatarUrl = freezed,
+    Object? iconUrl = freezed,
     Object? color = freezed,
+    Object? lead = freezed,
     Object? memberCount = null,
     Object? outcomeCount = null,
     Object? activeHypothesisCount = null,
-    Object? isActive = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? active = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? members = freezed,
   }) {
     return _then(_value.copyWith(
@@ -117,26 +124,30 @@ class _$TeamCopyWithImpl<$Res, $Val extends Team>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      tenantId: freezed == tenantId
-          ? _value.tenantId
-          : tenantId // ignore: cast_nullable_to_non_nullable
-              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      slug: freezed == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      avatarUrl: freezed == avatarUrl
-          ? _value.avatarUrl
-          : avatarUrl // ignore: cast_nullable_to_non_nullable
+      iconUrl: freezed == iconUrl
+          ? _value.iconUrl
+          : iconUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as String?,
+      lead: freezed == lead
+          ? _value.lead
+          : lead // ignore: cast_nullable_to_non_nullable
+              as UserSummary?,
       memberCount: null == memberCount
           ? _value.memberCount
           : memberCount // ignore: cast_nullable_to_non_nullable
@@ -149,23 +160,35 @@ class _$TeamCopyWithImpl<$Res, $Val extends Team>
           ? _value.activeHypothesisCount
           : activeHypothesisCount // ignore: cast_nullable_to_non_nullable
               as int,
-      isActive: null == isActive
-          ? _value.isActive
-          : isActive // ignore: cast_nullable_to_non_nullable
+      active: null == active
+          ? _value.active
+          : active // ignore: cast_nullable_to_non_nullable
               as bool,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
+              as DateTime?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       members: freezed == members
           ? _value.members
           : members // ignore: cast_nullable_to_non_nullable
               as List<TeamMember>?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserSummaryCopyWith<$Res>? get lead {
+    if (_value.lead == null) {
+      return null;
+    }
+
+    return $UserSummaryCopyWith<$Res>(_value.lead!, (value) {
+      return _then(_value.copyWith(lead: value) as $Val);
+    });
   }
 }
 
@@ -178,18 +201,22 @@ abstract class _$$TeamImplCopyWith<$Res> implements $TeamCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String? tenantId,
       String name,
+      String? slug,
       String? description,
-      String? avatarUrl,
+      String? iconUrl,
       String? color,
+      UserSummary? lead,
       int memberCount,
       int outcomeCount,
       int activeHypothesisCount,
-      bool isActive,
-      DateTime createdAt,
-      DateTime updatedAt,
+      bool active,
+      DateTime? createdAt,
+      DateTime? updatedAt,
       List<TeamMember>? members});
+
+  @override
+  $UserSummaryCopyWith<$Res>? get lead;
 }
 
 /// @nodoc
@@ -203,17 +230,18 @@ class __$$TeamImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? tenantId = freezed,
     Object? name = null,
+    Object? slug = freezed,
     Object? description = freezed,
-    Object? avatarUrl = freezed,
+    Object? iconUrl = freezed,
     Object? color = freezed,
+    Object? lead = freezed,
     Object? memberCount = null,
     Object? outcomeCount = null,
     Object? activeHypothesisCount = null,
-    Object? isActive = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? active = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? members = freezed,
   }) {
     return _then(_$TeamImpl(
@@ -221,26 +249,30 @@ class __$$TeamImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      tenantId: freezed == tenantId
-          ? _value.tenantId
-          : tenantId // ignore: cast_nullable_to_non_nullable
-              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      slug: freezed == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      avatarUrl: freezed == avatarUrl
-          ? _value.avatarUrl
-          : avatarUrl // ignore: cast_nullable_to_non_nullable
+      iconUrl: freezed == iconUrl
+          ? _value.iconUrl
+          : iconUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as String?,
+      lead: freezed == lead
+          ? _value.lead
+          : lead // ignore: cast_nullable_to_non_nullable
+              as UserSummary?,
       memberCount: null == memberCount
           ? _value.memberCount
           : memberCount // ignore: cast_nullable_to_non_nullable
@@ -253,18 +285,18 @@ class __$$TeamImplCopyWithImpl<$Res>
           ? _value.activeHypothesisCount
           : activeHypothesisCount // ignore: cast_nullable_to_non_nullable
               as int,
-      isActive: null == isActive
-          ? _value.isActive
-          : isActive // ignore: cast_nullable_to_non_nullable
+      active: null == active
+          ? _value.active
+          : active // ignore: cast_nullable_to_non_nullable
               as bool,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
+              as DateTime?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       members: freezed == members
           ? _value._members
           : members // ignore: cast_nullable_to_non_nullable
@@ -278,17 +310,18 @@ class __$$TeamImplCopyWithImpl<$Res>
 class _$TeamImpl implements _Team {
   const _$TeamImpl(
       {required this.id,
-      this.tenantId,
       required this.name,
+      this.slug,
       this.description,
-      this.avatarUrl,
+      this.iconUrl,
       this.color,
+      this.lead,
       this.memberCount = 0,
       this.outcomeCount = 0,
       this.activeHypothesisCount = 0,
-      this.isActive = true,
-      required this.createdAt,
-      required this.updatedAt,
+      this.active = true,
+      this.createdAt,
+      this.updatedAt,
       final List<TeamMember>? members})
       : _members = members;
 
@@ -299,25 +332,29 @@ class _$TeamImpl implements _Team {
   @override
   final String id;
 
-  /// ID of the tenant this team belongs to.
-  @override
-  final String? tenantId;
-
   /// Team name.
   @override
   final String name;
+
+  /// URL-friendly slug.
+  @override
+  final String? slug;
 
   /// Team description.
   @override
   final String? description;
 
-  /// URL of the team's avatar image.
+  /// URL of the team's icon image.
   @override
-  final String? avatarUrl;
+  final String? iconUrl;
 
   /// Hex color for UI display (e.g., "#FF5733").
   @override
   final String? color;
+
+  /// Team lead (optional).
+  @override
+  final UserSummary? lead;
 
   /// Number of members in the team.
   @override
@@ -337,15 +374,15 @@ class _$TeamImpl implements _Team {
   /// Whether the team is active.
   @override
   @JsonKey()
-  final bool isActive;
+  final bool active;
 
   /// When the team was created.
   @override
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   /// When the team was last updated.
   @override
-  final DateTime updatedAt;
+  final DateTime? updatedAt;
 
   /// Team members (optional, included in detail view).
   final List<TeamMember>? _members;
@@ -362,7 +399,7 @@ class _$TeamImpl implements _Team {
 
   @override
   String toString() {
-    return 'Team(id: $id, tenantId: $tenantId, name: $name, description: $description, avatarUrl: $avatarUrl, color: $color, memberCount: $memberCount, outcomeCount: $outcomeCount, activeHypothesisCount: $activeHypothesisCount, isActive: $isActive, createdAt: $createdAt, updatedAt: $updatedAt, members: $members)';
+    return 'Team(id: $id, name: $name, slug: $slug, description: $description, iconUrl: $iconUrl, color: $color, lead: $lead, memberCount: $memberCount, outcomeCount: $outcomeCount, activeHypothesisCount: $activeHypothesisCount, active: $active, createdAt: $createdAt, updatedAt: $updatedAt, members: $members)';
   }
 
   @override
@@ -371,22 +408,20 @@ class _$TeamImpl implements _Team {
         (other.runtimeType == runtimeType &&
             other is _$TeamImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.tenantId, tenantId) ||
-                other.tenantId == tenantId) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.avatarUrl, avatarUrl) ||
-                other.avatarUrl == avatarUrl) &&
+            (identical(other.iconUrl, iconUrl) || other.iconUrl == iconUrl) &&
             (identical(other.color, color) || other.color == color) &&
+            (identical(other.lead, lead) || other.lead == lead) &&
             (identical(other.memberCount, memberCount) ||
                 other.memberCount == memberCount) &&
             (identical(other.outcomeCount, outcomeCount) ||
                 other.outcomeCount == outcomeCount) &&
             (identical(other.activeHypothesisCount, activeHypothesisCount) ||
                 other.activeHypothesisCount == activeHypothesisCount) &&
-            (identical(other.isActive, isActive) ||
-                other.isActive == isActive) &&
+            (identical(other.active, active) || other.active == active) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -399,15 +434,16 @@ class _$TeamImpl implements _Team {
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      tenantId,
       name,
+      slug,
       description,
-      avatarUrl,
+      iconUrl,
       color,
+      lead,
       memberCount,
       outcomeCount,
       activeHypothesisCount,
-      isActive,
+      active,
       createdAt,
       updatedAt,
       const DeepCollectionEquality().hash(_members));
@@ -429,17 +465,18 @@ class _$TeamImpl implements _Team {
 abstract class _Team implements Team {
   const factory _Team(
       {required final String id,
-      final String? tenantId,
       required final String name,
+      final String? slug,
       final String? description,
-      final String? avatarUrl,
+      final String? iconUrl,
       final String? color,
+      final UserSummary? lead,
       final int memberCount,
       final int outcomeCount,
       final int activeHypothesisCount,
-      final bool isActive,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
+      final bool active,
+      final DateTime? createdAt,
+      final DateTime? updatedAt,
       final List<TeamMember>? members}) = _$TeamImpl;
 
   factory _Team.fromJson(Map<String, dynamic> json) = _$TeamImpl.fromJson;
@@ -450,24 +487,28 @@ abstract class _Team implements Team {
   String get id;
   @override
 
-  /// ID of the tenant this team belongs to.
-  String? get tenantId;
-  @override
-
   /// Team name.
   String get name;
+  @override
+
+  /// URL-friendly slug.
+  String? get slug;
   @override
 
   /// Team description.
   String? get description;
   @override
 
-  /// URL of the team's avatar image.
-  String? get avatarUrl;
+  /// URL of the team's icon image.
+  String? get iconUrl;
   @override
 
   /// Hex color for UI display (e.g., "#FF5733").
   String? get color;
+  @override
+
+  /// Team lead (optional).
+  UserSummary? get lead;
   @override
 
   /// Number of members in the team.
@@ -483,15 +524,15 @@ abstract class _Team implements Team {
   @override
 
   /// Whether the team is active.
-  bool get isActive;
+  bool get active;
   @override
 
   /// When the team was created.
-  DateTime get createdAt;
+  DateTime? get createdAt;
   @override
 
   /// When the team was last updated.
-  DateTime get updatedAt;
+  DateTime? get updatedAt;
   @override
 
   /// Team members (optional, included in detail view).

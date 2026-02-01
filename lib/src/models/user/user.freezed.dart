@@ -561,9 +561,8 @@ UserSummary _$UserSummaryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserSummary {
   String get id => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
+  String? get fullName => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
   String? get avatarUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -578,12 +577,7 @@ abstract class $UserSummaryCopyWith<$Res> {
           UserSummary value, $Res Function(UserSummary) then) =
       _$UserSummaryCopyWithImpl<$Res, UserSummary>;
   @useResult
-  $Res call(
-      {String id,
-      String email,
-      String firstName,
-      String lastName,
-      String? avatarUrl});
+  $Res call({String id, String? fullName, String? title, String? avatarUrl});
 }
 
 /// @nodoc
@@ -600,9 +594,8 @@ class _$UserSummaryCopyWithImpl<$Res, $Val extends UserSummary>
   @override
   $Res call({
     Object? id = null,
-    Object? email = null,
-    Object? firstName = null,
-    Object? lastName = null,
+    Object? fullName = freezed,
+    Object? title = freezed,
     Object? avatarUrl = freezed,
   }) {
     return _then(_value.copyWith(
@@ -610,18 +603,14 @@ class _$UserSummaryCopyWithImpl<$Res, $Val extends UserSummary>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
       avatarUrl: freezed == avatarUrl
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
@@ -638,12 +627,7 @@ abstract class _$$UserSummaryImplCopyWith<$Res>
       __$$UserSummaryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id,
-      String email,
-      String firstName,
-      String lastName,
-      String? avatarUrl});
+  $Res call({String id, String? fullName, String? title, String? avatarUrl});
 }
 
 /// @nodoc
@@ -658,9 +642,8 @@ class __$$UserSummaryImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? email = null,
-    Object? firstName = null,
-    Object? lastName = null,
+    Object? fullName = freezed,
+    Object? title = freezed,
     Object? avatarUrl = freezed,
   }) {
     return _then(_$UserSummaryImpl(
@@ -668,18 +651,14 @@ class __$$UserSummaryImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
       avatarUrl: freezed == avatarUrl
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
@@ -692,11 +671,7 @@ class __$$UserSummaryImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserSummaryImpl extends _UserSummary {
   const _$UserSummaryImpl(
-      {required this.id,
-      required this.email,
-      required this.firstName,
-      required this.lastName,
-      this.avatarUrl})
+      {required this.id, this.fullName, this.title, this.avatarUrl})
       : super._();
 
   factory _$UserSummaryImpl.fromJson(Map<String, dynamic> json) =>
@@ -705,17 +680,15 @@ class _$UserSummaryImpl extends _UserSummary {
   @override
   final String id;
   @override
-  final String email;
+  final String? fullName;
   @override
-  final String firstName;
-  @override
-  final String lastName;
+  final String? title;
   @override
   final String? avatarUrl;
 
   @override
   String toString() {
-    return 'UserSummary(id: $id, email: $email, firstName: $firstName, lastName: $lastName, avatarUrl: $avatarUrl)';
+    return 'UserSummary(id: $id, fullName: $fullName, title: $title, avatarUrl: $avatarUrl)';
   }
 
   @override
@@ -724,19 +697,16 @@ class _$UserSummaryImpl extends _UserSummary {
         (other.runtimeType == runtimeType &&
             other is _$UserSummaryImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.avatarUrl, avatarUrl) ||
                 other.avatarUrl == avatarUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, email, firstName, lastName, avatarUrl);
+  int get hashCode => Object.hash(runtimeType, id, fullName, title, avatarUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -755,9 +725,8 @@ class _$UserSummaryImpl extends _UserSummary {
 abstract class _UserSummary extends UserSummary {
   const factory _UserSummary(
       {required final String id,
-      required final String email,
-      required final String firstName,
-      required final String lastName,
+      final String? fullName,
+      final String? title,
       final String? avatarUrl}) = _$UserSummaryImpl;
   const _UserSummary._() : super._();
 
@@ -767,11 +736,9 @@ abstract class _UserSummary extends UserSummary {
   @override
   String get id;
   @override
-  String get email;
+  String? get fullName;
   @override
-  String get firstName;
-  @override
-  String get lastName;
+  String? get title;
   @override
   String? get avatarUrl;
   @override
