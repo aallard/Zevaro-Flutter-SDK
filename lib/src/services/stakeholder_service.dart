@@ -195,7 +195,17 @@ class StakeholderService {
           if (periodEnd != null) 'periodEnd': periodEnd.toIso8601String(),
         },
       );
-      return (response.data as List)
+      // Handle both List and Map responses
+      final data = response.data;
+      List<dynamic> entries;
+      if (data is List) {
+        entries = data;
+      } else if (data is Map<String, dynamic>) {
+        entries = (data['entries'] ?? data['content'] ?? []) as List;
+      } else {
+        entries = [];
+      }
+      return entries
           .map(
             (json) => StakeholderLeaderboardEntry.fromJson(
               json as Map<String, dynamic>,

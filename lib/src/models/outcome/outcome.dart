@@ -16,10 +16,10 @@ class Outcome with _$Outcome {
     required String id,
 
     /// ID of the tenant this outcome belongs to.
-    required String tenantId,
+    String? tenantId,
 
     /// ID of the team that owns this outcome.
-    required String teamId,
+    String? teamId,
 
     /// Title of the outcome.
     required String title,
@@ -34,7 +34,7 @@ class Outcome with _$Outcome {
     required OutcomePriority priority,
 
     /// ID of the user who owns this outcome.
-    required String ownerId,
+    String? ownerId,
 
     /// Target date to achieve this outcome.
     DateTime? targetDate,
@@ -42,16 +42,16 @@ class Outcome with _$Outcome {
     // Metrics
 
     /// Total number of hypotheses.
-    required int hypothesisCount,
+    @Default(0) int hypothesisCount,
 
     /// Number of active hypotheses.
-    required int activeHypothesisCount,
+    @Default(0) int activeHypothesisCount,
 
     /// Number of validated hypotheses.
-    required int validatedHypothesisCount,
+    @Default(0) int validatedHypothesisCount,
 
     /// Number of pending decisions blocking progress.
-    required int pendingDecisionCount,
+    @Default(0) int pendingDecisionCount,
 
     // Key Results (optional, for detail view)
 

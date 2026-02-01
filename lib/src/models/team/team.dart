@@ -14,7 +14,7 @@ class Team with _$Team {
     required String id,
 
     /// ID of the tenant this team belongs to.
-    required String tenantId,
+    String? tenantId,
 
     /// Team name.
     required String name,
@@ -29,16 +29,16 @@ class Team with _$Team {
     String? color,
 
     /// Number of members in the team.
-    required int memberCount,
+    @Default(0) int memberCount,
 
     /// Number of outcomes owned by the team.
-    required int outcomeCount,
+    @Default(0) int outcomeCount,
 
     /// Number of active hypotheses.
-    required int activeHypothesisCount,
+    @Default(0) int activeHypothesisCount,
 
     /// Whether the team is active.
-    required bool isActive,
+    @Default(true) bool isActive,
 
     /// When the team was created.
     required DateTime createdAt,

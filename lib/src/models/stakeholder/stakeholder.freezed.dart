@@ -24,10 +24,10 @@ mixin _$Stakeholder {
   String get id => throw _privateConstructorUsedError;
 
   /// ID of the tenant.
-  String get tenantId => throw _privateConstructorUsedError;
+  String? get tenantId => throw _privateConstructorUsedError;
 
   /// ID of the user.
-  String get userId =>
+  String? get userId =>
       throw _privateConstructorUsedError; // User info (denormalized for display)
   /// User's email.
   String get email => throw _privateConstructorUsedError;
@@ -56,10 +56,10 @@ mixin _$Stakeholder {
   StakeholderStats? get stats =>
       throw _privateConstructorUsedError; // Timestamps
   /// When the stakeholder record was created.
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
 
   /// When the stakeholder record was last updated.
-  DateTime get updatedAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -75,8 +75,8 @@ abstract class $StakeholderCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String tenantId,
-      String userId,
+      String? tenantId,
+      String? userId,
       String email,
       String firstName,
       String lastName,
@@ -86,8 +86,8 @@ abstract class $StakeholderCopyWith<$Res> {
       int pendingDecisionCount,
       int overdueDecisionCount,
       StakeholderStats? stats,
-      DateTime createdAt,
-      DateTime updatedAt});
+      DateTime? createdAt,
+      DateTime? updatedAt});
 
   $StakeholderStatsCopyWith<$Res>? get stats;
 }
@@ -106,8 +106,8 @@ class _$StakeholderCopyWithImpl<$Res, $Val extends Stakeholder>
   @override
   $Res call({
     Object? id = null,
-    Object? tenantId = null,
-    Object? userId = null,
+    Object? tenantId = freezed,
+    Object? userId = freezed,
     Object? email = null,
     Object? firstName = null,
     Object? lastName = null,
@@ -117,22 +117,22 @@ class _$StakeholderCopyWithImpl<$Res, $Val extends Stakeholder>
     Object? pendingDecisionCount = null,
     Object? overdueDecisionCount = null,
     Object? stats = freezed,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      tenantId: null == tenantId
+      tenantId: freezed == tenantId
           ? _value.tenantId
           : tenantId // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
+              as String?,
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -169,14 +169,14 @@ class _$StakeholderCopyWithImpl<$Res, $Val extends Stakeholder>
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
               as StakeholderStats?,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
+              as DateTime?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ) as $Val);
   }
 
@@ -203,8 +203,8 @@ abstract class _$$StakeholderImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String tenantId,
-      String userId,
+      String? tenantId,
+      String? userId,
       String email,
       String firstName,
       String lastName,
@@ -214,8 +214,8 @@ abstract class _$$StakeholderImplCopyWith<$Res>
       int pendingDecisionCount,
       int overdueDecisionCount,
       StakeholderStats? stats,
-      DateTime createdAt,
-      DateTime updatedAt});
+      DateTime? createdAt,
+      DateTime? updatedAt});
 
   @override
   $StakeholderStatsCopyWith<$Res>? get stats;
@@ -233,8 +233,8 @@ class __$$StakeholderImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? tenantId = null,
-    Object? userId = null,
+    Object? tenantId = freezed,
+    Object? userId = freezed,
     Object? email = null,
     Object? firstName = null,
     Object? lastName = null,
@@ -244,22 +244,22 @@ class __$$StakeholderImplCopyWithImpl<$Res>
     Object? pendingDecisionCount = null,
     Object? overdueDecisionCount = null,
     Object? stats = freezed,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$StakeholderImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      tenantId: null == tenantId
+      tenantId: freezed == tenantId
           ? _value.tenantId
           : tenantId // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
+              as String?,
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -296,14 +296,14 @@ class __$$StakeholderImplCopyWithImpl<$Res>
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
               as StakeholderStats?,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
+              as DateTime?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -313,19 +313,19 @@ class __$$StakeholderImplCopyWithImpl<$Res>
 class _$StakeholderImpl implements _Stakeholder {
   const _$StakeholderImpl(
       {required this.id,
-      required this.tenantId,
-      required this.userId,
-      required this.email,
-      required this.firstName,
-      required this.lastName,
+      this.tenantId,
+      this.userId,
+      this.email = '',
+      this.firstName = '',
+      this.lastName = '',
       this.avatarUrl,
       this.department,
       this.role,
-      required this.pendingDecisionCount,
-      required this.overdueDecisionCount,
+      this.pendingDecisionCount = 0,
+      this.overdueDecisionCount = 0,
       this.stats,
-      required this.createdAt,
-      required this.updatedAt});
+      this.createdAt,
+      this.updatedAt});
 
   factory _$StakeholderImpl.fromJson(Map<String, dynamic> json) =>
       _$$StakeholderImplFromJson(json);
@@ -336,22 +336,25 @@ class _$StakeholderImpl implements _Stakeholder {
 
   /// ID of the tenant.
   @override
-  final String tenantId;
+  final String? tenantId;
 
   /// ID of the user.
   @override
-  final String userId;
+  final String? userId;
 // User info (denormalized for display)
   /// User's email.
   @override
+  @JsonKey()
   final String email;
 
   /// User's first name.
   @override
+  @JsonKey()
   final String firstName;
 
   /// User's last name.
   @override
+  @JsonKey()
   final String lastName;
 
   /// User's avatar URL.
@@ -368,10 +371,12 @@ class _$StakeholderImpl implements _Stakeholder {
 // Current status
   /// Number of pending decisions.
   @override
+  @JsonKey()
   final int pendingDecisionCount;
 
   /// Number of overdue decisions (pending past SLA).
   @override
+  @JsonKey()
   final int overdueDecisionCount;
 // Stats summary (optional, for detail view)
   /// Stakeholder statistics.
@@ -380,11 +385,11 @@ class _$StakeholderImpl implements _Stakeholder {
 // Timestamps
   /// When the stakeholder record was created.
   @override
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   /// When the stakeholder record was last updated.
   @override
-  final DateTime updatedAt;
+  final DateTime? updatedAt;
 
   @override
   String toString() {
@@ -457,19 +462,19 @@ class _$StakeholderImpl implements _Stakeholder {
 abstract class _Stakeholder implements Stakeholder {
   const factory _Stakeholder(
       {required final String id,
-      required final String tenantId,
-      required final String userId,
-      required final String email,
-      required final String firstName,
-      required final String lastName,
+      final String? tenantId,
+      final String? userId,
+      final String email,
+      final String firstName,
+      final String lastName,
       final String? avatarUrl,
       final String? department,
       final String? role,
-      required final int pendingDecisionCount,
-      required final int overdueDecisionCount,
+      final int pendingDecisionCount,
+      final int overdueDecisionCount,
       final StakeholderStats? stats,
-      required final DateTime createdAt,
-      required final DateTime updatedAt}) = _$StakeholderImpl;
+      final DateTime? createdAt,
+      final DateTime? updatedAt}) = _$StakeholderImpl;
 
   factory _Stakeholder.fromJson(Map<String, dynamic> json) =
       _$StakeholderImpl.fromJson;
@@ -481,11 +486,11 @@ abstract class _Stakeholder implements Stakeholder {
   @override
 
   /// ID of the tenant.
-  String get tenantId;
+  String? get tenantId;
   @override
 
   /// ID of the user.
-  String get userId;
+  String? get userId;
   @override // User info (denormalized for display)
   /// User's email.
   String get email;
@@ -521,11 +526,11 @@ abstract class _Stakeholder implements Stakeholder {
   StakeholderStats? get stats;
   @override // Timestamps
   /// When the stakeholder record was created.
-  DateTime get createdAt;
+  DateTime? get createdAt;
   @override
 
   /// When the stakeholder record was last updated.
-  DateTime get updatedAt;
+  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$StakeholderImplCopyWith<_$StakeholderImpl> get copyWith =>

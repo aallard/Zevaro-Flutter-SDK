@@ -9,16 +9,16 @@ part of 'stakeholder_leaderboard_entry.dart';
 _$StakeholderLeaderboardEntryImpl _$$StakeholderLeaderboardEntryImplFromJson(
         Map<String, dynamic> json) =>
     _$StakeholderLeaderboardEntryImpl(
-      rank: (json['rank'] as num).toInt(),
-      userId: json['userId'] as String,
-      fullName: json['fullName'] as String,
+      rank: (json['rank'] as num?)?.toInt() ?? 0,
+      userId: json['userId'] as String?,
+      fullName: json['fullName'] as String? ?? '',
       avatarUrl: json['avatarUrl'] as String?,
       department: json['department'] as String?,
       avgResponseTimeMinutes:
-          (json['avgResponseTimeMinutes'] as num).toDouble(),
-      slaComplianceRate: (json['slaComplianceRate'] as num).toDouble(),
-      totalDecisions: (json['totalDecisions'] as num).toInt(),
-      respondedDecisions: (json['respondedDecisions'] as num).toInt(),
+          (json['avgResponseTimeMinutes'] as num?)?.toDouble() ?? 0,
+      slaComplianceRate: (json['slaComplianceRate'] as num?)?.toDouble() ?? 0,
+      totalDecisions: (json['totalDecisions'] as num?)?.toInt() ?? 0,
+      respondedDecisions: (json['respondedDecisions'] as num?)?.toInt() ?? 0,
       rankChange: (json['rankChange'] as num?)?.toInt(),
     );
 

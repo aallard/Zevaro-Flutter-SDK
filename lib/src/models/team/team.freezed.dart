@@ -24,7 +24,7 @@ mixin _$Team {
   String get id => throw _privateConstructorUsedError;
 
   /// ID of the tenant this team belongs to.
-  String get tenantId => throw _privateConstructorUsedError;
+  String? get tenantId => throw _privateConstructorUsedError;
 
   /// Team name.
   String get name => throw _privateConstructorUsedError;
@@ -71,7 +71,7 @@ abstract class $TeamCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String tenantId,
+      String? tenantId,
       String name,
       String? description,
       String? avatarUrl,
@@ -99,7 +99,7 @@ class _$TeamCopyWithImpl<$Res, $Val extends Team>
   @override
   $Res call({
     Object? id = null,
-    Object? tenantId = null,
+    Object? tenantId = freezed,
     Object? name = null,
     Object? description = freezed,
     Object? avatarUrl = freezed,
@@ -117,10 +117,10 @@ class _$TeamCopyWithImpl<$Res, $Val extends Team>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      tenantId: null == tenantId
+      tenantId: freezed == tenantId
           ? _value.tenantId
           : tenantId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -178,7 +178,7 @@ abstract class _$$TeamImplCopyWith<$Res> implements $TeamCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String tenantId,
+      String? tenantId,
       String name,
       String? description,
       String? avatarUrl,
@@ -203,7 +203,7 @@ class __$$TeamImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? tenantId = null,
+    Object? tenantId = freezed,
     Object? name = null,
     Object? description = freezed,
     Object? avatarUrl = freezed,
@@ -221,10 +221,10 @@ class __$$TeamImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      tenantId: null == tenantId
+      tenantId: freezed == tenantId
           ? _value.tenantId
           : tenantId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -278,15 +278,15 @@ class __$$TeamImplCopyWithImpl<$Res>
 class _$TeamImpl implements _Team {
   const _$TeamImpl(
       {required this.id,
-      required this.tenantId,
+      this.tenantId,
       required this.name,
       this.description,
       this.avatarUrl,
       this.color,
-      required this.memberCount,
-      required this.outcomeCount,
-      required this.activeHypothesisCount,
-      required this.isActive,
+      this.memberCount = 0,
+      this.outcomeCount = 0,
+      this.activeHypothesisCount = 0,
+      this.isActive = true,
       required this.createdAt,
       required this.updatedAt,
       final List<TeamMember>? members})
@@ -301,7 +301,7 @@ class _$TeamImpl implements _Team {
 
   /// ID of the tenant this team belongs to.
   @override
-  final String tenantId;
+  final String? tenantId;
 
   /// Team name.
   @override
@@ -321,18 +321,22 @@ class _$TeamImpl implements _Team {
 
   /// Number of members in the team.
   @override
+  @JsonKey()
   final int memberCount;
 
   /// Number of outcomes owned by the team.
   @override
+  @JsonKey()
   final int outcomeCount;
 
   /// Number of active hypotheses.
   @override
+  @JsonKey()
   final int activeHypothesisCount;
 
   /// Whether the team is active.
   @override
+  @JsonKey()
   final bool isActive;
 
   /// When the team was created.
@@ -425,15 +429,15 @@ class _$TeamImpl implements _Team {
 abstract class _Team implements Team {
   const factory _Team(
       {required final String id,
-      required final String tenantId,
+      final String? tenantId,
       required final String name,
       final String? description,
       final String? avatarUrl,
       final String? color,
-      required final int memberCount,
-      required final int outcomeCount,
-      required final int activeHypothesisCount,
-      required final bool isActive,
+      final int memberCount,
+      final int outcomeCount,
+      final int activeHypothesisCount,
+      final bool isActive,
       required final DateTime createdAt,
       required final DateTime updatedAt,
       final List<TeamMember>? members}) = _$TeamImpl;
@@ -447,7 +451,7 @@ abstract class _Team implements Team {
   @override
 
   /// ID of the tenant this team belongs to.
-  String get tenantId;
+  String? get tenantId;
   @override
 
   /// Team name.

@@ -9,21 +9,23 @@ part of 'hypothesis.dart';
 _$HypothesisImpl _$$HypothesisImplFromJson(Map<String, dynamic> json) =>
     _$HypothesisImpl(
       id: json['id'] as String,
-      tenantId: json['tenantId'] as String,
-      outcomeId: json['outcomeId'] as String,
-      teamId: json['teamId'] as String,
-      statement: json['statement'] as String,
+      tenantId: json['tenantId'] as String?,
+      outcomeId: json['outcomeId'] as String?,
+      teamId: json['teamId'] as String?,
+      statement: json['statement'] as String? ?? '',
       description: json['description'] as String?,
       status: $enumDecode(_$HypothesisStatusEnumMap, json['status']),
-      confidence:
-          $enumDecode(_$HypothesisConfidenceEnumMap, json['confidence']),
-      ownerId: json['ownerId'] as String,
+      confidence: $enumDecodeNullable(
+              _$HypothesisConfidenceEnumMap, json['confidence']) ??
+          HypothesisConfidence.MEDIUM,
+      ownerId: json['ownerId'] as String?,
       effort: json['effort'] as String?,
       impact: json['impact'] as String?,
       statusChangedAt: json['statusChangedAt'] == null
           ? null
           : DateTime.parse(json['statusChangedAt'] as String),
-      pendingDecisionCount: (json['pendingDecisionCount'] as num).toInt(),
+      pendingDecisionCount:
+          (json['pendingDecisionCount'] as num?)?.toInt() ?? 0,
       metrics: (json['metrics'] as List<dynamic>?)
           ?.map((e) => HypothesisMetric.fromJson(e as Map<String, dynamic>))
           .toList(),

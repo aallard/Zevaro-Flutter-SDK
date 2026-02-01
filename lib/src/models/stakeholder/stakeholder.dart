@@ -14,21 +14,21 @@ class Stakeholder with _$Stakeholder {
     required String id,
 
     /// ID of the tenant.
-    required String tenantId,
+    String? tenantId,
 
     /// ID of the user.
-    required String userId,
+    String? userId,
 
     // User info (denormalized for display)
 
     /// User's email.
-    required String email,
+    @Default('') String email,
 
     /// User's first name.
-    required String firstName,
+    @Default('') String firstName,
 
     /// User's last name.
-    required String lastName,
+    @Default('') String lastName,
 
     /// User's avatar URL.
     String? avatarUrl,
@@ -42,10 +42,10 @@ class Stakeholder with _$Stakeholder {
     // Current status
 
     /// Number of pending decisions.
-    required int pendingDecisionCount,
+    @Default(0) int pendingDecisionCount,
 
     /// Number of overdue decisions (pending past SLA).
-    required int overdueDecisionCount,
+    @Default(0) int overdueDecisionCount,
 
     // Stats summary (optional, for detail view)
 
@@ -55,10 +55,10 @@ class Stakeholder with _$Stakeholder {
     // Timestamps
 
     /// When the stakeholder record was created.
-    required DateTime createdAt,
+    DateTime? createdAt,
 
     /// When the stakeholder record was last updated.
-    required DateTime updatedAt,
+    DateTime? updatedAt,
   }) = _Stakeholder;
 
   /// Creates a stakeholder from JSON.
@@ -69,10 +69,14 @@ class Stakeholder with _$Stakeholder {
 /// Extension methods for [Stakeholder].
 extension StakeholderExtension on Stakeholder {
   /// Full name of the stakeholder.
-  String get fullName => '$firstName $lastName';
+  String get fullName => '$firstName $lastName'.trim();
 
   /// Initials for avatar display.
-  String get initials => '${firstName[0]}${lastName[0]}'.toUpperCase();
+  String get initials {
+    final f = firstName.isNotEmpty ? firstName[0] : '';
+    final l = lastName.isNotEmpty ? lastName[0] : '';
+    return '$f$l'.toUpperCase();
+  }
 
   /// Whether the stakeholder has pending decisions.
   bool get hasPendingDecisions => pendingDecisionCount > 0;

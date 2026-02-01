@@ -25,7 +25,7 @@ mixin _$StakeholderLeaderboardEntry {
   int get rank => throw _privateConstructorUsedError;
 
   /// ID of the user.
-  String get userId => throw _privateConstructorUsedError;
+  String? get userId => throw _privateConstructorUsedError;
 
   /// Full name of the user.
   String get fullName => throw _privateConstructorUsedError;
@@ -67,7 +67,7 @@ abstract class $StakeholderLeaderboardEntryCopyWith<$Res> {
   @useResult
   $Res call(
       {int rank,
-      String userId,
+      String? userId,
       String fullName,
       String? avatarUrl,
       String? department,
@@ -93,7 +93,7 @@ class _$StakeholderLeaderboardEntryCopyWithImpl<$Res,
   @override
   $Res call({
     Object? rank = null,
-    Object? userId = null,
+    Object? userId = freezed,
     Object? fullName = null,
     Object? avatarUrl = freezed,
     Object? department = freezed,
@@ -108,10 +108,10 @@ class _$StakeholderLeaderboardEntryCopyWithImpl<$Res,
           ? _value.rank
           : rank // ignore: cast_nullable_to_non_nullable
               as int,
-      userId: null == userId
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       fullName: null == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
@@ -159,7 +159,7 @@ abstract class _$$StakeholderLeaderboardEntryImplCopyWith<$Res>
   @useResult
   $Res call(
       {int rank,
-      String userId,
+      String? userId,
       String fullName,
       String? avatarUrl,
       String? department,
@@ -184,7 +184,7 @@ class __$$StakeholderLeaderboardEntryImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? rank = null,
-    Object? userId = null,
+    Object? userId = freezed,
     Object? fullName = null,
     Object? avatarUrl = freezed,
     Object? department = freezed,
@@ -199,10 +199,10 @@ class __$$StakeholderLeaderboardEntryImplCopyWithImpl<$Res>
           ? _value.rank
           : rank // ignore: cast_nullable_to_non_nullable
               as int,
-      userId: null == userId
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       fullName: null == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
@@ -244,15 +244,15 @@ class __$$StakeholderLeaderboardEntryImplCopyWithImpl<$Res>
 class _$StakeholderLeaderboardEntryImpl
     implements _StakeholderLeaderboardEntry {
   const _$StakeholderLeaderboardEntryImpl(
-      {required this.rank,
-      required this.userId,
-      required this.fullName,
+      {this.rank = 0,
+      this.userId,
+      this.fullName = '',
       this.avatarUrl,
       this.department,
-      required this.avgResponseTimeMinutes,
-      required this.slaComplianceRate,
-      required this.totalDecisions,
-      required this.respondedDecisions,
+      this.avgResponseTimeMinutes = 0,
+      this.slaComplianceRate = 0,
+      this.totalDecisions = 0,
+      this.respondedDecisions = 0,
       this.rankChange});
 
   factory _$StakeholderLeaderboardEntryImpl.fromJson(
@@ -261,14 +261,16 @@ class _$StakeholderLeaderboardEntryImpl
 
   /// Current rank position.
   @override
+  @JsonKey()
   final int rank;
 
   /// ID of the user.
   @override
-  final String userId;
+  final String? userId;
 
   /// Full name of the user.
   @override
+  @JsonKey()
   final String fullName;
 
   /// User's avatar URL.
@@ -281,18 +283,22 @@ class _$StakeholderLeaderboardEntryImpl
 
   /// Average response time in minutes.
   @override
+  @JsonKey()
   final double avgResponseTimeMinutes;
 
   /// SLA compliance rate (0.0 to 1.0).
   @override
+  @JsonKey()
   final double slaComplianceRate;
 
   /// Total decisions assigned.
   @override
+  @JsonKey()
   final int totalDecisions;
 
   /// Number of decisions responded to.
   @override
+  @JsonKey()
   final int respondedDecisions;
 
   /// Rank change since last period (positive = moved up, negative = moved down).
@@ -362,15 +368,15 @@ class _$StakeholderLeaderboardEntryImpl
 abstract class _StakeholderLeaderboardEntry
     implements StakeholderLeaderboardEntry {
   const factory _StakeholderLeaderboardEntry(
-      {required final int rank,
-      required final String userId,
-      required final String fullName,
+      {final int rank,
+      final String? userId,
+      final String fullName,
       final String? avatarUrl,
       final String? department,
-      required final double avgResponseTimeMinutes,
-      required final double slaComplianceRate,
-      required final int totalDecisions,
-      required final int respondedDecisions,
+      final double avgResponseTimeMinutes,
+      final double slaComplianceRate,
+      final int totalDecisions,
+      final int respondedDecisions,
       final int? rankChange}) = _$StakeholderLeaderboardEntryImpl;
 
   factory _StakeholderLeaderboardEntry.fromJson(Map<String, dynamic> json) =
@@ -383,7 +389,7 @@ abstract class _StakeholderLeaderboardEntry
   @override
 
   /// ID of the user.
-  String get userId;
+  String? get userId;
   @override
 
   /// Full name of the user.

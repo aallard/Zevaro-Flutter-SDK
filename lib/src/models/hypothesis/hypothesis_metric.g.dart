@@ -10,15 +10,19 @@ _$HypothesisMetricImpl _$$HypothesisMetricImplFromJson(
         Map<String, dynamic> json) =>
     _$HypothesisMetricImpl(
       id: json['id'] as String,
-      hypothesisId: json['hypothesisId'] as String,
-      name: json['name'] as String,
-      description: json['description'] as String,
-      baselineValue: (json['baselineValue'] as num).toDouble(),
-      targetValue: (json['targetValue'] as num).toDouble(),
+      hypothesisId: json['hypothesisId'] as String?,
+      name: json['name'] as String? ?? '',
+      description: json['description'] as String?,
+      baselineValue: (json['baselineValue'] as num?)?.toDouble() ?? 0,
+      targetValue: (json['targetValue'] as num?)?.toDouble() ?? 0,
       currentValue: (json['currentValue'] as num?)?.toDouble(),
-      unit: json['unit'] as String,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      unit: json['unit'] as String? ?? '',
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
     );
 
 Map<String, dynamic> _$$HypothesisMetricImplToJson(
@@ -32,6 +36,6 @@ Map<String, dynamic> _$$HypothesisMetricImplToJson(
       'targetValue': instance.targetValue,
       'currentValue': instance.currentValue,
       'unit': instance.unit,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
     };

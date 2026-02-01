@@ -8,15 +8,16 @@ part of 'team.dart';
 
 _$TeamImpl _$$TeamImplFromJson(Map<String, dynamic> json) => _$TeamImpl(
       id: json['id'] as String,
-      tenantId: json['tenantId'] as String,
+      tenantId: json['tenantId'] as String?,
       name: json['name'] as String,
       description: json['description'] as String?,
       avatarUrl: json['avatarUrl'] as String?,
       color: json['color'] as String?,
-      memberCount: (json['memberCount'] as num).toInt(),
-      outcomeCount: (json['outcomeCount'] as num).toInt(),
-      activeHypothesisCount: (json['activeHypothesisCount'] as num).toInt(),
-      isActive: json['isActive'] as bool,
+      memberCount: (json['memberCount'] as num?)?.toInt() ?? 0,
+      outcomeCount: (json['outcomeCount'] as num?)?.toInt() ?? 0,
+      activeHypothesisCount:
+          (json['activeHypothesisCount'] as num?)?.toInt() ?? 0,
+      isActive: json['isActive'] as bool? ?? true,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       members: (json['members'] as List<dynamic>?)

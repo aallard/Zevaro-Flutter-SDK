@@ -24,10 +24,10 @@ mixin _$Outcome {
   String get id => throw _privateConstructorUsedError;
 
   /// ID of the tenant this outcome belongs to.
-  String get tenantId => throw _privateConstructorUsedError;
+  String? get tenantId => throw _privateConstructorUsedError;
 
   /// ID of the team that owns this outcome.
-  String get teamId => throw _privateConstructorUsedError;
+  String? get teamId => throw _privateConstructorUsedError;
 
   /// Title of the outcome.
   String get title => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ mixin _$Outcome {
   OutcomePriority get priority => throw _privateConstructorUsedError;
 
   /// ID of the user who owns this outcome.
-  String get ownerId => throw _privateConstructorUsedError;
+  String? get ownerId => throw _privateConstructorUsedError;
 
   /// Target date to achieve this outcome.
   DateTime? get targetDate => throw _privateConstructorUsedError; // Metrics
@@ -87,13 +87,13 @@ abstract class $OutcomeCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String tenantId,
-      String teamId,
+      String? tenantId,
+      String? teamId,
       String title,
       String? description,
       OutcomeStatus status,
       OutcomePriority priority,
-      String ownerId,
+      String? ownerId,
       DateTime? targetDate,
       int hypothesisCount,
       int activeHypothesisCount,
@@ -121,13 +121,13 @@ class _$OutcomeCopyWithImpl<$Res, $Val extends Outcome>
   @override
   $Res call({
     Object? id = null,
-    Object? tenantId = null,
-    Object? teamId = null,
+    Object? tenantId = freezed,
+    Object? teamId = freezed,
     Object? title = null,
     Object? description = freezed,
     Object? status = null,
     Object? priority = null,
-    Object? ownerId = null,
+    Object? ownerId = freezed,
     Object? targetDate = freezed,
     Object? hypothesisCount = null,
     Object? activeHypothesisCount = null,
@@ -145,14 +145,14 @@ class _$OutcomeCopyWithImpl<$Res, $Val extends Outcome>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      tenantId: null == tenantId
+      tenantId: freezed == tenantId
           ? _value.tenantId
           : tenantId // ignore: cast_nullable_to_non_nullable
-              as String,
-      teamId: null == teamId
+              as String?,
+      teamId: freezed == teamId
           ? _value.teamId
           : teamId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -169,10 +169,10 @@ class _$OutcomeCopyWithImpl<$Res, $Val extends Outcome>
           ? _value.priority
           : priority // ignore: cast_nullable_to_non_nullable
               as OutcomePriority,
-      ownerId: null == ownerId
+      ownerId: freezed == ownerId
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       targetDate: freezed == targetDate
           ? _value.targetDate
           : targetDate // ignore: cast_nullable_to_non_nullable
@@ -230,13 +230,13 @@ abstract class _$$OutcomeImplCopyWith<$Res> implements $OutcomeCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String tenantId,
-      String teamId,
+      String? tenantId,
+      String? teamId,
       String title,
       String? description,
       OutcomeStatus status,
       OutcomePriority priority,
-      String ownerId,
+      String? ownerId,
       DateTime? targetDate,
       int hypothesisCount,
       int activeHypothesisCount,
@@ -262,13 +262,13 @@ class __$$OutcomeImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? tenantId = null,
-    Object? teamId = null,
+    Object? tenantId = freezed,
+    Object? teamId = freezed,
     Object? title = null,
     Object? description = freezed,
     Object? status = null,
     Object? priority = null,
-    Object? ownerId = null,
+    Object? ownerId = freezed,
     Object? targetDate = freezed,
     Object? hypothesisCount = null,
     Object? activeHypothesisCount = null,
@@ -286,14 +286,14 @@ class __$$OutcomeImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      tenantId: null == tenantId
+      tenantId: freezed == tenantId
           ? _value.tenantId
           : tenantId // ignore: cast_nullable_to_non_nullable
-              as String,
-      teamId: null == teamId
+              as String?,
+      teamId: freezed == teamId
           ? _value.teamId
           : teamId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -310,10 +310,10 @@ class __$$OutcomeImplCopyWithImpl<$Res>
           ? _value.priority
           : priority // ignore: cast_nullable_to_non_nullable
               as OutcomePriority,
-      ownerId: null == ownerId
+      ownerId: freezed == ownerId
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       targetDate: freezed == targetDate
           ? _value.targetDate
           : targetDate // ignore: cast_nullable_to_non_nullable
@@ -367,18 +367,18 @@ class __$$OutcomeImplCopyWithImpl<$Res>
 class _$OutcomeImpl implements _Outcome {
   const _$OutcomeImpl(
       {required this.id,
-      required this.tenantId,
-      required this.teamId,
+      this.tenantId,
+      this.teamId,
       required this.title,
       this.description,
       required this.status,
       required this.priority,
-      required this.ownerId,
+      this.ownerId,
       this.targetDate,
-      required this.hypothesisCount,
-      required this.activeHypothesisCount,
-      required this.validatedHypothesisCount,
-      required this.pendingDecisionCount,
+      this.hypothesisCount = 0,
+      this.activeHypothesisCount = 0,
+      this.validatedHypothesisCount = 0,
+      this.pendingDecisionCount = 0,
       final List<KeyResult>? keyResults,
       this.ownerName,
       this.ownerAvatarUrl,
@@ -396,11 +396,11 @@ class _$OutcomeImpl implements _Outcome {
 
   /// ID of the tenant this outcome belongs to.
   @override
-  final String tenantId;
+  final String? tenantId;
 
   /// ID of the team that owns this outcome.
   @override
-  final String teamId;
+  final String? teamId;
 
   /// Title of the outcome.
   @override
@@ -420,7 +420,7 @@ class _$OutcomeImpl implements _Outcome {
 
   /// ID of the user who owns this outcome.
   @override
-  final String ownerId;
+  final String? ownerId;
 
   /// Target date to achieve this outcome.
   @override
@@ -428,18 +428,22 @@ class _$OutcomeImpl implements _Outcome {
 // Metrics
   /// Total number of hypotheses.
   @override
+  @JsonKey()
   final int hypothesisCount;
 
   /// Number of active hypotheses.
   @override
+  @JsonKey()
   final int activeHypothesisCount;
 
   /// Number of validated hypotheses.
   @override
+  @JsonKey()
   final int validatedHypothesisCount;
 
   /// Number of pending decisions blocking progress.
   @override
+  @JsonKey()
   final int pendingDecisionCount;
 // Key Results (optional, for detail view)
   /// Key results associated with this outcome.
@@ -564,18 +568,18 @@ class _$OutcomeImpl implements _Outcome {
 abstract class _Outcome implements Outcome {
   const factory _Outcome(
       {required final String id,
-      required final String tenantId,
-      required final String teamId,
+      final String? tenantId,
+      final String? teamId,
       required final String title,
       final String? description,
       required final OutcomeStatus status,
       required final OutcomePriority priority,
-      required final String ownerId,
+      final String? ownerId,
       final DateTime? targetDate,
-      required final int hypothesisCount,
-      required final int activeHypothesisCount,
-      required final int validatedHypothesisCount,
-      required final int pendingDecisionCount,
+      final int hypothesisCount,
+      final int activeHypothesisCount,
+      final int validatedHypothesisCount,
+      final int pendingDecisionCount,
       final List<KeyResult>? keyResults,
       final String? ownerName,
       final String? ownerAvatarUrl,
@@ -592,11 +596,11 @@ abstract class _Outcome implements Outcome {
   @override
 
   /// ID of the tenant this outcome belongs to.
-  String get tenantId;
+  String? get tenantId;
   @override
 
   /// ID of the team that owns this outcome.
-  String get teamId;
+  String? get teamId;
   @override
 
   /// Title of the outcome.
@@ -616,7 +620,7 @@ abstract class _Outcome implements Outcome {
   @override
 
   /// ID of the user who owns this outcome.
-  String get ownerId;
+  String? get ownerId;
   @override
 
   /// Target date to achieve this outcome.

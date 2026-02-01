@@ -16,16 +16,16 @@ class Hypothesis with _$Hypothesis {
     required String id,
 
     /// ID of the tenant this hypothesis belongs to.
-    required String tenantId,
+    String? tenantId,
 
     /// ID of the parent outcome.
-    required String outcomeId,
+    String? outcomeId,
 
     /// ID of the team that owns this hypothesis.
-    required String teamId,
+    String? teamId,
 
     /// Hypothesis statement: "We believe that [action] will result in [result] for [users]".
-    required String statement,
+    @Default('') String statement,
 
     /// Detailed description.
     String? description,
@@ -34,10 +34,10 @@ class Hypothesis with _$Hypothesis {
     required HypothesisStatus status,
 
     /// Confidence level in the hypothesis.
-    required HypothesisConfidence confidence,
+    @Default(HypothesisConfidence.MEDIUM) HypothesisConfidence confidence,
 
     /// ID of the user who owns this hypothesis.
-    required String ownerId,
+    String? ownerId,
 
     /// Effort estimation (t-shirt sizing: XS, S, M, L, XL).
     String? effort,
@@ -49,7 +49,7 @@ class Hypothesis with _$Hypothesis {
     DateTime? statusChangedAt,
 
     /// Number of pending decisions blocking this hypothesis.
-    required int pendingDecisionCount,
+    @Default(0) int pendingDecisionCount,
 
     /// Metrics for measuring success (optional, for detail view).
     List<HypothesisMetric>? metrics,

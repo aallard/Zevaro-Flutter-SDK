@@ -12,31 +12,31 @@ class HypothesisMetric with _$HypothesisMetric {
     required String id,
 
     /// ID of the parent hypothesis.
-    required String hypothesisId,
+    String? hypothesisId,
 
     /// Metric name.
-    required String name,
+    @Default('') String name,
 
     /// Description of what is being measured.
-    required String description,
+    String? description,
 
     /// Baseline value before the experiment.
-    required double baselineValue,
+    @Default(0) double baselineValue,
 
     /// Target value to achieve.
-    required double targetValue,
+    @Default(0) double targetValue,
 
     /// Current measured value.
     double? currentValue,
 
     /// Unit of measurement (e.g., "%", "users", "$").
-    required String unit,
+    @Default('') String unit,
 
     /// When the metric was created.
-    required DateTime createdAt,
+    DateTime? createdAt,
 
     /// When the metric was last updated.
-    required DateTime updatedAt,
+    DateTime? updatedAt,
   }) = _HypothesisMetric;
 
   /// Creates a hypothesis metric from JSON.

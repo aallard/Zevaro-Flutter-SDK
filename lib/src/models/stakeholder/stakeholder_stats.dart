@@ -9,28 +9,28 @@ class StakeholderStats with _$StakeholderStats {
   /// Creates stakeholder stats.
   const factory StakeholderStats({
     /// ID of the user these stats are for.
-    required String userId,
+    String? userId,
 
     /// Total decisions assigned to this stakeholder.
-    required int totalDecisions,
+    @Default(0) int totalDecisions,
 
     /// Number of decisions they responded to.
-    required int respondedDecisions,
+    @Default(0) int respondedDecisions,
 
     /// Number of currently pending decisions.
-    required int pendingDecisions,
+    @Default(0) int pendingDecisions,
 
     /// Number of responses within SLA.
-    required int withinSlaCount,
+    @Default(0) int withinSlaCount,
 
     /// Number of responses after SLA (or still pending past SLA).
-    required int breachedSlaCount,
+    @Default(0) int breachedSlaCount,
 
     /// Rolling average response time in minutes.
-    required double avgResponseTimeMinutes,
+    @Default(0) double avgResponseTimeMinutes,
 
     /// Percentage of on-time responses (0.0 to 1.0).
-    required double slaComplianceRate,
+    @Default(0) double slaComplianceRate,
 
     // Trends (last 30 days vs prior 30 days)
 
@@ -43,7 +43,7 @@ class StakeholderStats with _$StakeholderStats {
     // Period
 
     /// When these stats were calculated.
-    required DateTime calculatedAt,
+    DateTime? calculatedAt,
 
     /// Start of the stats period.
     DateTime? periodStart,

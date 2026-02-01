@@ -21,7 +21,7 @@ StakeholderStats _$StakeholderStatsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$StakeholderStats {
   /// ID of the user these stats are for.
-  String get userId => throw _privateConstructorUsedError;
+  String? get userId => throw _privateConstructorUsedError;
 
   /// Total decisions assigned to this stakeholder.
   int get totalDecisions => throw _privateConstructorUsedError;
@@ -51,7 +51,7 @@ mixin _$StakeholderStats {
   double? get slaComplianceTrend =>
       throw _privateConstructorUsedError; // Period
   /// When these stats were calculated.
-  DateTime get calculatedAt => throw _privateConstructorUsedError;
+  DateTime? get calculatedAt => throw _privateConstructorUsedError;
 
   /// Start of the stats period.
   DateTime? get periodStart => throw _privateConstructorUsedError;
@@ -72,7 +72,7 @@ abstract class $StakeholderStatsCopyWith<$Res> {
       _$StakeholderStatsCopyWithImpl<$Res, StakeholderStats>;
   @useResult
   $Res call(
-      {String userId,
+      {String? userId,
       int totalDecisions,
       int respondedDecisions,
       int pendingDecisions,
@@ -82,7 +82,7 @@ abstract class $StakeholderStatsCopyWith<$Res> {
       double slaComplianceRate,
       double? avgResponseTimeTrend,
       double? slaComplianceTrend,
-      DateTime calculatedAt,
+      DateTime? calculatedAt,
       DateTime? periodStart,
       DateTime? periodEnd});
 }
@@ -100,7 +100,7 @@ class _$StakeholderStatsCopyWithImpl<$Res, $Val extends StakeholderStats>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
+    Object? userId = freezed,
     Object? totalDecisions = null,
     Object? respondedDecisions = null,
     Object? pendingDecisions = null,
@@ -110,15 +110,15 @@ class _$StakeholderStatsCopyWithImpl<$Res, $Val extends StakeholderStats>
     Object? slaComplianceRate = null,
     Object? avgResponseTimeTrend = freezed,
     Object? slaComplianceTrend = freezed,
-    Object? calculatedAt = null,
+    Object? calculatedAt = freezed,
     Object? periodStart = freezed,
     Object? periodEnd = freezed,
   }) {
     return _then(_value.copyWith(
-      userId: null == userId
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       totalDecisions: null == totalDecisions
           ? _value.totalDecisions
           : totalDecisions // ignore: cast_nullable_to_non_nullable
@@ -155,10 +155,10 @@ class _$StakeholderStatsCopyWithImpl<$Res, $Val extends StakeholderStats>
           ? _value.slaComplianceTrend
           : slaComplianceTrend // ignore: cast_nullable_to_non_nullable
               as double?,
-      calculatedAt: null == calculatedAt
+      calculatedAt: freezed == calculatedAt
           ? _value.calculatedAt
           : calculatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       periodStart: freezed == periodStart
           ? _value.periodStart
           : periodStart // ignore: cast_nullable_to_non_nullable
@@ -180,7 +180,7 @@ abstract class _$$StakeholderStatsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String userId,
+      {String? userId,
       int totalDecisions,
       int respondedDecisions,
       int pendingDecisions,
@@ -190,7 +190,7 @@ abstract class _$$StakeholderStatsImplCopyWith<$Res>
       double slaComplianceRate,
       double? avgResponseTimeTrend,
       double? slaComplianceTrend,
-      DateTime calculatedAt,
+      DateTime? calculatedAt,
       DateTime? periodStart,
       DateTime? periodEnd});
 }
@@ -206,7 +206,7 @@ class __$$StakeholderStatsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
+    Object? userId = freezed,
     Object? totalDecisions = null,
     Object? respondedDecisions = null,
     Object? pendingDecisions = null,
@@ -216,15 +216,15 @@ class __$$StakeholderStatsImplCopyWithImpl<$Res>
     Object? slaComplianceRate = null,
     Object? avgResponseTimeTrend = freezed,
     Object? slaComplianceTrend = freezed,
-    Object? calculatedAt = null,
+    Object? calculatedAt = freezed,
     Object? periodStart = freezed,
     Object? periodEnd = freezed,
   }) {
     return _then(_$StakeholderStatsImpl(
-      userId: null == userId
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       totalDecisions: null == totalDecisions
           ? _value.totalDecisions
           : totalDecisions // ignore: cast_nullable_to_non_nullable
@@ -261,10 +261,10 @@ class __$$StakeholderStatsImplCopyWithImpl<$Res>
           ? _value.slaComplianceTrend
           : slaComplianceTrend // ignore: cast_nullable_to_non_nullable
               as double?,
-      calculatedAt: null == calculatedAt
+      calculatedAt: freezed == calculatedAt
           ? _value.calculatedAt
           : calculatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       periodStart: freezed == periodStart
           ? _value.periodStart
           : periodStart // ignore: cast_nullable_to_non_nullable
@@ -281,17 +281,17 @@ class __$$StakeholderStatsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StakeholderStatsImpl implements _StakeholderStats {
   const _$StakeholderStatsImpl(
-      {required this.userId,
-      required this.totalDecisions,
-      required this.respondedDecisions,
-      required this.pendingDecisions,
-      required this.withinSlaCount,
-      required this.breachedSlaCount,
-      required this.avgResponseTimeMinutes,
-      required this.slaComplianceRate,
+      {this.userId,
+      this.totalDecisions = 0,
+      this.respondedDecisions = 0,
+      this.pendingDecisions = 0,
+      this.withinSlaCount = 0,
+      this.breachedSlaCount = 0,
+      this.avgResponseTimeMinutes = 0,
+      this.slaComplianceRate = 0,
       this.avgResponseTimeTrend,
       this.slaComplianceTrend,
-      required this.calculatedAt,
+      this.calculatedAt,
       this.periodStart,
       this.periodEnd});
 
@@ -300,34 +300,41 @@ class _$StakeholderStatsImpl implements _StakeholderStats {
 
   /// ID of the user these stats are for.
   @override
-  final String userId;
+  final String? userId;
 
   /// Total decisions assigned to this stakeholder.
   @override
+  @JsonKey()
   final int totalDecisions;
 
   /// Number of decisions they responded to.
   @override
+  @JsonKey()
   final int respondedDecisions;
 
   /// Number of currently pending decisions.
   @override
+  @JsonKey()
   final int pendingDecisions;
 
   /// Number of responses within SLA.
   @override
+  @JsonKey()
   final int withinSlaCount;
 
   /// Number of responses after SLA (or still pending past SLA).
   @override
+  @JsonKey()
   final int breachedSlaCount;
 
   /// Rolling average response time in minutes.
   @override
+  @JsonKey()
   final double avgResponseTimeMinutes;
 
   /// Percentage of on-time responses (0.0 to 1.0).
   @override
+  @JsonKey()
   final double slaComplianceRate;
 // Trends (last 30 days vs prior 30 days)
   /// Response time trend (positive = slower, negative = faster).
@@ -340,7 +347,7 @@ class _$StakeholderStatsImpl implements _StakeholderStats {
 // Period
   /// When these stats were calculated.
   @override
-  final DateTime calculatedAt;
+  final DateTime? calculatedAt;
 
   /// Start of the stats period.
   @override
@@ -422,17 +429,17 @@ class _$StakeholderStatsImpl implements _StakeholderStats {
 
 abstract class _StakeholderStats implements StakeholderStats {
   const factory _StakeholderStats(
-      {required final String userId,
-      required final int totalDecisions,
-      required final int respondedDecisions,
-      required final int pendingDecisions,
-      required final int withinSlaCount,
-      required final int breachedSlaCount,
-      required final double avgResponseTimeMinutes,
-      required final double slaComplianceRate,
+      {final String? userId,
+      final int totalDecisions,
+      final int respondedDecisions,
+      final int pendingDecisions,
+      final int withinSlaCount,
+      final int breachedSlaCount,
+      final double avgResponseTimeMinutes,
+      final double slaComplianceRate,
       final double? avgResponseTimeTrend,
       final double? slaComplianceTrend,
-      required final DateTime calculatedAt,
+      final DateTime? calculatedAt,
       final DateTime? periodStart,
       final DateTime? periodEnd}) = _$StakeholderStatsImpl;
 
@@ -442,7 +449,7 @@ abstract class _StakeholderStats implements StakeholderStats {
   @override
 
   /// ID of the user these stats are for.
-  String get userId;
+  String? get userId;
   @override
 
   /// Total decisions assigned to this stakeholder.
@@ -480,7 +487,7 @@ abstract class _StakeholderStats implements StakeholderStats {
   double? get slaComplianceTrend;
   @override // Period
   /// When these stats were calculated.
-  DateTime get calculatedAt;
+  DateTime? get calculatedAt;
   @override
 
   /// Start of the stats period.

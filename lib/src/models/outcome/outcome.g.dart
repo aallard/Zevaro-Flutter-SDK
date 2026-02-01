@@ -9,21 +9,23 @@ part of 'outcome.dart';
 _$OutcomeImpl _$$OutcomeImplFromJson(Map<String, dynamic> json) =>
     _$OutcomeImpl(
       id: json['id'] as String,
-      tenantId: json['tenantId'] as String,
-      teamId: json['teamId'] as String,
+      tenantId: json['tenantId'] as String?,
+      teamId: json['teamId'] as String?,
       title: json['title'] as String,
       description: json['description'] as String?,
       status: $enumDecode(_$OutcomeStatusEnumMap, json['status']),
       priority: $enumDecode(_$OutcomePriorityEnumMap, json['priority']),
-      ownerId: json['ownerId'] as String,
+      ownerId: json['ownerId'] as String?,
       targetDate: json['targetDate'] == null
           ? null
           : DateTime.parse(json['targetDate'] as String),
-      hypothesisCount: (json['hypothesisCount'] as num).toInt(),
-      activeHypothesisCount: (json['activeHypothesisCount'] as num).toInt(),
+      hypothesisCount: (json['hypothesisCount'] as num?)?.toInt() ?? 0,
+      activeHypothesisCount:
+          (json['activeHypothesisCount'] as num?)?.toInt() ?? 0,
       validatedHypothesisCount:
-          (json['validatedHypothesisCount'] as num).toInt(),
-      pendingDecisionCount: (json['pendingDecisionCount'] as num).toInt(),
+          (json['validatedHypothesisCount'] as num?)?.toInt() ?? 0,
+      pendingDecisionCount:
+          (json['pendingDecisionCount'] as num?)?.toInt() ?? 0,
       keyResults: (json['keyResults'] as List<dynamic>?)
           ?.map((e) => KeyResult.fromJson(e as Map<String, dynamic>))
           .toList(),

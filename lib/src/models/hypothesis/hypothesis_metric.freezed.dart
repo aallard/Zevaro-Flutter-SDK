@@ -24,13 +24,13 @@ mixin _$HypothesisMetric {
   String get id => throw _privateConstructorUsedError;
 
   /// ID of the parent hypothesis.
-  String get hypothesisId => throw _privateConstructorUsedError;
+  String? get hypothesisId => throw _privateConstructorUsedError;
 
   /// Metric name.
   String get name => throw _privateConstructorUsedError;
 
   /// Description of what is being measured.
-  String get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
 
   /// Baseline value before the experiment.
   double get baselineValue => throw _privateConstructorUsedError;
@@ -45,10 +45,10 @@ mixin _$HypothesisMetric {
   String get unit => throw _privateConstructorUsedError;
 
   /// When the metric was created.
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
 
   /// When the metric was last updated.
-  DateTime get updatedAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -64,15 +64,15 @@ abstract class $HypothesisMetricCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String hypothesisId,
+      String? hypothesisId,
       String name,
-      String description,
+      String? description,
       double baselineValue,
       double targetValue,
       double? currentValue,
       String unit,
-      DateTime createdAt,
-      DateTime updatedAt});
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -89,33 +89,33 @@ class _$HypothesisMetricCopyWithImpl<$Res, $Val extends HypothesisMetric>
   @override
   $Res call({
     Object? id = null,
-    Object? hypothesisId = null,
+    Object? hypothesisId = freezed,
     Object? name = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? baselineValue = null,
     Object? targetValue = null,
     Object? currentValue = freezed,
     Object? unit = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      hypothesisId: null == hypothesisId
+      hypothesisId: freezed == hypothesisId
           ? _value.hypothesisId
           : hypothesisId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       baselineValue: null == baselineValue
           ? _value.baselineValue
           : baselineValue // ignore: cast_nullable_to_non_nullable
@@ -132,14 +132,14 @@ class _$HypothesisMetricCopyWithImpl<$Res, $Val extends HypothesisMetric>
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
+              as DateTime?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -154,15 +154,15 @@ abstract class _$$HypothesisMetricImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String hypothesisId,
+      String? hypothesisId,
       String name,
-      String description,
+      String? description,
       double baselineValue,
       double targetValue,
       double? currentValue,
       String unit,
-      DateTime createdAt,
-      DateTime updatedAt});
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -177,33 +177,33 @@ class __$$HypothesisMetricImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? hypothesisId = null,
+    Object? hypothesisId = freezed,
     Object? name = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? baselineValue = null,
     Object? targetValue = null,
     Object? currentValue = freezed,
     Object? unit = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$HypothesisMetricImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      hypothesisId: null == hypothesisId
+      hypothesisId: freezed == hypothesisId
           ? _value.hypothesisId
           : hypothesisId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       baselineValue: null == baselineValue
           ? _value.baselineValue
           : baselineValue // ignore: cast_nullable_to_non_nullable
@@ -220,14 +220,14 @@ class __$$HypothesisMetricImplCopyWithImpl<$Res>
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
+              as DateTime?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -237,15 +237,15 @@ class __$$HypothesisMetricImplCopyWithImpl<$Res>
 class _$HypothesisMetricImpl implements _HypothesisMetric {
   const _$HypothesisMetricImpl(
       {required this.id,
-      required this.hypothesisId,
-      required this.name,
-      required this.description,
-      required this.baselineValue,
-      required this.targetValue,
+      this.hypothesisId,
+      this.name = '',
+      this.description,
+      this.baselineValue = 0,
+      this.targetValue = 0,
       this.currentValue,
-      required this.unit,
-      required this.createdAt,
-      required this.updatedAt});
+      this.unit = '',
+      this.createdAt,
+      this.updatedAt});
 
   factory _$HypothesisMetricImpl.fromJson(Map<String, dynamic> json) =>
       _$$HypothesisMetricImplFromJson(json);
@@ -256,22 +256,25 @@ class _$HypothesisMetricImpl implements _HypothesisMetric {
 
   /// ID of the parent hypothesis.
   @override
-  final String hypothesisId;
+  final String? hypothesisId;
 
   /// Metric name.
   @override
+  @JsonKey()
   final String name;
 
   /// Description of what is being measured.
   @override
-  final String description;
+  final String? description;
 
   /// Baseline value before the experiment.
   @override
+  @JsonKey()
   final double baselineValue;
 
   /// Target value to achieve.
   @override
+  @JsonKey()
   final double targetValue;
 
   /// Current measured value.
@@ -280,15 +283,16 @@ class _$HypothesisMetricImpl implements _HypothesisMetric {
 
   /// Unit of measurement (e.g., "%", "users", "$").
   @override
+  @JsonKey()
   final String unit;
 
   /// When the metric was created.
   @override
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   /// When the metric was last updated.
   @override
-  final DateTime updatedAt;
+  final DateTime? updatedAt;
 
   @override
   String toString() {
@@ -352,15 +356,15 @@ class _$HypothesisMetricImpl implements _HypothesisMetric {
 abstract class _HypothesisMetric implements HypothesisMetric {
   const factory _HypothesisMetric(
       {required final String id,
-      required final String hypothesisId,
-      required final String name,
-      required final String description,
-      required final double baselineValue,
-      required final double targetValue,
+      final String? hypothesisId,
+      final String name,
+      final String? description,
+      final double baselineValue,
+      final double targetValue,
       final double? currentValue,
-      required final String unit,
-      required final DateTime createdAt,
-      required final DateTime updatedAt}) = _$HypothesisMetricImpl;
+      final String unit,
+      final DateTime? createdAt,
+      final DateTime? updatedAt}) = _$HypothesisMetricImpl;
 
   factory _HypothesisMetric.fromJson(Map<String, dynamic> json) =
       _$HypothesisMetricImpl.fromJson;
@@ -372,7 +376,7 @@ abstract class _HypothesisMetric implements HypothesisMetric {
   @override
 
   /// ID of the parent hypothesis.
-  String get hypothesisId;
+  String? get hypothesisId;
   @override
 
   /// Metric name.
@@ -380,7 +384,7 @@ abstract class _HypothesisMetric implements HypothesisMetric {
   @override
 
   /// Description of what is being measured.
-  String get description;
+  String? get description;
   @override
 
   /// Baseline value before the experiment.
@@ -400,11 +404,11 @@ abstract class _HypothesisMetric implements HypothesisMetric {
   @override
 
   /// When the metric was created.
-  DateTime get createdAt;
+  DateTime? get createdAt;
   @override
 
   /// When the metric was last updated.
-  DateTime get updatedAt;
+  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$HypothesisMetricImplCopyWith<_$HypothesisMetricImpl> get copyWith =>

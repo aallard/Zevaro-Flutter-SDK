@@ -9,18 +9,20 @@ part of 'stakeholder_stats.dart';
 _$StakeholderStatsImpl _$$StakeholderStatsImplFromJson(
         Map<String, dynamic> json) =>
     _$StakeholderStatsImpl(
-      userId: json['userId'] as String,
-      totalDecisions: (json['totalDecisions'] as num).toInt(),
-      respondedDecisions: (json['respondedDecisions'] as num).toInt(),
-      pendingDecisions: (json['pendingDecisions'] as num).toInt(),
-      withinSlaCount: (json['withinSlaCount'] as num).toInt(),
-      breachedSlaCount: (json['breachedSlaCount'] as num).toInt(),
+      userId: json['userId'] as String?,
+      totalDecisions: (json['totalDecisions'] as num?)?.toInt() ?? 0,
+      respondedDecisions: (json['respondedDecisions'] as num?)?.toInt() ?? 0,
+      pendingDecisions: (json['pendingDecisions'] as num?)?.toInt() ?? 0,
+      withinSlaCount: (json['withinSlaCount'] as num?)?.toInt() ?? 0,
+      breachedSlaCount: (json['breachedSlaCount'] as num?)?.toInt() ?? 0,
       avgResponseTimeMinutes:
-          (json['avgResponseTimeMinutes'] as num).toDouble(),
-      slaComplianceRate: (json['slaComplianceRate'] as num).toDouble(),
+          (json['avgResponseTimeMinutes'] as num?)?.toDouble() ?? 0,
+      slaComplianceRate: (json['slaComplianceRate'] as num?)?.toDouble() ?? 0,
       avgResponseTimeTrend: (json['avgResponseTimeTrend'] as num?)?.toDouble(),
       slaComplianceTrend: (json['slaComplianceTrend'] as num?)?.toDouble(),
-      calculatedAt: DateTime.parse(json['calculatedAt'] as String),
+      calculatedAt: json['calculatedAt'] == null
+          ? null
+          : DateTime.parse(json['calculatedAt'] as String),
       periodStart: json['periodStart'] == null
           ? null
           : DateTime.parse(json['periodStart'] as String),
@@ -42,7 +44,7 @@ Map<String, dynamic> _$$StakeholderStatsImplToJson(
       'slaComplianceRate': instance.slaComplianceRate,
       'avgResponseTimeTrend': instance.avgResponseTimeTrend,
       'slaComplianceTrend': instance.slaComplianceTrend,
-      'calculatedAt': instance.calculatedAt.toIso8601String(),
+      'calculatedAt': instance.calculatedAt?.toIso8601String(),
       'periodStart': instance.periodStart?.toIso8601String(),
       'periodEnd': instance.periodEnd?.toIso8601String(),
     };

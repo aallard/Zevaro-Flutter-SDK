@@ -24,13 +24,13 @@ mixin _$Hypothesis {
   String get id => throw _privateConstructorUsedError;
 
   /// ID of the tenant this hypothesis belongs to.
-  String get tenantId => throw _privateConstructorUsedError;
+  String? get tenantId => throw _privateConstructorUsedError;
 
   /// ID of the parent outcome.
-  String get outcomeId => throw _privateConstructorUsedError;
+  String? get outcomeId => throw _privateConstructorUsedError;
 
   /// ID of the team that owns this hypothesis.
-  String get teamId => throw _privateConstructorUsedError;
+  String? get teamId => throw _privateConstructorUsedError;
 
   /// Hypothesis statement: "We believe that [action] will result in [result] for [users]".
   String get statement => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ mixin _$Hypothesis {
   HypothesisConfidence get confidence => throw _privateConstructorUsedError;
 
   /// ID of the user who owns this hypothesis.
-  String get ownerId => throw _privateConstructorUsedError;
+  String? get ownerId => throw _privateConstructorUsedError;
 
   /// Effort estimation (t-shirt sizing: XS, S, M, L, XL).
   String? get effort => throw _privateConstructorUsedError;
@@ -99,14 +99,14 @@ abstract class $HypothesisCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String tenantId,
-      String outcomeId,
-      String teamId,
+      String? tenantId,
+      String? outcomeId,
+      String? teamId,
       String statement,
       String? description,
       HypothesisStatus status,
       HypothesisConfidence confidence,
-      String ownerId,
+      String? ownerId,
       String? effort,
       String? impact,
       DateTime? statusChangedAt,
@@ -136,14 +136,14 @@ class _$HypothesisCopyWithImpl<$Res, $Val extends Hypothesis>
   @override
   $Res call({
     Object? id = null,
-    Object? tenantId = null,
-    Object? outcomeId = null,
-    Object? teamId = null,
+    Object? tenantId = freezed,
+    Object? outcomeId = freezed,
+    Object? teamId = freezed,
     Object? statement = null,
     Object? description = freezed,
     Object? status = null,
     Object? confidence = null,
-    Object? ownerId = null,
+    Object? ownerId = freezed,
     Object? effort = freezed,
     Object? impact = freezed,
     Object? statusChangedAt = freezed,
@@ -163,18 +163,18 @@ class _$HypothesisCopyWithImpl<$Res, $Val extends Hypothesis>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      tenantId: null == tenantId
+      tenantId: freezed == tenantId
           ? _value.tenantId
           : tenantId // ignore: cast_nullable_to_non_nullable
-              as String,
-      outcomeId: null == outcomeId
+              as String?,
+      outcomeId: freezed == outcomeId
           ? _value.outcomeId
           : outcomeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      teamId: null == teamId
+              as String?,
+      teamId: freezed == teamId
           ? _value.teamId
           : teamId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       statement: null == statement
           ? _value.statement
           : statement // ignore: cast_nullable_to_non_nullable
@@ -191,10 +191,10 @@ class _$HypothesisCopyWithImpl<$Res, $Val extends Hypothesis>
           ? _value.confidence
           : confidence // ignore: cast_nullable_to_non_nullable
               as HypothesisConfidence,
-      ownerId: null == ownerId
+      ownerId: freezed == ownerId
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       effort: freezed == effort
           ? _value.effort
           : effort // ignore: cast_nullable_to_non_nullable
@@ -261,14 +261,14 @@ abstract class _$$HypothesisImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String tenantId,
-      String outcomeId,
-      String teamId,
+      String? tenantId,
+      String? outcomeId,
+      String? teamId,
       String statement,
       String? description,
       HypothesisStatus status,
       HypothesisConfidence confidence,
-      String ownerId,
+      String? ownerId,
       String? effort,
       String? impact,
       DateTime? statusChangedAt,
@@ -296,14 +296,14 @@ class __$$HypothesisImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? tenantId = null,
-    Object? outcomeId = null,
-    Object? teamId = null,
+    Object? tenantId = freezed,
+    Object? outcomeId = freezed,
+    Object? teamId = freezed,
     Object? statement = null,
     Object? description = freezed,
     Object? status = null,
     Object? confidence = null,
-    Object? ownerId = null,
+    Object? ownerId = freezed,
     Object? effort = freezed,
     Object? impact = freezed,
     Object? statusChangedAt = freezed,
@@ -323,18 +323,18 @@ class __$$HypothesisImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      tenantId: null == tenantId
+      tenantId: freezed == tenantId
           ? _value.tenantId
           : tenantId // ignore: cast_nullable_to_non_nullable
-              as String,
-      outcomeId: null == outcomeId
+              as String?,
+      outcomeId: freezed == outcomeId
           ? _value.outcomeId
           : outcomeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      teamId: null == teamId
+              as String?,
+      teamId: freezed == teamId
           ? _value.teamId
           : teamId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       statement: null == statement
           ? _value.statement
           : statement // ignore: cast_nullable_to_non_nullable
@@ -351,10 +351,10 @@ class __$$HypothesisImplCopyWithImpl<$Res>
           ? _value.confidence
           : confidence // ignore: cast_nullable_to_non_nullable
               as HypothesisConfidence,
-      ownerId: null == ownerId
+      ownerId: freezed == ownerId
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       effort: freezed == effort
           ? _value.effort
           : effort // ignore: cast_nullable_to_non_nullable
@@ -416,18 +416,18 @@ class __$$HypothesisImplCopyWithImpl<$Res>
 class _$HypothesisImpl implements _Hypothesis {
   const _$HypothesisImpl(
       {required this.id,
-      required this.tenantId,
-      required this.outcomeId,
-      required this.teamId,
-      required this.statement,
+      this.tenantId,
+      this.outcomeId,
+      this.teamId,
+      this.statement = '',
       this.description,
       required this.status,
-      required this.confidence,
-      required this.ownerId,
+      this.confidence = HypothesisConfidence.MEDIUM,
+      this.ownerId,
       this.effort,
       this.impact,
       this.statusChangedAt,
-      required this.pendingDecisionCount,
+      this.pendingDecisionCount = 0,
       final List<HypothesisMetric>? metrics,
       this.ownerName,
       this.ownerAvatarUrl,
@@ -448,18 +448,19 @@ class _$HypothesisImpl implements _Hypothesis {
 
   /// ID of the tenant this hypothesis belongs to.
   @override
-  final String tenantId;
+  final String? tenantId;
 
   /// ID of the parent outcome.
   @override
-  final String outcomeId;
+  final String? outcomeId;
 
   /// ID of the team that owns this hypothesis.
   @override
-  final String teamId;
+  final String? teamId;
 
   /// Hypothesis statement: "We believe that [action] will result in [result] for [users]".
   @override
+  @JsonKey()
   final String statement;
 
   /// Detailed description.
@@ -472,11 +473,12 @@ class _$HypothesisImpl implements _Hypothesis {
 
   /// Confidence level in the hypothesis.
   @override
+  @JsonKey()
   final HypothesisConfidence confidence;
 
   /// ID of the user who owns this hypothesis.
   @override
-  final String ownerId;
+  final String? ownerId;
 
   /// Effort estimation (t-shirt sizing: XS, S, M, L, XL).
   @override
@@ -492,6 +494,7 @@ class _$HypothesisImpl implements _Hypothesis {
 
   /// Number of pending decisions blocking this hypothesis.
   @override
+  @JsonKey()
   final int pendingDecisionCount;
 
   /// Metrics for measuring success (optional, for detail view).
@@ -634,18 +637,18 @@ class _$HypothesisImpl implements _Hypothesis {
 abstract class _Hypothesis implements Hypothesis {
   const factory _Hypothesis(
       {required final String id,
-      required final String tenantId,
-      required final String outcomeId,
-      required final String teamId,
-      required final String statement,
+      final String? tenantId,
+      final String? outcomeId,
+      final String? teamId,
+      final String statement,
       final String? description,
       required final HypothesisStatus status,
-      required final HypothesisConfidence confidence,
-      required final String ownerId,
+      final HypothesisConfidence confidence,
+      final String? ownerId,
       final String? effort,
       final String? impact,
       final DateTime? statusChangedAt,
-      required final int pendingDecisionCount,
+      final int pendingDecisionCount,
       final List<HypothesisMetric>? metrics,
       final String? ownerName,
       final String? ownerAvatarUrl,
@@ -666,15 +669,15 @@ abstract class _Hypothesis implements Hypothesis {
   @override
 
   /// ID of the tenant this hypothesis belongs to.
-  String get tenantId;
+  String? get tenantId;
   @override
 
   /// ID of the parent outcome.
-  String get outcomeId;
+  String? get outcomeId;
   @override
 
   /// ID of the team that owns this hypothesis.
-  String get teamId;
+  String? get teamId;
   @override
 
   /// Hypothesis statement: "We believe that [action] will result in [result] for [users]".
@@ -694,7 +697,7 @@ abstract class _Hypothesis implements Hypothesis {
   @override
 
   /// ID of the user who owns this hypothesis.
-  String get ownerId;
+  String? get ownerId;
   @override
 
   /// Effort estimation (t-shirt sizing: XS, S, M, L, XL).

@@ -9,13 +9,13 @@ class StakeholderLeaderboardEntry with _$StakeholderLeaderboardEntry {
   /// Creates a leaderboard entry.
   const factory StakeholderLeaderboardEntry({
     /// Current rank position.
-    required int rank,
+    @Default(0) int rank,
 
     /// ID of the user.
-    required String userId,
+    String? userId,
 
     /// Full name of the user.
-    required String fullName,
+    @Default('') String fullName,
 
     /// User's avatar URL.
     String? avatarUrl,
@@ -24,16 +24,16 @@ class StakeholderLeaderboardEntry with _$StakeholderLeaderboardEntry {
     String? department,
 
     /// Average response time in minutes.
-    required double avgResponseTimeMinutes,
+    @Default(0) double avgResponseTimeMinutes,
 
     /// SLA compliance rate (0.0 to 1.0).
-    required double slaComplianceRate,
+    @Default(0) double slaComplianceRate,
 
     /// Total decisions assigned.
-    required int totalDecisions,
+    @Default(0) int totalDecisions,
 
     /// Number of decisions responded to.
-    required int respondedDecisions,
+    @Default(0) int respondedDecisions,
 
     /// Rank change since last period (positive = moved up, negative = moved down).
     int? rankChange,
