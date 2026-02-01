@@ -1,4 +1,7 @@
-/// SLA urgency level for a Decision.
+/// SLA urgency/priority level for a Decision.
+///
+/// This enum is called `DecisionUrgency` in the SDK but maps to `DecisionPriority`
+/// in the OpenAPI specification. The values are identical.
 ///
 /// SLA windows: BLOCKING=4h, HIGH=8h, NORMAL=24h, LOW=72h
 enum DecisionUrgency {
@@ -90,3 +93,10 @@ extension DecisionUrgencyExtension on DecisionUrgency {
     }
   }
 }
+
+/// Type alias for OpenAPI compatibility.
+///
+/// The OpenAPI specification uses `DecisionPriority` while the SDK uses
+/// `DecisionUrgency`. This typedef provides compatibility for code that
+/// prefers the OpenAPI naming convention.
+typedef DecisionPriority = DecisionUrgency;

@@ -356,11 +356,15 @@ ResolveDecisionRequest _$ResolveDecisionRequestFromJson(
 
 /// @nodoc
 mixin _$ResolveDecisionRequest {
-  /// The selected option/decision.
-  String get selectedOption => throw _privateConstructorUsedError;
+  /// The selected option ID or option object.
+  ///
+  /// Can be either a String option ID or a full DecisionOption object
+  /// depending on the API endpoint version.
+  String? get selectedOption => throw _privateConstructorUsedError;
 
   /// Rationale for the decision.
-  String get rationale => throw _privateConstructorUsedError;
+  @JsonKey(name: 'decisionRationale')
+  String? get decisionRationale => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -374,7 +378,9 @@ abstract class $ResolveDecisionRequestCopyWith<$Res> {
           $Res Function(ResolveDecisionRequest) then) =
       _$ResolveDecisionRequestCopyWithImpl<$Res, ResolveDecisionRequest>;
   @useResult
-  $Res call({String selectedOption, String rationale});
+  $Res call(
+      {String? selectedOption,
+      @JsonKey(name: 'decisionRationale') String? decisionRationale});
 }
 
 /// @nodoc
@@ -391,18 +397,18 @@ class _$ResolveDecisionRequestCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selectedOption = null,
-    Object? rationale = null,
+    Object? selectedOption = freezed,
+    Object? decisionRationale = freezed,
   }) {
     return _then(_value.copyWith(
-      selectedOption: null == selectedOption
+      selectedOption: freezed == selectedOption
           ? _value.selectedOption
           : selectedOption // ignore: cast_nullable_to_non_nullable
-              as String,
-      rationale: null == rationale
-          ? _value.rationale
-          : rationale // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      decisionRationale: freezed == decisionRationale
+          ? _value.decisionRationale
+          : decisionRationale // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -416,7 +422,9 @@ abstract class _$$ResolveDecisionRequestImplCopyWith<$Res>
       __$$ResolveDecisionRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String selectedOption, String rationale});
+  $Res call(
+      {String? selectedOption,
+      @JsonKey(name: 'decisionRationale') String? decisionRationale});
 }
 
 /// @nodoc
@@ -432,18 +440,18 @@ class __$$ResolveDecisionRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selectedOption = null,
-    Object? rationale = null,
+    Object? selectedOption = freezed,
+    Object? decisionRationale = freezed,
   }) {
     return _then(_$ResolveDecisionRequestImpl(
-      selectedOption: null == selectedOption
+      selectedOption: freezed == selectedOption
           ? _value.selectedOption
           : selectedOption // ignore: cast_nullable_to_non_nullable
-              as String,
-      rationale: null == rationale
-          ? _value.rationale
-          : rationale // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      decisionRationale: freezed == decisionRationale
+          ? _value.decisionRationale
+          : decisionRationale // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -452,22 +460,27 @@ class __$$ResolveDecisionRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ResolveDecisionRequestImpl implements _ResolveDecisionRequest {
   const _$ResolveDecisionRequestImpl(
-      {required this.selectedOption, required this.rationale});
+      {this.selectedOption,
+      @JsonKey(name: 'decisionRationale') this.decisionRationale});
 
   factory _$ResolveDecisionRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$ResolveDecisionRequestImplFromJson(json);
 
-  /// The selected option/decision.
+  /// The selected option ID or option object.
+  ///
+  /// Can be either a String option ID or a full DecisionOption object
+  /// depending on the API endpoint version.
   @override
-  final String selectedOption;
+  final String? selectedOption;
 
   /// Rationale for the decision.
   @override
-  final String rationale;
+  @JsonKey(name: 'decisionRationale')
+  final String? decisionRationale;
 
   @override
   String toString() {
-    return 'ResolveDecisionRequest(selectedOption: $selectedOption, rationale: $rationale)';
+    return 'ResolveDecisionRequest(selectedOption: $selectedOption, decisionRationale: $decisionRationale)';
   }
 
   @override
@@ -477,13 +490,14 @@ class _$ResolveDecisionRequestImpl implements _ResolveDecisionRequest {
             other is _$ResolveDecisionRequestImpl &&
             (identical(other.selectedOption, selectedOption) ||
                 other.selectedOption == selectedOption) &&
-            (identical(other.rationale, rationale) ||
-                other.rationale == rationale));
+            (identical(other.decisionRationale, decisionRationale) ||
+                other.decisionRationale == decisionRationale));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, selectedOption, rationale);
+  int get hashCode =>
+      Object.hash(runtimeType, selectedOption, decisionRationale);
 
   @JsonKey(ignore: true)
   @override
@@ -502,20 +516,25 @@ class _$ResolveDecisionRequestImpl implements _ResolveDecisionRequest {
 
 abstract class _ResolveDecisionRequest implements ResolveDecisionRequest {
   const factory _ResolveDecisionRequest(
-      {required final String selectedOption,
-      required final String rationale}) = _$ResolveDecisionRequestImpl;
+      {final String? selectedOption,
+      @JsonKey(name: 'decisionRationale')
+      final String? decisionRationale}) = _$ResolveDecisionRequestImpl;
 
   factory _ResolveDecisionRequest.fromJson(Map<String, dynamic> json) =
       _$ResolveDecisionRequestImpl.fromJson;
 
   @override
 
-  /// The selected option/decision.
-  String get selectedOption;
+  /// The selected option ID or option object.
+  ///
+  /// Can be either a String option ID or a full DecisionOption object
+  /// depending on the API endpoint version.
+  String? get selectedOption;
   @override
 
   /// Rationale for the decision.
-  String get rationale;
+  @JsonKey(name: 'decisionRationale')
+  String? get decisionRationale;
   @override
   @JsonKey(ignore: true)
   _$$ResolveDecisionRequestImplCopyWith<_$ResolveDecisionRequestImpl>

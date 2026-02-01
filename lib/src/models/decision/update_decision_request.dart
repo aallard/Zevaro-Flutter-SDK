@@ -45,11 +45,14 @@ class UpdateDecisionRequest with _$UpdateDecisionRequest {
 class ResolveDecisionRequest with _$ResolveDecisionRequest {
   /// Creates a resolve decision request.
   const factory ResolveDecisionRequest({
-    /// The selected option/decision.
-    required String selectedOption,
+    /// The selected option ID or option object.
+    ///
+    /// Can be either a String option ID or a full DecisionOption object
+    /// depending on the API endpoint version.
+    String? selectedOption,
 
     /// Rationale for the decision.
-    required String rationale,
+    @JsonKey(name: 'decisionRationale') String? decisionRationale,
   }) = _ResolveDecisionRequest;
 
   /// Creates a request from JSON.

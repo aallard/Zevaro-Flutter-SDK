@@ -1,6 +1,7 @@
 /// Workflow status of a Hypothesis.
 ///
 /// Workflow: DRAFT → READY → BLOCKED → BUILDING → DEPLOYED → MEASURING → VALIDATED/INVALIDATED
+/// Alternative terminal state: ABANDONED
 enum HypothesisStatus {
   /// Being defined.
   DRAFT,
@@ -25,6 +26,9 @@ enum HypothesisStatus {
 
   /// Hypothesis proved false.
   INVALIDATED,
+
+  /// Hypothesis abandoned (no longer pursuing).
+  ABANDONED,
 }
 
 /// Extension methods for [HypothesisStatus].
@@ -48,12 +52,16 @@ extension HypothesisStatusExtension on HypothesisStatus {
         return 'Validated';
       case HypothesisStatus.INVALIDATED:
         return 'Invalidated';
+      case HypothesisStatus.ABANDONED:
+        return 'Abandoned';
     }
   }
 
   /// Whether this status is terminal (no further transitions).
   bool get isTerminal =>
-      this == HypothesisStatus.VALIDATED || this == HypothesisStatus.INVALIDATED;
+      this == HypothesisStatus.VALIDATED ||
+      this == HypothesisStatus.INVALIDATED ||
+      this == HypothesisStatus.ABANDONED;
 
   /// Whether this status represents active work.
   bool get isActive =>
@@ -89,6 +97,8 @@ extension HypothesisStatusExtension on HypothesisStatus {
         return '#10B981'; // Green
       case HypothesisStatus.INVALIDATED:
         return '#6B7280'; // Dark gray
+      case HypothesisStatus.ABANDONED:
+        return '#9CA3AF'; // Light gray
     }
   }
 
@@ -96,19 +106,20 @@ extension HypothesisStatusExtension on HypothesisStatus {
   List<HypothesisStatus> get allowedTransitions {
     switch (this) {
       case HypothesisStatus.DRAFT:
-        return [HypothesisStatus.READY];
+        return [HypothesisStatus.READY, HypothesisStatus.ABANDONED];
       case HypothesisStatus.READY:
-        return [HypothesisStatus.BLOCKED, HypothesisStatus.BUILDING];
+        return [HypothesisStatus.BLOCKED, HypothesisStatus.BUILDING, HypothesisStatus.ABANDONED];
       case HypothesisStatus.BLOCKED:
-        return [HypothesisStatus.READY, HypothesisStatus.BUILDING];
+        return [HypothesisStatus.READY, HypothesisStatus.BUILDING, HypothesisStatus.ABANDONED];
       case HypothesisStatus.BUILDING:
-        return [HypothesisStatus.BLOCKED, HypothesisStatus.DEPLOYED];
+        return [HypothesisStatus.BLOCKED, HypothesisStatus.DEPLOYED, HypothesisStatus.ABANDONED];
       case HypothesisStatus.DEPLOYED:
-        return [HypothesisStatus.MEASURING];
+        return [HypothesisStatus.MEASURING, HypothesisStatus.ABANDONED];
       case HypothesisStatus.MEASURING:
-        return [HypothesisStatus.VALIDATED, HypothesisStatus.INVALIDATED];
+        return [HypothesisStatus.VALIDATED, HypothesisStatus.INVALIDATED, HypothesisStatus.ABANDONED];
       case HypothesisStatus.VALIDATED:
       case HypothesisStatus.INVALIDATED:
+      case HypothesisStatus.ABANDONED:
         return []; // Terminal states
     }
   }

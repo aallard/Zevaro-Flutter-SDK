@@ -9,13 +9,13 @@ void main() {
 
       // Config
       final config = SdkConfig.development();
-      expect(config.baseUrl, contains('localhost'));
+      expect(config.baseUrl, contains('zevaro'));
 
       // Enums
       expect(UserRole.values.length, 9);
       expect(UserDepartment.values.length, 9);
-      expect(HypothesisStatus.values.length, 8);
-      expect(DecisionStatus.values.length, 3);
+      expect(HypothesisStatus.values.length, 9);
+      expect(DecisionStatus.values.length, 6);
       expect(DecisionUrgency.values.length, 4);
 
       // Constants
@@ -26,11 +26,11 @@ void main() {
     test('SdkConfig factories work correctly', () {
       final devConfig = SdkConfig.development();
       expect(devConfig.enableLogging, true);
-      expect(devConfig.baseUrl, 'http://localhost:8080/api');
+      expect(devConfig.baseUrl, 'https://api-dev.zevaro.ai/api/v1');
 
-      final prodConfig = SdkConfig.production('https://api.zevaro.io');
+      final prodConfig = SdkConfig.production();
       expect(prodConfig.enableLogging, false);
-      expect(prodConfig.baseUrl, 'https://api.zevaro.io');
+      expect(prodConfig.baseUrl, 'https://api.zevaro.ai/api/v1');
     });
 
     test('ApiException hierarchy is correct', () {

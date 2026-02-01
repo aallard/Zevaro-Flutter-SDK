@@ -128,6 +128,9 @@ const _$DecisionStatusEnumMap = {
   DecisionStatus.NEEDS_INPUT: 'NEEDS_INPUT',
   DecisionStatus.UNDER_DISCUSSION: 'UNDER_DISCUSSION',
   DecisionStatus.DECIDED: 'DECIDED',
+  DecisionStatus.IMPLEMENTED: 'IMPLEMENTED',
+  DecisionStatus.DEFERRED: 'DEFERRED',
+  DecisionStatus.CANCELLED: 'CANCELLED',
 };
 
 const _$DecisionTypeEnumMap = {

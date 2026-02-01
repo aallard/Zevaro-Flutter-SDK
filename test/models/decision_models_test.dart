@@ -13,6 +13,13 @@ void main() {
       expect(DecisionStatus.NEEDS_INPUT.isResolved, false);
       expect(DecisionStatus.DECIDED.isResolved, true);
     });
+
+    test('isTerminal returns correct values', () {
+      expect(DecisionStatus.NEEDS_INPUT.isTerminal, false);
+      expect(DecisionStatus.IMPLEMENTED.isTerminal, true);
+      expect(DecisionStatus.DEFERRED.isTerminal, true);
+      expect(DecisionStatus.CANCELLED.isTerminal, true);
+    });
   });
 
   group('DecisionUrgency', () {
@@ -32,48 +39,59 @@ void main() {
   });
 
   group('Decision', () {
-    test('isSlaBreached returns true when past deadline', () {
+    test('isSlaBreached returns true when overdue', () {
       final decision = Decision(
         id: 'decision-1',
-        tenantId: 'tenant-1',
-        hypothesisId: 'hypothesis-1',
-        teamId: 'team-1',
         title: 'Test Decision',
         description: 'Test',
         status: DecisionStatus.NEEDS_INPUT,
-        urgency: DecisionUrgency.NORMAL,
+        priority: 'NORMAL',
         type: DecisionType.PRODUCT,
-        requesterId: 'user-1',
-        stakeholderIds: ['user-2'],
+        overdue: true,
         createdAt: DateTime.now().subtract(const Duration(days: 2)),
         updatedAt: DateTime.now(),
-        slaDeadline: DateTime.now().subtract(const Duration(hours: 1)),
-        voteCount: 0,
-        commentCount: 0,
       );
       expect(decision.isSlaBreached, true);
     });
 
-    test('isSlaBreached returns false when before deadline', () {
+    test('isSlaBreached returns false when not overdue', () {
       final decision = Decision(
         id: 'decision-1',
-        tenantId: 'tenant-1',
-        hypothesisId: 'hypothesis-1',
-        teamId: 'team-1',
         title: 'Test Decision',
         description: 'Test',
         status: DecisionStatus.NEEDS_INPUT,
-        urgency: DecisionUrgency.NORMAL,
+        priority: 'NORMAL',
         type: DecisionType.PRODUCT,
-        requesterId: 'user-1',
-        stakeholderIds: ['user-2'],
+        overdue: false,
+        dueAt: DateTime.now().add(const Duration(hours: 1)),
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
-        slaDeadline: DateTime.now().add(const Duration(hours: 1)),
-        voteCount: 0,
-        commentCount: 0,
       );
       expect(decision.isSlaBreached, false);
+    });
+
+    test('urgency getter maps priority string correctly', () {
+      final blockingDecision = Decision(
+        id: 'decision-1',
+        title: 'Test',
+        status: DecisionStatus.NEEDS_INPUT,
+        priority: 'BLOCKING',
+        type: DecisionType.PRODUCT,
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+      );
+      expect(blockingDecision.urgency, DecisionUrgency.BLOCKING);
+
+      final normalDecision = Decision(
+        id: 'decision-2',
+        title: 'Test',
+        status: DecisionStatus.NEEDS_INPUT,
+        priority: 'NORMAL',
+        type: DecisionType.PRODUCT,
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+      );
+      expect(normalDecision.urgency, DecisionUrgency.NORMAL);
     });
   });
 }

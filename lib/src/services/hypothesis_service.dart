@@ -26,7 +26,7 @@ class HypothesisService {
   }) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/hypotheses/paged',
+        '/hypotheses/paged',
         queryParameters: {
           'page': page,
           'size': size,
@@ -49,7 +49,7 @@ class HypothesisService {
   /// Gets a hypothesis by ID.
   Future<Hypothesis> getHypothesis(String id) async {
     try {
-      final response = await _apiClient.dio.get('/v1/hypotheses/$id');
+      final response = await _apiClient.dio.get('/hypotheses/$id');
       return Hypothesis.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
@@ -60,7 +60,7 @@ class HypothesisService {
   Future<Hypothesis> getHypothesisWithMetrics(String id) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/hypotheses/$id',
+        '/hypotheses/$id',
         queryParameters: {'includeMetrics': true},
       );
       return Hypothesis.fromJson(response.data as Map<String, dynamic>);
@@ -73,7 +73,7 @@ class HypothesisService {
   Future<Hypothesis> createHypothesis(CreateHypothesisRequest request) async {
     try {
       final response = await _apiClient.dio.post(
-        '/v1/hypotheses',
+        '/hypotheses',
         data: request.toJson(),
       );
       return Hypothesis.fromJson(response.data as Map<String, dynamic>);
@@ -89,7 +89,7 @@ class HypothesisService {
   ) async {
     try {
       final response = await _apiClient.dio.patch(
-        '/v1/hypotheses/$id',
+        '/hypotheses/$id',
         data: request.toJson(),
       );
       return Hypothesis.fromJson(response.data as Map<String, dynamic>);
@@ -105,7 +105,7 @@ class HypothesisService {
   ) async {
     try {
       final response = await _apiClient.dio.post(
-        '/v1/hypotheses/$id/transition',
+        '/hypotheses/$id/transition',
         data: {'status': newStatus.name},
       );
       return Hypothesis.fromJson(response.data as Map<String, dynamic>);
@@ -118,7 +118,7 @@ class HypothesisService {
   Future<Hypothesis> validate(String id, {String? notes}) async {
     try {
       final response = await _apiClient.dio.post(
-        '/v1/hypotheses/$id/validate',
+        '/hypotheses/$id/validate',
         data: notes != null ? {'notes': notes} : null,
       );
       return Hypothesis.fromJson(response.data as Map<String, dynamic>);
@@ -131,7 +131,7 @@ class HypothesisService {
   Future<Hypothesis> invalidate(String id, {String? notes}) async {
     try {
       final response = await _apiClient.dio.post(
-        '/v1/hypotheses/$id/invalidate',
+        '/hypotheses/$id/invalidate',
         data: notes != null ? {'notes': notes} : null,
       );
       return Hypothesis.fromJson(response.data as Map<String, dynamic>);
@@ -143,7 +143,7 @@ class HypothesisService {
   /// Deletes a hypothesis.
   Future<void> deleteHypothesis(String id) async {
     try {
-      await _apiClient.dio.delete('/v1/hypotheses/$id');
+      await _apiClient.dio.delete('/hypotheses/$id');
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
     }
@@ -152,7 +152,7 @@ class HypothesisService {
   /// Gets hypotheses owned by the current user.
   Future<List<Hypothesis>> getMyHypotheses() async {
     try {
-      final response = await _apiClient.dio.get('/v1/hypotheses/my-hypotheses');
+      final response = await _apiClient.dio.get('/hypotheses/my-hypotheses');
       return (response.data as List)
           .map((json) => Hypothesis.fromJson(json as Map<String, dynamic>))
           .toList();
@@ -164,7 +164,7 @@ class HypothesisService {
   /// Gets hypotheses that are blocked (waiting for decisions).
   Future<List<Hypothesis>> getBlockedHypotheses() async {
     try {
-      final response = await _apiClient.dio.get('/v1/hypotheses/blocked');
+      final response = await _apiClient.dio.get('/hypotheses/blocked');
       return (response.data as List)
           .map((json) => Hypothesis.fromJson(json as Map<String, dynamic>))
           .toList();
@@ -177,7 +177,7 @@ class HypothesisService {
   Future<List<Hypothesis>> getHypothesesForOutcome(String outcomeId) async {
     try {
       final response =
-          await _apiClient.dio.get('/v1/outcomes/$outcomeId/hypotheses');
+          await _apiClient.dio.get('/outcomes/$outcomeId/hypotheses');
       return (response.data as List)
           .map((json) => Hypothesis.fromJson(json as Map<String, dynamic>))
           .toList();
@@ -195,7 +195,7 @@ class HypothesisService {
   ) async {
     try {
       final response = await _apiClient.dio.post(
-        '/v1/hypotheses/$hypothesisId/metrics',
+        '/hypotheses/$hypothesisId/metrics',
         data: request.toJson(),
       );
       return HypothesisMetric.fromJson(response.data as Map<String, dynamic>);
@@ -212,7 +212,7 @@ class HypothesisService {
   ) async {
     try {
       final response = await _apiClient.dio.patch(
-        '/v1/hypotheses/$hypothesisId/metrics/$metricId',
+        '/hypotheses/$hypothesisId/metrics/$metricId',
         data: request.toJson(),
       );
       return HypothesisMetric.fromJson(response.data as Map<String, dynamic>);
@@ -238,7 +238,7 @@ class HypothesisService {
   Future<void> deleteMetric(String hypothesisId, String metricId) async {
     try {
       await _apiClient.dio
-          .delete('/v1/hypotheses/$hypothesisId/metrics/$metricId');
+          .delete('/hypotheses/$hypothesisId/metrics/$metricId');
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
     }
@@ -248,12 +248,78 @@ class HypothesisService {
   Future<List<Hypothesis>> searchHypotheses(String query) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/hypotheses/search',
+        '/hypotheses/search',
         queryParameters: {'q': query},
       );
       return (response.data as List)
           .map((json) => Hypothesis.fromJson(json as Map<String, dynamic>))
           .toList();
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  // --- Active & Stats Queries ---
+
+  /// Gets active hypotheses (in progress statuses).
+  Future<List<Hypothesis>> getActiveHypotheses() async {
+    try {
+      final response = await _apiClient.dio.get('/hypotheses/active');
+      return (response.data as List)
+          .map((json) => Hypothesis.fromJson(json as Map<String, dynamic>))
+          .toList();
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  /// Gets hypothesis status counts.
+  Future<Map<String, int>> getHypothesisStatusCounts() async {
+    try {
+      final response = await _apiClient.dio.get('/hypotheses/stats');
+      return Map<String, int>.from(response.data as Map);
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  /// Gets hypothesis status counts for a specific outcome.
+  Future<Map<String, int>> getOutcomeHypothesisStatusCounts(String outcomeId) async {
+    try {
+      final response =
+          await _apiClient.dio.get('/hypotheses/outcome/$outcomeId/stats');
+      return Map<String, int>.from(response.data as Map);
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  // --- Conclusion & Abandonment ---
+
+  /// Concludes a hypothesis with validation results.
+  Future<Hypothesis> concludeHypothesis(
+    String id,
+    ConcludeHypothesisRequest request,
+  ) async {
+    try {
+      final response = await _apiClient.dio.post(
+        '/hypotheses/$id/conclude',
+        data: request.toJson(),
+      );
+      return Hypothesis.fromJson(response.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  /// Abandons a hypothesis with a reason.
+  Future<Hypothesis> abandonHypothesis(String id, String reason) async {
+    try {
+      final response = await _apiClient.dio.post(
+        '/hypotheses/$id/abandon',
+        queryParameters: {'reason': reason},
+      );
+      return Hypothesis.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
     }

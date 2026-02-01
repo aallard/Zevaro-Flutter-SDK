@@ -6,18 +6,19 @@ void main() {
     test('workflow transitions are correct', () {
       expect(
         HypothesisStatus.DRAFT.allowedTransitions,
-        [HypothesisStatus.READY],
+        [HypothesisStatus.READY, HypothesisStatus.ABANDONED],
       );
       expect(
         HypothesisStatus.READY.allowedTransitions,
-        [HypothesisStatus.BLOCKED, HypothesisStatus.BUILDING],
+        [HypothesisStatus.BLOCKED, HypothesisStatus.BUILDING, HypothesisStatus.ABANDONED],
       );
       expect(
         HypothesisStatus.MEASURING.allowedTransitions,
-        [HypothesisStatus.VALIDATED, HypothesisStatus.INVALIDATED],
+        [HypothesisStatus.VALIDATED, HypothesisStatus.INVALIDATED, HypothesisStatus.ABANDONED],
       );
       expect(HypothesisStatus.VALIDATED.allowedTransitions, isEmpty);
       expect(HypothesisStatus.INVALIDATED.allowedTransitions, isEmpty);
+      expect(HypothesisStatus.ABANDONED.allowedTransitions, isEmpty);
     });
 
     test('isTerminal identifies end states', () {
@@ -25,6 +26,7 @@ void main() {
       expect(HypothesisStatus.BUILDING.isTerminal, false);
       expect(HypothesisStatus.VALIDATED.isTerminal, true);
       expect(HypothesisStatus.INVALIDATED.isTerminal, true);
+      expect(HypothesisStatus.ABANDONED.isTerminal, true);
     });
 
     test('needsDecision identifies blocked state', () {

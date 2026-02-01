@@ -27,3 +27,12 @@ export 'decision/decision_providers.dart';
 
 // Stakeholder
 export 'stakeholder/stakeholder_providers.dart';
+
+// Queue
+export 'queue/queue_providers.dart';
+
+// Role
+export 'role/role_providers.dart';
+
+// Audit
+export 'audit/audit_providers.dart';

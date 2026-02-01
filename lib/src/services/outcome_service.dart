@@ -25,7 +25,7 @@ class OutcomeService {
   }) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/outcomes/paged',
+        '/outcomes/paged',
         queryParameters: {
           'page': page,
           'size': size,
@@ -47,7 +47,7 @@ class OutcomeService {
   /// Gets an outcome by ID.
   Future<Outcome> getOutcome(String id) async {
     try {
-      final response = await _apiClient.dio.get('/v1/outcomes/$id');
+      final response = await _apiClient.dio.get('/outcomes/$id');
       return Outcome.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
@@ -58,7 +58,7 @@ class OutcomeService {
   Future<Outcome> getOutcomeWithKeyResults(String id) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/outcomes/$id',
+        '/outcomes/$id',
         queryParameters: {'includeKeyResults': true},
       );
       return Outcome.fromJson(response.data as Map<String, dynamic>);
@@ -71,7 +71,7 @@ class OutcomeService {
   Future<Outcome> createOutcome(CreateOutcomeRequest request) async {
     try {
       final response = await _apiClient.dio.post(
-        '/v1/outcomes',
+        '/outcomes',
         data: request.toJson(),
       );
       return Outcome.fromJson(response.data as Map<String, dynamic>);
@@ -84,7 +84,7 @@ class OutcomeService {
   Future<Outcome> updateOutcome(String id, UpdateOutcomeRequest request) async {
     try {
       final response = await _apiClient.dio.patch(
-        '/v1/outcomes/$id',
+        '/outcomes/$id',
         data: request.toJson(),
       );
       return Outcome.fromJson(response.data as Map<String, dynamic>);
@@ -97,7 +97,7 @@ class OutcomeService {
   Future<Outcome> updateStatus(String id, OutcomeStatus status) async {
     try {
       final response = await _apiClient.dio.patch(
-        '/v1/outcomes/$id/status',
+        '/outcomes/$id/status',
         data: {'status': status.name},
       );
       return Outcome.fromJson(response.data as Map<String, dynamic>);
@@ -109,7 +109,7 @@ class OutcomeService {
   /// Deletes an outcome.
   Future<void> deleteOutcome(String id) async {
     try {
-      await _apiClient.dio.delete('/v1/outcomes/$id');
+      await _apiClient.dio.delete('/outcomes/$id');
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
     }
@@ -118,7 +118,7 @@ class OutcomeService {
   /// Gets outcomes owned by the current user.
   Future<List<Outcome>> getMyOutcomes() async {
     try {
-      final response = await _apiClient.dio.get('/v1/outcomes/my-outcomes');
+      final response = await _apiClient.dio.get('/outcomes/my-outcomes');
       return (response.data as List)
           .map((json) => Outcome.fromJson(json as Map<String, dynamic>))
           .toList();
@@ -130,7 +130,7 @@ class OutcomeService {
   /// Gets outcomes with pending decisions (blocked).
   Future<List<Outcome>> getBlockedOutcomes() async {
     try {
-      final response = await _apiClient.dio.get('/v1/outcomes/blocked');
+      final response = await _apiClient.dio.get('/outcomes/blocked');
       return (response.data as List)
           .map((json) => Outcome.fromJson(json as Map<String, dynamic>))
           .toList();
@@ -148,7 +148,7 @@ class OutcomeService {
   ) async {
     try {
       final response = await _apiClient.dio.post(
-        '/v1/outcomes/$outcomeId/key-results',
+        '/outcomes/$outcomeId/key-results',
         data: request.toJson(),
       );
       return KeyResult.fromJson(response.data as Map<String, dynamic>);
@@ -165,7 +165,7 @@ class OutcomeService {
   ) async {
     try {
       final response = await _apiClient.dio.patch(
-        '/v1/outcomes/$outcomeId/key-results/$keyResultId',
+        '/outcomes/$outcomeId/key-results/$keyResultId',
         data: request.toJson(),
       );
       return KeyResult.fromJson(response.data as Map<String, dynamic>);
@@ -191,7 +191,7 @@ class OutcomeService {
   Future<void> deleteKeyResult(String outcomeId, String keyResultId) async {
     try {
       await _apiClient.dio
-          .delete('/v1/outcomes/$outcomeId/key-results/$keyResultId');
+          .delete('/outcomes/$outcomeId/key-results/$keyResultId');
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
     }
@@ -201,12 +201,114 @@ class OutcomeService {
   Future<List<Outcome>> searchOutcomes(String query) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/outcomes/search',
+        '/outcomes/search',
         queryParameters: {'q': query},
       );
       return (response.data as List)
           .map((json) => Outcome.fromJson(json as Map<String, dynamic>))
           .toList();
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  // --- Team & Overdue Queries ---
+
+  /// Gets outcomes for a specific team.
+  Future<List<Outcome>> getTeamOutcomes(String teamId) async {
+    try {
+      final response = await _apiClient.dio.get('/outcomes/team/$teamId');
+      return (response.data as List)
+          .map((json) => Outcome.fromJson(json as Map<String, dynamic>))
+          .toList();
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  /// Gets overdue outcomes.
+  Future<List<Outcome>> getOverdueOutcomes() async {
+    try {
+      final response = await _apiClient.dio.get('/outcomes/overdue');
+      return (response.data as List)
+          .map((json) => Outcome.fromJson(json as Map<String, dynamic>))
+          .toList();
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  // --- Lifecycle Transitions ---
+
+  /// Starts an outcome (transitions to IN_PROGRESS).
+  Future<Outcome> startOutcome(String id) async {
+    try {
+      final response = await _apiClient.dio.post('/outcomes/$id/start');
+      return Outcome.fromJson(response.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  /// Validates an outcome with optional notes.
+  Future<Outcome> validateOutcome(String id, {String? validationNotes}) async {
+    try {
+      final response = await _apiClient.dio.post(
+        '/outcomes/$id/validate',
+        data: {if (validationNotes != null) 'validationNotes': validationNotes},
+      );
+      return Outcome.fromJson(response.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  /// Invalidates an outcome with optional notes.
+  Future<Outcome> invalidateOutcome(String id, {String? invalidationNotes}) async {
+    try {
+      final response = await _apiClient.dio.post(
+        '/outcomes/$id/invalidate',
+        data: {if (invalidationNotes != null) 'invalidationNotes': invalidationNotes},
+      );
+      return Outcome.fromJson(response.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  /// Abandons an outcome with a reason.
+  Future<Outcome> abandonOutcome(String id, String reason) async {
+    try {
+      final response = await _apiClient.dio.post(
+        '/outcomes/$id/abandon',
+        queryParameters: {'reason': reason},
+      );
+      return Outcome.fromJson(response.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  // --- Metrics ---
+
+  /// Updates metrics for an outcome.
+  Future<Outcome> updateMetrics(String id, Map<String, dynamic> metrics) async {
+    try {
+      final response = await _apiClient.dio.patch(
+        '/outcomes/$id/metrics',
+        data: metrics,
+      );
+      return Outcome.fromJson(response.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  /// Gets outcome status counts.
+  Future<Map<String, int>> getOutcomeStatusCounts() async {
+    try {
+      final response = await _apiClient.dio.get('/outcomes/stats');
+      return Map<String, int>.from(response.data as Map);
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
     }

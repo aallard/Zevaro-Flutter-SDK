@@ -26,7 +26,7 @@ class StakeholderService {
   }) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/stakeholders',
+        '/stakeholders',
         queryParameters: {
           'page': page,
           'size': size,
@@ -46,7 +46,7 @@ class StakeholderService {
   /// Gets a stakeholder by user ID.
   Future<Stakeholder> getStakeholder(String userId) async {
     try {
-      final response = await _apiClient.dio.get('/v1/stakeholders/$userId');
+      final response = await _apiClient.dio.get('/stakeholders/$userId');
       return Stakeholder.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
@@ -57,7 +57,7 @@ class StakeholderService {
   Future<Stakeholder> getStakeholderWithStats(String userId) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/stakeholders/$userId',
+        '/stakeholders/$userId',
         queryParameters: {'includeStats': true},
       );
       return Stakeholder.fromJson(response.data as Map<String, dynamic>);
@@ -69,7 +69,7 @@ class StakeholderService {
   /// Gets the current user as a stakeholder.
   Future<Stakeholder> getMyStakeholderProfile() async {
     try {
-      final response = await _apiClient.dio.get('/v1/stakeholders/me');
+      final response = await _apiClient.dio.get('/stakeholders/me');
       return Stakeholder.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
@@ -84,7 +84,7 @@ class StakeholderService {
   }) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/stakeholders/$userId/stats',
+        '/stakeholders/$userId/stats',
         queryParameters: {
           if (periodStart != null) 'periodStart': periodStart.toIso8601String(),
           if (periodEnd != null) 'periodEnd': periodEnd.toIso8601String(),
@@ -103,7 +103,7 @@ class StakeholderService {
   }) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/stakeholders/me/stats',
+        '/stakeholders/me/stats',
         queryParameters: {
           if (periodStart != null) 'periodStart': periodStart.toIso8601String(),
           if (periodEnd != null) 'periodEnd': periodEnd.toIso8601String(),
@@ -127,7 +127,7 @@ class StakeholderService {
   }) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/stakeholders/$userId/responses',
+        '/stakeholders/$userId/responses',
         queryParameters: {
           'page': page,
           'size': size,
@@ -148,7 +148,7 @@ class StakeholderService {
   Future<List<StakeholderResponse>> getMyPendingResponses() async {
     try {
       final response =
-          await _apiClient.dio.get('/v1/stakeholders/me/responses/pending');
+          await _apiClient.dio.get('/stakeholders/me/responses/pending');
       return (response.data as List)
           .map(
             (json) =>
@@ -164,7 +164,7 @@ class StakeholderService {
   Future<List<StakeholderResponse>> getMyOverdueResponses() async {
     try {
       final response =
-          await _apiClient.dio.get('/v1/stakeholders/me/responses/overdue');
+          await _apiClient.dio.get('/stakeholders/me/responses/overdue');
       return (response.data as List)
           .map(
             (json) =>
@@ -187,7 +187,7 @@ class StakeholderService {
   }) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/stakeholders/leaderboard',
+        '/stakeholders/leaderboard',
         queryParameters: {
           'limit': limit,
           if (department != null) 'department': department,
@@ -214,7 +214,7 @@ class StakeholderService {
   }) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/stakeholders/slow-responders',
+        '/stakeholders/slow-responders',
         queryParameters: {
           'minOverdue': minOverdue,
           if (department != null) 'department': department,
@@ -231,7 +231,7 @@ class StakeholderService {
   /// Gets stakeholders who are blocking hypotheses.
   Future<List<Stakeholder>> getBlockingStakeholders() async {
     try {
-      final response = await _apiClient.dio.get('/v1/stakeholders/blocking');
+      final response = await _apiClient.dio.get('/stakeholders/blocking');
       return (response.data as List)
           .map((json) => Stakeholder.fromJson(json as Map<String, dynamic>))
           .toList();
@@ -246,7 +246,7 @@ class StakeholderService {
   Future<void> sendReminder(String userId, {String? message}) async {
     try {
       await _apiClient.dio.post(
-        '/v1/stakeholders/$userId/remind',
+        '/stakeholders/$userId/remind',
         data: message != null ? {'message': message} : null,
       );
     } on DioException catch (e) {
@@ -263,7 +263,7 @@ class StakeholderService {
   }) async {
     try {
       final response = await _apiClient.dio.post(
-        '/v1/stakeholders/remind-all',
+        '/stakeholders/remind-all',
         data: {
           'minOverdue': minOverdue,
           if (message != null) 'message': message,
@@ -279,7 +279,7 @@ class StakeholderService {
   Future<List<Stakeholder>> searchStakeholders(String query) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/stakeholders/search',
+        '/stakeholders/search',
         queryParameters: {'q': query},
       );
       return (response.data as List)
@@ -295,8 +295,57 @@ class StakeholderService {
   /// Gets overall stakeholder metrics for the tenant.
   Future<Map<String, dynamic>> getTenantStakeholderMetrics() async {
     try {
-      final response = await _apiClient.dio.get('/v1/stakeholders/metrics');
+      final response = await _apiClient.dio.get('/stakeholders/metrics');
       return response.data as Map<String, dynamic>;
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  // --- Additional Queries ---
+
+  /// Gets a stakeholder by email address.
+  Future<Stakeholder> getStakeholderByEmail(String email) async {
+    try {
+      final response = await _apiClient.dio.get('/stakeholders/email/$email');
+      return Stakeholder.fromJson(response.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  /// Gets stakeholders with pending decisions.
+  Future<List<Stakeholder>> getStakeholdersWithPending() async {
+    try {
+      final response = await _apiClient.dio.get('/stakeholders/with-pending');
+      return (response.data as List)
+          .map((json) => Stakeholder.fromJson(json as Map<String, dynamic>))
+          .toList();
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  /// Finds stakeholders by expertise area.
+  Future<List<Stakeholder>> findByExpertise(String expertise) async {
+    try {
+      final response = await _apiClient.dio.get(
+        '/stakeholders/search/expertise',
+        queryParameters: {'expertise': expertise},
+      );
+      return (response.data as List)
+          .map((json) => Stakeholder.fromJson(json as Map<String, dynamic>))
+          .toList();
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  /// Gets detailed metrics for a stakeholder.
+  Future<StakeholderMetrics> getStakeholderMetrics(String id) async {
+    try {
+      final response = await _apiClient.dio.get('/stakeholders/$id/metrics');
+      return StakeholderMetrics.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
     }

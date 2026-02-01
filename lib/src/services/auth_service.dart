@@ -25,7 +25,7 @@ class AuthService {
   Future<LoginResponse> login(LoginRequest request) async {
     try {
       final response = await _apiClient.dio.post(
-        '/v1/auth/login',
+        '/auth/login',
         data: request.toJson(),
       );
       final loginResponse = LoginResponse.fromJson(
@@ -53,7 +53,7 @@ class AuthService {
   Future<LoginResponse> register(RegisterRequest request) async {
     try {
       final response = await _apiClient.dio.post(
-        '/v1/auth/register',
+        '/auth/register',
         data: request.toJson(),
       );
       final loginResponse = LoginResponse.fromJson(
@@ -85,7 +85,7 @@ class AuthService {
 
     try {
       final response = await _apiClient.dio.post(
-        '/v1/auth/refresh',
+        '/auth/refresh',
         data: {'refreshToken': refreshToken},
       );
       final newAccessToken = response.data['accessToken'] as String;
@@ -110,7 +110,7 @@ class AuthService {
   /// Always clears local storage, even if the server logout fails.
   Future<void> logout() async {
     try {
-      await _apiClient.dio.post('/v1/auth/logout');
+      await _apiClient.dio.post('/auth/logout');
     } catch (_) {
       // Ignore errors, clear tokens anyway
     }
@@ -152,7 +152,7 @@ class AuthService {
   Future<void> forgotPassword(String email) async {
     try {
       await _apiClient.dio.post(
-        '/v1/auth/forgot-password',
+        '/auth/forgot-password',
         data: {'email': email},
       );
     } on DioException catch (e) {
@@ -166,7 +166,7 @@ class AuthService {
   Future<void> resetPassword(String token, String newPassword) async {
     try {
       await _apiClient.dio.post(
-        '/v1/auth/reset-password',
+        '/auth/reset-password',
         data: {
           'token': token,
           'password': newPassword,
@@ -187,7 +187,7 @@ class AuthService {
   ) async {
     try {
       await _apiClient.dio.post(
-        '/v1/auth/change-password',
+        '/auth/change-password',
         data: {
           'currentPassword': currentPassword,
           'newPassword': newPassword,

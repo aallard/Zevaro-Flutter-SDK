@@ -13,7 +13,7 @@ class TenantService {
   /// Gets the current tenant.
   Future<Tenant> getCurrentTenant() async {
     try {
-      final response = await _apiClient.dio.get('/v1/tenants/current');
+      final response = await _apiClient.dio.get('/tenants/current');
       return Tenant.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
@@ -23,7 +23,7 @@ class TenantService {
   /// Gets a tenant by ID.
   Future<Tenant> getTenant(String id) async {
     try {
-      final response = await _apiClient.dio.get('/v1/tenants/$id');
+      final response = await _apiClient.dio.get('/tenants/$id');
       return Tenant.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
@@ -34,7 +34,7 @@ class TenantService {
   Future<Tenant> updateTenant(String id, UpdateTenantRequest request) async {
     try {
       final response = await _apiClient.dio.patch(
-        '/v1/tenants/$id',
+        '/tenants/$id',
         data: request.toJson(),
       );
       return Tenant.fromJson(response.data as Map<String, dynamic>);
@@ -47,7 +47,7 @@ class TenantService {
   Future<Tenant> updateSettings(String id, TenantSettings settings) async {
     try {
       final response = await _apiClient.dio.patch(
-        '/v1/tenants/$id/settings',
+        '/tenants/$id/settings',
         data: settings.toJson(),
       );
       return Tenant.fromJson(response.data as Map<String, dynamic>);
@@ -60,7 +60,7 @@ class TenantService {
   Future<bool> isSlugAvailable(String slug) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/tenants/check-slug',
+        '/tenants/check-slug',
         queryParameters: {'slug': slug},
       );
       return response.data['available'] as bool;
@@ -72,7 +72,7 @@ class TenantService {
   /// Gets statistics for the current tenant.
   Future<TenantStats> getTenantStats() async {
     try {
-      final response = await _apiClient.dio.get('/v1/tenants/current/stats');
+      final response = await _apiClient.dio.get('/tenants/current/stats');
       return TenantStats.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
@@ -86,7 +86,7 @@ class TenantService {
   }) async {
     try {
       final response = await _apiClient.dio.post(
-        '/v1/tenants/current/invite-codes',
+        '/tenants/current/invite-codes',
         data: {
           if (maxUses != null) 'maxUses': maxUses,
           if (expiresAt != null) 'expiresAt': expiresAt.toIso8601String(),

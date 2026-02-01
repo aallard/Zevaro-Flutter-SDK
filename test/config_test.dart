@@ -5,13 +5,13 @@ void main() {
   group('SdkConfig', () {
     test('development factory creates correct config', () {
       final config = SdkConfig.development();
-      expect(config.baseUrl, 'http://localhost:8080/api');
+      expect(config.baseUrl, 'https://api-dev.zevaro.ai/api/v1');
       expect(config.enableLogging, true);
     });
 
     test('production factory creates correct config', () {
-      final config = SdkConfig.production('https://api.zevaro.io');
-      expect(config.baseUrl, 'https://api.zevaro.io');
+      final config = SdkConfig.production();
+      expect(config.baseUrl, 'https://api.zevaro.ai/api/v1');
       expect(config.enableLogging, false);
     });
 

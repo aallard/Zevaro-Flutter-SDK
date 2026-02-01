@@ -32,9 +32,11 @@ Map<String, dynamic> _$$UpdateOutcomeRequestImplToJson(
 
 const _$OutcomeStatusEnumMap = {
   OutcomeStatus.DRAFT: 'DRAFT',
-  OutcomeStatus.ACTIVE: 'ACTIVE',
-  OutcomeStatus.ON_HOLD: 'ON_HOLD',
-  OutcomeStatus.ACHIEVED: 'ACHIEVED',
+  OutcomeStatus.NOT_STARTED: 'NOT_STARTED',
+  OutcomeStatus.IN_PROGRESS: 'IN_PROGRESS',
+  OutcomeStatus.VALIDATING: 'VALIDATING',
+  OutcomeStatus.VALIDATED: 'VALIDATED',
+  OutcomeStatus.INVALIDATED: 'INVALIDATED',
   OutcomeStatus.ABANDONED: 'ABANDONED',
 };
 

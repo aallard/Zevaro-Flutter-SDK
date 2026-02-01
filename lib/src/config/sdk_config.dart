@@ -1,6 +1,9 @@
 /// Configuration for the Zevaro SDK.
 class SdkConfig {
   /// Base URL for API requests.
+  ///
+  /// Should end with `/api/v1` to match the OpenAPI specification.
+  /// Service paths are relative (e.g., `/decisions`, not `/api/v1/decisions`).
   final String baseUrl;
 
   /// Connection timeout duration.
@@ -26,19 +29,27 @@ class SdkConfig {
     this.enableLogging = false,
   });
 
-  /// Creates a development configuration.
+  /// Creates a local development configuration.
   ///
-  /// Uses localhost:8080 with logging enabled.
+  /// Uses localhost:8080/api/v1 with logging enabled.
+  factory SdkConfig.local() => const SdkConfig(
+        baseUrl: 'http://localhost:8080/api/v1',
+        enableLogging: true,
+      );
+
+  /// Creates a development/staging configuration.
+  ///
+  /// Uses api-dev.zevaro.ai with logging enabled.
   factory SdkConfig.development() => const SdkConfig(
-        baseUrl: 'http://localhost:8080/api',
+        baseUrl: 'https://api-dev.zevaro.ai/api/v1',
         enableLogging: true,
       );
 
   /// Creates a production configuration.
   ///
-  /// Disables logging for production use.
-  factory SdkConfig.production(String baseUrl) => SdkConfig(
-        baseUrl: baseUrl,
+  /// Uses api.zevaro.ai with logging disabled.
+  factory SdkConfig.production() => const SdkConfig(
+        baseUrl: 'https://api.zevaro.ai/api/v1',
         enableLogging: false,
       );
 }

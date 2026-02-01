@@ -5,16 +5,16 @@ void main() {
   group('OutcomeStatus', () {
     test('isTerminal identifies end states', () {
       expect(OutcomeStatus.DRAFT.isTerminal, false);
-      expect(OutcomeStatus.ACTIVE.isTerminal, false);
-      expect(OutcomeStatus.ACHIEVED.isTerminal, true);
+      expect(OutcomeStatus.IN_PROGRESS.isTerminal, false);
+      expect(OutcomeStatus.VALIDATED.isTerminal, true);
       expect(OutcomeStatus.ABANDONED.isTerminal, true);
     });
 
     test('isEditable allows modifications', () {
       expect(OutcomeStatus.DRAFT.isEditable, true);
-      expect(OutcomeStatus.ACTIVE.isEditable, true);
-      expect(OutcomeStatus.ON_HOLD.isEditable, false);
-      expect(OutcomeStatus.ACHIEVED.isEditable, false);
+      expect(OutcomeStatus.NOT_STARTED.isEditable, true);
+      expect(OutcomeStatus.IN_PROGRESS.isEditable, false);
+      expect(OutcomeStatus.VALIDATED.isEditable, false);
     });
   });
 

@@ -71,6 +71,21 @@ export 'src/models/decision/decision_models.dart';
 export 'src/models/stakeholder/stakeholder_models.dart';
 
 // ============================================
+// Models - Queue
+// ============================================
+export 'src/models/queue/queue_models.dart';
+
+// ============================================
+// Models - Role
+// ============================================
+export 'src/models/role/role_models.dart';
+
+// ============================================
+// Models - Audit
+// ============================================
+export 'src/models/audit/audit_models.dart';
+
+// ============================================
 // Services
 // ============================================
 export 'src/services/auth_service.dart';
@@ -81,6 +96,9 @@ export 'src/services/outcome_service.dart';
 export 'src/services/hypothesis_service.dart';
 export 'src/services/decision_service.dart';
 export 'src/services/stakeholder_service.dart';
+export 'src/services/queue_service.dart';
+export 'src/services/role_service.dart';
+export 'src/services/audit_service.dart';
 
 // ============================================
 // Providers (State Management)

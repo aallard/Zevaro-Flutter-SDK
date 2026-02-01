@@ -53,13 +53,13 @@ const _$DecisionTypeEnumMap = {
 _$ResolveDecisionRequestImpl _$$ResolveDecisionRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$ResolveDecisionRequestImpl(
-      selectedOption: json['selectedOption'] as String,
-      rationale: json['rationale'] as String,
+      selectedOption: json['selectedOption'] as String?,
+      decisionRationale: json['decisionRationale'] as String?,
     );
 
 Map<String, dynamic> _$$ResolveDecisionRequestImplToJson(
         _$ResolveDecisionRequestImpl instance) =>
     <String, dynamic>{
       'selectedOption': instance.selectedOption,
-      'rationale': instance.rationale,
+      'decisionRationale': instance.decisionRationale,
     };

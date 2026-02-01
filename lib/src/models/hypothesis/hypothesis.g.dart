@@ -76,6 +76,7 @@ const _$HypothesisStatusEnumMap = {
   HypothesisStatus.MEASURING: 'MEASURING',
   HypothesisStatus.VALIDATED: 'VALIDATED',
   HypothesisStatus.INVALIDATED: 'INVALIDATED',
+  HypothesisStatus.ABANDONED: 'ABANDONED',
 };
 
 const _$HypothesisConfidenceEnumMap = {

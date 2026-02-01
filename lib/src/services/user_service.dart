@@ -15,7 +15,7 @@ class UserService {
   /// Gets the current authenticated user's profile.
   Future<User> getCurrentUser() async {
     try {
-      final response = await _apiClient.dio.get('/v1/users/me');
+      final response = await _apiClient.dio.get('/users/me');
       return User.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
@@ -25,7 +25,7 @@ class UserService {
   /// Gets a user by ID.
   Future<User> getUser(String id) async {
     try {
-      final response = await _apiClient.dio.get('/v1/users/$id');
+      final response = await _apiClient.dio.get('/users/$id');
       return User.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
@@ -44,7 +44,7 @@ class UserService {
   }) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/users',
+        '/users',
         queryParameters: {
           'page': page,
           'size': size,
@@ -66,7 +66,7 @@ class UserService {
   Future<User> createUser(CreateUserRequest request) async {
     try {
       final response = await _apiClient.dio.post(
-        '/v1/users',
+        '/users',
         data: request.toJson(),
       );
       return User.fromJson(response.data as Map<String, dynamic>);
@@ -79,7 +79,7 @@ class UserService {
   Future<User> updateUser(String id, UpdateUserRequest request) async {
     try {
       final response = await _apiClient.dio.patch(
-        '/v1/users/$id',
+        '/users/$id',
         data: request.toJson(),
       );
       return User.fromJson(response.data as Map<String, dynamic>);
@@ -92,7 +92,7 @@ class UserService {
   Future<User> updateProfile(UpdateUserRequest request) async {
     try {
       final response = await _apiClient.dio.patch(
-        '/v1/users/me',
+        '/users/me',
         data: request.toJson(),
       );
       return User.fromJson(response.data as Map<String, dynamic>);
@@ -104,7 +104,7 @@ class UserService {
   /// Deactivates a user (admin only).
   Future<void> deactivateUser(String id) async {
     try {
-      await _apiClient.dio.delete('/v1/users/$id');
+      await _apiClient.dio.delete('/users/$id');
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
     }
@@ -114,7 +114,7 @@ class UserService {
   Future<List<User>> searchUsers(String query) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/users/search',
+        '/users/search',
         queryParameters: {'q': query},
       );
       return (response.data as List)
@@ -129,7 +129,7 @@ class UserService {
   Future<List<User>> getUsersByDepartment(UserDepartment department) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/users',
+        '/users',
         queryParameters: {
           'department': department.name.toUpperCase(),
           'size': ZevaroConstants.maxPageSize,
@@ -149,7 +149,7 @@ class UserService {
   Future<List<User>> getUsersByRole(UserRole role) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/users',
+        '/users',
         queryParameters: {
           'role': role.name.toUpperCase(),
           'size': ZevaroConstants.maxPageSize,

@@ -22,7 +22,7 @@ class TeamService {
   }) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/teams/paged',
+        '/teams/paged',
         queryParameters: {
           'page': page,
           'size': size,
@@ -41,7 +41,7 @@ class TeamService {
   /// Gets a team by ID.
   Future<Team> getTeam(String id) async {
     try {
-      final response = await _apiClient.dio.get('/v1/teams/$id');
+      final response = await _apiClient.dio.get('/teams/$id');
       return Team.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
@@ -52,7 +52,7 @@ class TeamService {
   Future<Team> getTeamWithMembers(String id) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/teams/$id',
+        '/teams/$id',
         queryParameters: {'includeMembers': true},
       );
       return Team.fromJson(response.data as Map<String, dynamic>);
@@ -65,7 +65,7 @@ class TeamService {
   Future<Team> createTeam(CreateTeamRequest request) async {
     try {
       final response = await _apiClient.dio.post(
-        '/v1/teams',
+        '/teams',
         data: request.toJson(),
       );
       return Team.fromJson(response.data as Map<String, dynamic>);
@@ -78,7 +78,7 @@ class TeamService {
   Future<Team> updateTeam(String id, UpdateTeamRequest request) async {
     try {
       final response = await _apiClient.dio.patch(
-        '/v1/teams/$id',
+        '/teams/$id',
         data: request.toJson(),
       );
       return Team.fromJson(response.data as Map<String, dynamic>);
@@ -90,7 +90,7 @@ class TeamService {
   /// Deletes a team.
   Future<void> deleteTeam(String id) async {
     try {
-      await _apiClient.dio.delete('/v1/teams/$id');
+      await _apiClient.dio.delete('/teams/$id');
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
     }
@@ -99,7 +99,7 @@ class TeamService {
   /// Gets teams the current user is a member of.
   Future<List<Team>> getMyTeams() async {
     try {
-      final response = await _apiClient.dio.get('/v1/teams/my-teams');
+      final response = await _apiClient.dio.get('/teams/my-teams');
       return (response.data as List)
           .map((json) => Team.fromJson(json as Map<String, dynamic>))
           .toList();
@@ -113,7 +113,7 @@ class TeamService {
   /// Lists members of a team.
   Future<List<TeamMember>> listMembers(String teamId) async {
     try {
-      final response = await _apiClient.dio.get('/v1/teams/$teamId/members');
+      final response = await _apiClient.dio.get('/teams/$teamId/members');
       return (response.data as List)
           .map((json) => TeamMember.fromJson(json as Map<String, dynamic>))
           .toList();
@@ -129,7 +129,7 @@ class TeamService {
   ) async {
     try {
       final response = await _apiClient.dio.post(
-        '/v1/teams/$teamId/members',
+        '/teams/$teamId/members',
         data: request.toJson(),
       );
       return TeamMember.fromJson(response.data as Map<String, dynamic>);
@@ -146,7 +146,7 @@ class TeamService {
   ) async {
     try {
       final response = await _apiClient.dio.patch(
-        '/v1/teams/$teamId/members/$memberId',
+        '/teams/$teamId/members/$memberId',
         data: {'role': role.name},
       );
       return TeamMember.fromJson(response.data as Map<String, dynamic>);
@@ -158,7 +158,7 @@ class TeamService {
   /// Removes a member from a team.
   Future<void> removeMember(String teamId, String memberId) async {
     try {
-      await _apiClient.dio.delete('/v1/teams/$teamId/members/$memberId');
+      await _apiClient.dio.delete('/teams/$teamId/members/$memberId');
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
     }
@@ -167,7 +167,7 @@ class TeamService {
   /// Leaves a team (current user).
   Future<void> leaveTeam(String teamId) async {
     try {
-      await _apiClient.dio.post('/v1/teams/$teamId/leave');
+      await _apiClient.dio.post('/teams/$teamId/leave');
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
     }
@@ -177,12 +177,41 @@ class TeamService {
   Future<List<Team>> searchTeams(String query) async {
     try {
       final response = await _apiClient.dio.get(
-        '/v1/teams/search',
+        '/teams/search',
         queryParameters: {'q': query},
       );
       return (response.data as List)
           .map((json) => Team.fromJson(json as Map<String, dynamic>))
           .toList();
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  // --- Additional Queries ---
+
+  /// Gets a team by its slug.
+  Future<Team> getTeamBySlug(String slug) async {
+    try {
+      final response = await _apiClient.dio.get('/teams/slug/$slug');
+      return Team.fromJson(response.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  /// Updates a team member.
+  Future<TeamMember> updateTeamMember(
+    String teamId,
+    String userId,
+    UpdateTeamMemberRequest request,
+  ) async {
+    try {
+      final response = await _apiClient.dio.put(
+        '/teams/$teamId/members/$userId',
+        data: request.toJson(),
+      );
+      return TeamMember.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
     }
