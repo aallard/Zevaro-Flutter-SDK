@@ -177,7 +177,7 @@ class HypothesisService {
   Future<List<Hypothesis>> getHypothesesForOutcome(String outcomeId) async {
     try {
       final response =
-          await _apiClient.dio.get('/outcomes/$outcomeId/hypotheses');
+          await _apiClient.dio.get('/hypotheses/outcome/$outcomeId');
       return (response.data as List)
           .map((json) => Hypothesis.fromJson(json as Map<String, dynamic>))
           .toList();
