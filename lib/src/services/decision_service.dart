@@ -223,9 +223,9 @@ class DecisionService {
   }) async {
     try {
       final response = await _apiClient.dio.post(
-        '/decisions/$decisionId/vote',
+        '/decisions/$decisionId/votes',
         data: {
-          'vote': vote,
+          'vote': vote.toUpperCase(),
           if (comment != null) 'comment': comment,
         },
       );

@@ -23,29 +23,26 @@ mixin _$DecisionComment {
   /// Unique identifier.
   String get id => throw _privateConstructorUsedError;
 
-  /// ID of the decision being commented on.
-  String get decisionId => throw _privateConstructorUsedError;
-
-  /// ID of the comment author.
-  String get authorId => throw _privateConstructorUsedError;
+  /// Author of the comment.
+  UserSummary get author => throw _privateConstructorUsedError;
 
   /// Comment content.
   String get content => throw _privateConstructorUsedError;
 
+  /// Option ID if comment is about a specific option.
+  String? get optionId => throw _privateConstructorUsedError;
+
   /// Parent comment ID (for threaded replies).
   String? get parentId => throw _privateConstructorUsedError;
+
+  /// Whether the comment has been edited.
+  bool get edited => throw _privateConstructorUsedError;
 
   /// When the comment was created.
   DateTime get createdAt => throw _privateConstructorUsedError;
 
   /// When the comment was last updated.
-  DateTime? get updatedAt =>
-      throw _privateConstructorUsedError; // Embedded author info
-  /// Author's display name.
-  String? get authorName => throw _privateConstructorUsedError;
-
-  /// Author's avatar URL.
-  String? get authorAvatarUrl => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -61,14 +58,15 @@ abstract class $DecisionCommentCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String decisionId,
-      String authorId,
+      UserSummary author,
       String content,
+      String? optionId,
       String? parentId,
+      bool edited,
       DateTime createdAt,
-      DateTime? updatedAt,
-      String? authorName,
-      String? authorAvatarUrl});
+      DateTime? updatedAt});
+
+  $UserSummaryCopyWith<$Res> get author;
 }
 
 /// @nodoc
@@ -85,36 +83,39 @@ class _$DecisionCommentCopyWithImpl<$Res, $Val extends DecisionComment>
   @override
   $Res call({
     Object? id = null,
-    Object? decisionId = null,
-    Object? authorId = null,
+    Object? author = null,
     Object? content = null,
+    Object? optionId = freezed,
     Object? parentId = freezed,
+    Object? edited = null,
     Object? createdAt = null,
     Object? updatedAt = freezed,
-    Object? authorName = freezed,
-    Object? authorAvatarUrl = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      decisionId: null == decisionId
-          ? _value.decisionId
-          : decisionId // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorId: null == authorId
-          ? _value.authorId
-          : authorId // ignore: cast_nullable_to_non_nullable
-              as String,
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as UserSummary,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
+      optionId: freezed == optionId
+          ? _value.optionId
+          : optionId // ignore: cast_nullable_to_non_nullable
+              as String?,
       parentId: freezed == parentId
           ? _value.parentId
           : parentId // ignore: cast_nullable_to_non_nullable
               as String?,
+      edited: null == edited
+          ? _value.edited
+          : edited // ignore: cast_nullable_to_non_nullable
+              as bool,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -123,15 +124,15 @@ class _$DecisionCommentCopyWithImpl<$Res, $Val extends DecisionComment>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      authorName: freezed == authorName
-          ? _value.authorName
-          : authorName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      authorAvatarUrl: freezed == authorAvatarUrl
-          ? _value.authorAvatarUrl
-          : authorAvatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserSummaryCopyWith<$Res> get author {
+    return $UserSummaryCopyWith<$Res>(_value.author, (value) {
+      return _then(_value.copyWith(author: value) as $Val);
+    });
   }
 }
 
@@ -145,14 +146,16 @@ abstract class _$$DecisionCommentImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String decisionId,
-      String authorId,
+      UserSummary author,
       String content,
+      String? optionId,
       String? parentId,
+      bool edited,
       DateTime createdAt,
-      DateTime? updatedAt,
-      String? authorName,
-      String? authorAvatarUrl});
+      DateTime? updatedAt});
+
+  @override
+  $UserSummaryCopyWith<$Res> get author;
 }
 
 /// @nodoc
@@ -167,36 +170,39 @@ class __$$DecisionCommentImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? decisionId = null,
-    Object? authorId = null,
+    Object? author = null,
     Object? content = null,
+    Object? optionId = freezed,
     Object? parentId = freezed,
+    Object? edited = null,
     Object? createdAt = null,
     Object? updatedAt = freezed,
-    Object? authorName = freezed,
-    Object? authorAvatarUrl = freezed,
   }) {
     return _then(_$DecisionCommentImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      decisionId: null == decisionId
-          ? _value.decisionId
-          : decisionId // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorId: null == authorId
-          ? _value.authorId
-          : authorId // ignore: cast_nullable_to_non_nullable
-              as String,
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as UserSummary,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
+      optionId: freezed == optionId
+          ? _value.optionId
+          : optionId // ignore: cast_nullable_to_non_nullable
+              as String?,
       parentId: freezed == parentId
           ? _value.parentId
           : parentId // ignore: cast_nullable_to_non_nullable
               as String?,
+      edited: null == edited
+          ? _value.edited
+          : edited // ignore: cast_nullable_to_non_nullable
+              as bool,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -205,31 +211,23 @@ class __$$DecisionCommentImplCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      authorName: freezed == authorName
-          ? _value.authorName
-          : authorName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      authorAvatarUrl: freezed == authorAvatarUrl
-          ? _value.authorAvatarUrl
-          : authorAvatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$DecisionCommentImpl implements _DecisionComment {
+class _$DecisionCommentImpl extends _DecisionComment {
   const _$DecisionCommentImpl(
       {required this.id,
-      required this.decisionId,
-      required this.authorId,
+      required this.author,
       required this.content,
+      this.optionId,
       this.parentId,
+      this.edited = false,
       required this.createdAt,
-      this.updatedAt,
-      this.authorName,
-      this.authorAvatarUrl});
+      this.updatedAt})
+      : super._();
 
   factory _$DecisionCommentImpl.fromJson(Map<String, dynamic> json) =>
       _$$DecisionCommentImplFromJson(json);
@@ -238,21 +236,26 @@ class _$DecisionCommentImpl implements _DecisionComment {
   @override
   final String id;
 
-  /// ID of the decision being commented on.
+  /// Author of the comment.
   @override
-  final String decisionId;
-
-  /// ID of the comment author.
-  @override
-  final String authorId;
+  final UserSummary author;
 
   /// Comment content.
   @override
   final String content;
 
+  /// Option ID if comment is about a specific option.
+  @override
+  final String? optionId;
+
   /// Parent comment ID (for threaded replies).
   @override
   final String? parentId;
+
+  /// Whether the comment has been edited.
+  @override
+  @JsonKey()
+  final bool edited;
 
   /// When the comment was created.
   @override
@@ -261,18 +264,10 @@ class _$DecisionCommentImpl implements _DecisionComment {
   /// When the comment was last updated.
   @override
   final DateTime? updatedAt;
-// Embedded author info
-  /// Author's display name.
-  @override
-  final String? authorName;
-
-  /// Author's avatar URL.
-  @override
-  final String? authorAvatarUrl;
 
   @override
   String toString() {
-    return 'DecisionComment(id: $id, decisionId: $decisionId, authorId: $authorId, content: $content, parentId: $parentId, createdAt: $createdAt, updatedAt: $updatedAt, authorName: $authorName, authorAvatarUrl: $authorAvatarUrl)';
+    return 'DecisionComment(id: $id, author: $author, content: $content, optionId: $optionId, parentId: $parentId, edited: $edited, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -281,27 +276,23 @@ class _$DecisionCommentImpl implements _DecisionComment {
         (other.runtimeType == runtimeType &&
             other is _$DecisionCommentImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.decisionId, decisionId) ||
-                other.decisionId == decisionId) &&
-            (identical(other.authorId, authorId) ||
-                other.authorId == authorId) &&
+            (identical(other.author, author) || other.author == author) &&
             (identical(other.content, content) || other.content == content) &&
+            (identical(other.optionId, optionId) ||
+                other.optionId == optionId) &&
             (identical(other.parentId, parentId) ||
                 other.parentId == parentId) &&
+            (identical(other.edited, edited) || other.edited == edited) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
-            (identical(other.authorName, authorName) ||
-                other.authorName == authorName) &&
-            (identical(other.authorAvatarUrl, authorAvatarUrl) ||
-                other.authorAvatarUrl == authorAvatarUrl));
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, decisionId, authorId,
-      content, parentId, createdAt, updatedAt, authorName, authorAvatarUrl);
+  int get hashCode => Object.hash(runtimeType, id, author, content, optionId,
+      parentId, edited, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -318,17 +309,17 @@ class _$DecisionCommentImpl implements _DecisionComment {
   }
 }
 
-abstract class _DecisionComment implements DecisionComment {
+abstract class _DecisionComment extends DecisionComment {
   const factory _DecisionComment(
       {required final String id,
-      required final String decisionId,
-      required final String authorId,
+      required final UserSummary author,
       required final String content,
+      final String? optionId,
       final String? parentId,
+      final bool edited,
       required final DateTime createdAt,
-      final DateTime? updatedAt,
-      final String? authorName,
-      final String? authorAvatarUrl}) = _$DecisionCommentImpl;
+      final DateTime? updatedAt}) = _$DecisionCommentImpl;
+  const _DecisionComment._() : super._();
 
   factory _DecisionComment.fromJson(Map<String, dynamic> json) =
       _$DecisionCommentImpl.fromJson;
@@ -339,20 +330,24 @@ abstract class _DecisionComment implements DecisionComment {
   String get id;
   @override
 
-  /// ID of the decision being commented on.
-  String get decisionId;
-  @override
-
-  /// ID of the comment author.
-  String get authorId;
+  /// Author of the comment.
+  UserSummary get author;
   @override
 
   /// Comment content.
   String get content;
   @override
 
+  /// Option ID if comment is about a specific option.
+  String? get optionId;
+  @override
+
   /// Parent comment ID (for threaded replies).
   String? get parentId;
+  @override
+
+  /// Whether the comment has been edited.
+  bool get edited;
   @override
 
   /// When the comment was created.
@@ -361,13 +356,6 @@ abstract class _DecisionComment implements DecisionComment {
 
   /// When the comment was last updated.
   DateTime? get updatedAt;
-  @override // Embedded author info
-  /// Author's display name.
-  String? get authorName;
-  @override
-
-  /// Author's avatar URL.
-  String? get authorAvatarUrl;
   @override
   @JsonKey(ignore: true)
   _$$DecisionCommentImplCopyWith<_$DecisionCommentImpl> get copyWith =>
