@@ -9,23 +9,17 @@ part of 'decision_vote.dart';
 _$DecisionVoteImpl _$$DecisionVoteImplFromJson(Map<String, dynamic> json) =>
     _$DecisionVoteImpl(
       id: json['id'] as String,
-      decisionId: json['decisionId'] as String,
-      userId: json['userId'] as String,
+      user: UserSummary.fromJson(json['user'] as Map<String, dynamic>),
       vote: json['vote'] as String,
       comment: json['comment'] as String?,
-      votedAt: DateTime.parse(json['votedAt'] as String),
-      voterName: json['voterName'] as String?,
-      voterAvatarUrl: json['voterAvatarUrl'] as String?,
+      createdAt: DateTime.parse(json['createdAt'] as String),
     );
 
 Map<String, dynamic> _$$DecisionVoteImplToJson(_$DecisionVoteImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'decisionId': instance.decisionId,
-      'userId': instance.userId,
+      'user': instance.user,
       'vote': instance.vote,
       'comment': instance.comment,
-      'votedAt': instance.votedAt.toIso8601String(),
-      'voterName': instance.voterName,
-      'voterAvatarUrl': instance.voterAvatarUrl,
+      'createdAt': instance.createdAt.toIso8601String(),
     };

@@ -23,26 +23,17 @@ mixin _$DecisionVote {
   /// Unique identifier.
   String get id => throw _privateConstructorUsedError;
 
-  /// ID of the decision being voted on.
-  String get decisionId => throw _privateConstructorUsedError;
+  /// The user who voted.
+  UserSummary get user => throw _privateConstructorUsedError;
 
-  /// ID of the user who voted.
-  String get userId => throw _privateConstructorUsedError;
-
-  /// The vote value (e.g., "APPROVE", "REJECT", "ABSTAIN", or option ID).
+  /// The vote value (e.g., "APPROVE", "REJECT", "ABSTAIN").
   String get vote => throw _privateConstructorUsedError;
 
   /// Optional comment with the vote.
   String? get comment => throw _privateConstructorUsedError;
 
   /// When the vote was cast.
-  DateTime get votedAt =>
-      throw _privateConstructorUsedError; // Embedded voter info
-  /// Voter's display name.
-  String? get voterName => throw _privateConstructorUsedError;
-
-  /// Voter's avatar URL.
-  String? get voterAvatarUrl => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,13 +49,12 @@ abstract class $DecisionVoteCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String decisionId,
-      String userId,
+      UserSummary user,
       String vote,
       String? comment,
-      DateTime votedAt,
-      String? voterName,
-      String? voterAvatarUrl});
+      DateTime createdAt});
+
+  $UserSummaryCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -81,27 +71,20 @@ class _$DecisionVoteCopyWithImpl<$Res, $Val extends DecisionVote>
   @override
   $Res call({
     Object? id = null,
-    Object? decisionId = null,
-    Object? userId = null,
+    Object? user = null,
     Object? vote = null,
     Object? comment = freezed,
-    Object? votedAt = null,
-    Object? voterName = freezed,
-    Object? voterAvatarUrl = freezed,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      decisionId: null == decisionId
-          ? _value.decisionId
-          : decisionId // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserSummary,
       vote: null == vote
           ? _value.vote
           : vote // ignore: cast_nullable_to_non_nullable
@@ -110,19 +93,19 @@ class _$DecisionVoteCopyWithImpl<$Res, $Val extends DecisionVote>
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String?,
-      votedAt: null == votedAt
-          ? _value.votedAt
-          : votedAt // ignore: cast_nullable_to_non_nullable
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      voterName: freezed == voterName
-          ? _value.voterName
-          : voterName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      voterAvatarUrl: freezed == voterAvatarUrl
-          ? _value.voterAvatarUrl
-          : voterAvatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserSummaryCopyWith<$Res> get user {
+    return $UserSummaryCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
@@ -136,13 +119,13 @@ abstract class _$$DecisionVoteImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String decisionId,
-      String userId,
+      UserSummary user,
       String vote,
       String? comment,
-      DateTime votedAt,
-      String? voterName,
-      String? voterAvatarUrl});
+      DateTime createdAt});
+
+  @override
+  $UserSummaryCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -157,27 +140,20 @@ class __$$DecisionVoteImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? decisionId = null,
-    Object? userId = null,
+    Object? user = null,
     Object? vote = null,
     Object? comment = freezed,
-    Object? votedAt = null,
-    Object? voterName = freezed,
-    Object? voterAvatarUrl = freezed,
+    Object? createdAt = null,
   }) {
     return _then(_$DecisionVoteImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      decisionId: null == decisionId
-          ? _value.decisionId
-          : decisionId // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserSummary,
       vote: null == vote
           ? _value.vote
           : vote // ignore: cast_nullable_to_non_nullable
@@ -186,34 +162,24 @@ class __$$DecisionVoteImplCopyWithImpl<$Res>
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String?,
-      votedAt: null == votedAt
-          ? _value.votedAt
-          : votedAt // ignore: cast_nullable_to_non_nullable
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      voterName: freezed == voterName
-          ? _value.voterName
-          : voterName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      voterAvatarUrl: freezed == voterAvatarUrl
-          ? _value.voterAvatarUrl
-          : voterAvatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$DecisionVoteImpl implements _DecisionVote {
+class _$DecisionVoteImpl extends _DecisionVote {
   const _$DecisionVoteImpl(
       {required this.id,
-      required this.decisionId,
-      required this.userId,
+      required this.user,
       required this.vote,
       this.comment,
-      required this.votedAt,
-      this.voterName,
-      this.voterAvatarUrl});
+      required this.createdAt})
+      : super._();
 
   factory _$DecisionVoteImpl.fromJson(Map<String, dynamic> json) =>
       _$$DecisionVoteImplFromJson(json);
@@ -222,15 +188,11 @@ class _$DecisionVoteImpl implements _DecisionVote {
   @override
   final String id;
 
-  /// ID of the decision being voted on.
+  /// The user who voted.
   @override
-  final String decisionId;
+  final UserSummary user;
 
-  /// ID of the user who voted.
-  @override
-  final String userId;
-
-  /// The vote value (e.g., "APPROVE", "REJECT", "ABSTAIN", or option ID).
+  /// The vote value (e.g., "APPROVE", "REJECT", "ABSTAIN").
   @override
   final String vote;
 
@@ -240,19 +202,11 @@ class _$DecisionVoteImpl implements _DecisionVote {
 
   /// When the vote was cast.
   @override
-  final DateTime votedAt;
-// Embedded voter info
-  /// Voter's display name.
-  @override
-  final String? voterName;
-
-  /// Voter's avatar URL.
-  @override
-  final String? voterAvatarUrl;
+  final DateTime createdAt;
 
   @override
   String toString() {
-    return 'DecisionVote(id: $id, decisionId: $decisionId, userId: $userId, vote: $vote, comment: $comment, votedAt: $votedAt, voterName: $voterName, voterAvatarUrl: $voterAvatarUrl)';
+    return 'DecisionVote(id: $id, user: $user, vote: $vote, comment: $comment, createdAt: $createdAt)';
   }
 
   @override
@@ -261,22 +215,17 @@ class _$DecisionVoteImpl implements _DecisionVote {
         (other.runtimeType == runtimeType &&
             other is _$DecisionVoteImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.decisionId, decisionId) ||
-                other.decisionId == decisionId) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.vote, vote) || other.vote == vote) &&
             (identical(other.comment, comment) || other.comment == comment) &&
-            (identical(other.votedAt, votedAt) || other.votedAt == votedAt) &&
-            (identical(other.voterName, voterName) ||
-                other.voterName == voterName) &&
-            (identical(other.voterAvatarUrl, voterAvatarUrl) ||
-                other.voterAvatarUrl == voterAvatarUrl));
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, decisionId, userId, vote,
-      comment, votedAt, voterName, voterAvatarUrl);
+  int get hashCode =>
+      Object.hash(runtimeType, id, user, vote, comment, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -292,16 +241,14 @@ class _$DecisionVoteImpl implements _DecisionVote {
   }
 }
 
-abstract class _DecisionVote implements DecisionVote {
+abstract class _DecisionVote extends DecisionVote {
   const factory _DecisionVote(
       {required final String id,
-      required final String decisionId,
-      required final String userId,
+      required final UserSummary user,
       required final String vote,
       final String? comment,
-      required final DateTime votedAt,
-      final String? voterName,
-      final String? voterAvatarUrl}) = _$DecisionVoteImpl;
+      required final DateTime createdAt}) = _$DecisionVoteImpl;
+  const _DecisionVote._() : super._();
 
   factory _DecisionVote.fromJson(Map<String, dynamic> json) =
       _$DecisionVoteImpl.fromJson;
@@ -312,15 +259,11 @@ abstract class _DecisionVote implements DecisionVote {
   String get id;
   @override
 
-  /// ID of the decision being voted on.
-  String get decisionId;
+  /// The user who voted.
+  UserSummary get user;
   @override
 
-  /// ID of the user who voted.
-  String get userId;
-  @override
-
-  /// The vote value (e.g., "APPROVE", "REJECT", "ABSTAIN", or option ID).
+  /// The vote value (e.g., "APPROVE", "REJECT", "ABSTAIN").
   String get vote;
   @override
 
@@ -329,14 +272,7 @@ abstract class _DecisionVote implements DecisionVote {
   @override
 
   /// When the vote was cast.
-  DateTime get votedAt;
-  @override // Embedded voter info
-  /// Voter's display name.
-  String? get voterName;
-  @override
-
-  /// Voter's avatar URL.
-  String? get voterAvatarUrl;
+  DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$DecisionVoteImplCopyWith<_$DecisionVoteImpl> get copyWith =>
