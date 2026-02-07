@@ -13,6 +13,9 @@ class CreateHypothesisRequest with _$CreateHypothesisRequest {
     /// ID of the parent outcome.
     required String outcomeId,
 
+    /// ID of the project this belongs to.
+    String? projectId,
+
     /// Hypothesis statement.
     required String statement,
 

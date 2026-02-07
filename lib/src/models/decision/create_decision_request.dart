@@ -14,6 +14,9 @@ class CreateDecisionRequest with _$CreateDecisionRequest {
     /// ID of the hypothesis this decision is blocking.
     required String hypothesisId,
 
+    /// ID of the project this belongs to.
+    String? projectId,
+
     /// Decision title.
     required String title,
 

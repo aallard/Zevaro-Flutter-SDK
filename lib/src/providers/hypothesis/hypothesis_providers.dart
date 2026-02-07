@@ -62,12 +62,14 @@ class HypothesisList extends _$HypothesisList {
   Future<PaginatedResponse<Hypothesis>> build({
     String? outcomeId,
     String? teamId,
+    String? projectId,
     HypothesisStatus? status,
   }) async {
     final hypothesisService = ref.watch(hypothesisServiceProvider);
     return hypothesisService.listHypotheses(
       outcomeId: outcomeId,
       teamId: teamId,
+      projectId: projectId,
       status: status,
     );
   }
@@ -82,6 +84,7 @@ class HypothesisList extends _$HypothesisList {
       page: current.page + 1,
       outcomeId: outcomeId,
       teamId: teamId,
+      projectId: projectId,
       status: status,
     );
     state = AsyncValue.data(current.merge(next));

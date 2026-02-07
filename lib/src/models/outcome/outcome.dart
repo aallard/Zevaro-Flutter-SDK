@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../project/project_summary.dart';
 import 'key_result.dart';
 import 'outcome_priority.dart';
 import 'outcome_status.dart';
@@ -17,6 +18,9 @@ class Outcome with _$Outcome {
 
     /// ID of the tenant this outcome belongs to.
     String? tenantId,
+
+    /// Associated project.
+    ProjectSummary? project,
 
     /// ID of the team that owns this outcome.
     String? teamId,

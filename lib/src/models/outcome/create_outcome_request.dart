@@ -13,6 +13,9 @@ class CreateOutcomeRequest with _$CreateOutcomeRequest {
     /// ID of the team that will own this outcome.
     required String teamId,
 
+    /// ID of the project this belongs to.
+    String? projectId,
+
     /// Title of the outcome.
     required String title,
 

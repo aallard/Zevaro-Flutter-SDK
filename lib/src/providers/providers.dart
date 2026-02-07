@@ -36,3 +36,9 @@ export 'role/role_providers.dart';
 
 // Audit
 export 'audit/audit_providers.dart';
+
+// Project
+export 'project/project_providers.dart';
+
+// Experiment
+export 'experiment/experiment_providers.dart';
