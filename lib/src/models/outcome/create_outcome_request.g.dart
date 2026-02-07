@@ -10,6 +10,7 @@ _$CreateOutcomeRequestImpl _$$CreateOutcomeRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$CreateOutcomeRequestImpl(
       teamId: json['teamId'] as String,
+      projectId: json['projectId'] as String?,
       title: json['title'] as String,
       description: json['description'] as String?,
       priority:
@@ -29,6 +30,7 @@ Map<String, dynamic> _$$CreateOutcomeRequestImplToJson(
         _$CreateOutcomeRequestImpl instance) =>
     <String, dynamic>{
       'teamId': instance.teamId,
+      'projectId': instance.projectId,
       'title': instance.title,
       'description': instance.description,
       'priority': _$OutcomePriorityEnumMap[instance.priority]!,

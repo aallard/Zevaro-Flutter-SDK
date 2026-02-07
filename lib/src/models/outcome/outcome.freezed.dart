@@ -26,6 +26,9 @@ mixin _$Outcome {
   /// ID of the tenant this outcome belongs to.
   String? get tenantId => throw _privateConstructorUsedError;
 
+  /// Associated project.
+  ProjectSummary? get project => throw _privateConstructorUsedError;
+
   /// ID of the team that owns this outcome.
   String? get teamId => throw _privateConstructorUsedError;
 
@@ -88,6 +91,7 @@ abstract class $OutcomeCopyWith<$Res> {
   $Res call(
       {String id,
       String? tenantId,
+      ProjectSummary? project,
       String? teamId,
       String title,
       String? description,
@@ -105,6 +109,8 @@ abstract class $OutcomeCopyWith<$Res> {
       String? teamName,
       DateTime createdAt,
       DateTime updatedAt});
+
+  $ProjectSummaryCopyWith<$Res>? get project;
 }
 
 /// @nodoc
@@ -122,6 +128,7 @@ class _$OutcomeCopyWithImpl<$Res, $Val extends Outcome>
   $Res call({
     Object? id = null,
     Object? tenantId = freezed,
+    Object? project = freezed,
     Object? teamId = freezed,
     Object? title = null,
     Object? description = freezed,
@@ -149,6 +156,10 @@ class _$OutcomeCopyWithImpl<$Res, $Val extends Outcome>
           ? _value.tenantId
           : tenantId // ignore: cast_nullable_to_non_nullable
               as String?,
+      project: freezed == project
+          ? _value.project
+          : project // ignore: cast_nullable_to_non_nullable
+              as ProjectSummary?,
       teamId: freezed == teamId
           ? _value.teamId
           : teamId // ignore: cast_nullable_to_non_nullable
@@ -219,6 +230,18 @@ class _$OutcomeCopyWithImpl<$Res, $Val extends Outcome>
               as DateTime,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProjectSummaryCopyWith<$Res>? get project {
+    if (_value.project == null) {
+      return null;
+    }
+
+    return $ProjectSummaryCopyWith<$Res>(_value.project!, (value) {
+      return _then(_value.copyWith(project: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -231,6 +254,7 @@ abstract class _$$OutcomeImplCopyWith<$Res> implements $OutcomeCopyWith<$Res> {
   $Res call(
       {String id,
       String? tenantId,
+      ProjectSummary? project,
       String? teamId,
       String title,
       String? description,
@@ -248,6 +272,9 @@ abstract class _$$OutcomeImplCopyWith<$Res> implements $OutcomeCopyWith<$Res> {
       String? teamName,
       DateTime createdAt,
       DateTime updatedAt});
+
+  @override
+  $ProjectSummaryCopyWith<$Res>? get project;
 }
 
 /// @nodoc
@@ -263,6 +290,7 @@ class __$$OutcomeImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? tenantId = freezed,
+    Object? project = freezed,
     Object? teamId = freezed,
     Object? title = null,
     Object? description = freezed,
@@ -290,6 +318,10 @@ class __$$OutcomeImplCopyWithImpl<$Res>
           ? _value.tenantId
           : tenantId // ignore: cast_nullable_to_non_nullable
               as String?,
+      project: freezed == project
+          ? _value.project
+          : project // ignore: cast_nullable_to_non_nullable
+              as ProjectSummary?,
       teamId: freezed == teamId
           ? _value.teamId
           : teamId // ignore: cast_nullable_to_non_nullable
@@ -368,6 +400,7 @@ class _$OutcomeImpl implements _Outcome {
   const _$OutcomeImpl(
       {required this.id,
       this.tenantId,
+      this.project,
       this.teamId,
       required this.title,
       this.description,
@@ -397,6 +430,10 @@ class _$OutcomeImpl implements _Outcome {
   /// ID of the tenant this outcome belongs to.
   @override
   final String? tenantId;
+
+  /// Associated project.
+  @override
+  final ProjectSummary? project;
 
   /// ID of the team that owns this outcome.
   @override
@@ -482,7 +519,7 @@ class _$OutcomeImpl implements _Outcome {
 
   @override
   String toString() {
-    return 'Outcome(id: $id, tenantId: $tenantId, teamId: $teamId, title: $title, description: $description, status: $status, priority: $priority, ownerId: $ownerId, targetDate: $targetDate, hypothesisCount: $hypothesisCount, activeHypothesisCount: $activeHypothesisCount, validatedHypothesisCount: $validatedHypothesisCount, pendingDecisionCount: $pendingDecisionCount, keyResults: $keyResults, ownerName: $ownerName, ownerAvatarUrl: $ownerAvatarUrl, teamName: $teamName, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Outcome(id: $id, tenantId: $tenantId, project: $project, teamId: $teamId, title: $title, description: $description, status: $status, priority: $priority, ownerId: $ownerId, targetDate: $targetDate, hypothesisCount: $hypothesisCount, activeHypothesisCount: $activeHypothesisCount, validatedHypothesisCount: $validatedHypothesisCount, pendingDecisionCount: $pendingDecisionCount, keyResults: $keyResults, ownerName: $ownerName, ownerAvatarUrl: $ownerAvatarUrl, teamName: $teamName, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -493,6 +530,7 @@ class _$OutcomeImpl implements _Outcome {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.tenantId, tenantId) ||
                 other.tenantId == tenantId) &&
+            (identical(other.project, project) || other.project == project) &&
             (identical(other.teamId, teamId) || other.teamId == teamId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
@@ -532,6 +570,7 @@ class _$OutcomeImpl implements _Outcome {
         runtimeType,
         id,
         tenantId,
+        project,
         teamId,
         title,
         description,
@@ -569,6 +608,7 @@ abstract class _Outcome implements Outcome {
   const factory _Outcome(
       {required final String id,
       final String? tenantId,
+      final ProjectSummary? project,
       final String? teamId,
       required final String title,
       final String? description,
@@ -597,6 +637,10 @@ abstract class _Outcome implements Outcome {
 
   /// ID of the tenant this outcome belongs to.
   String? get tenantId;
+  @override
+
+  /// Associated project.
+  ProjectSummary? get project;
   @override
 
   /// ID of the team that owns this outcome.

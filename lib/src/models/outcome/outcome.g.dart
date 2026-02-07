@@ -10,6 +10,9 @@ _$OutcomeImpl _$$OutcomeImplFromJson(Map<String, dynamic> json) =>
     _$OutcomeImpl(
       id: json['id'] as String,
       tenantId: json['tenantId'] as String?,
+      project: json['project'] == null
+          ? null
+          : ProjectSummary.fromJson(json['project'] as Map<String, dynamic>),
       teamId: json['teamId'] as String?,
       title: json['title'] as String,
       description: json['description'] as String?,
@@ -40,6 +43,7 @@ Map<String, dynamic> _$$OutcomeImplToJson(_$OutcomeImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'tenantId': instance.tenantId,
+      'project': instance.project,
       'teamId': instance.teamId,
       'title': instance.title,
       'description': instance.description,

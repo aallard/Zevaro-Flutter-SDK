@@ -34,6 +34,9 @@ _$DecisionImpl _$$DecisionImplFromJson(Map<String, dynamic> json) =>
       team: json['team'] == null
           ? null
           : EmbeddedTeam.fromJson(json['team'] as Map<String, dynamic>),
+      project: json['project'] == null
+          ? null
+          : ProjectSummary.fromJson(json['project'] as Map<String, dynamic>),
       queue: json['queue'] == null
           ? null
           : EmbeddedQueue.fromJson(json['queue'] as Map<String, dynamic>),
@@ -98,6 +101,7 @@ Map<String, dynamic> _$$DecisionImplToJson(_$DecisionImpl instance) =>
       'outcome': instance.outcome,
       'hypothesis': instance.hypothesis,
       'team': instance.team,
+      'project': instance.project,
       'queue': instance.queue,
       'stakeholder': instance.stakeholder,
       'slaHours': instance.slaHours,

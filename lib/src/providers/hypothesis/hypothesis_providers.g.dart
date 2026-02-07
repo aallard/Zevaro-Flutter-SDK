@@ -509,17 +509,19 @@ class _HypothesesForOutcomeProviderElement
   String get outcomeId => (origin as HypothesesForOutcomeProvider).outcomeId;
 }
 
-String _$hypothesisListHash() => r'7301c93720391be9c15136a4876650206954d31a';
+String _$hypothesisListHash() => r'e42fa32cac9021450409c381636e9af4cd1f8b37';
 
 abstract class _$HypothesisList
     extends BuildlessAutoDisposeAsyncNotifier<PaginatedResponse<Hypothesis>> {
   late final String? outcomeId;
   late final String? teamId;
+  late final String? projectId;
   late final HypothesisStatus? status;
 
   FutureOr<PaginatedResponse<Hypothesis>> build({
     String? outcomeId,
     String? teamId,
+    String? projectId,
     HypothesisStatus? status,
   });
 }
@@ -546,11 +548,13 @@ class HypothesisListFamily
   HypothesisListProvider call({
     String? outcomeId,
     String? teamId,
+    String? projectId,
     HypothesisStatus? status,
   }) {
     return HypothesisListProvider(
       outcomeId: outcomeId,
       teamId: teamId,
+      projectId: projectId,
       status: status,
     );
   }
@@ -562,6 +566,7 @@ class HypothesisListFamily
     return call(
       outcomeId: provider.outcomeId,
       teamId: provider.teamId,
+      projectId: provider.projectId,
       status: provider.status,
     );
   }
@@ -592,11 +597,13 @@ class HypothesisListProvider extends AutoDisposeAsyncNotifierProviderImpl<
   HypothesisListProvider({
     String? outcomeId,
     String? teamId,
+    String? projectId,
     HypothesisStatus? status,
   }) : this._internal(
           () => HypothesisList()
             ..outcomeId = outcomeId
             ..teamId = teamId
+            ..projectId = projectId
             ..status = status,
           from: hypothesisListProvider,
           name: r'hypothesisListProvider',
@@ -609,6 +616,7 @@ class HypothesisListProvider extends AutoDisposeAsyncNotifierProviderImpl<
               HypothesisListFamily._allTransitiveDependencies,
           outcomeId: outcomeId,
           teamId: teamId,
+          projectId: projectId,
           status: status,
         );
 
@@ -621,11 +629,13 @@ class HypothesisListProvider extends AutoDisposeAsyncNotifierProviderImpl<
     required super.from,
     required this.outcomeId,
     required this.teamId,
+    required this.projectId,
     required this.status,
   }) : super.internal();
 
   final String? outcomeId;
   final String? teamId;
+  final String? projectId;
   final HypothesisStatus? status;
 
   @override
@@ -635,6 +645,7 @@ class HypothesisListProvider extends AutoDisposeAsyncNotifierProviderImpl<
     return notifier.build(
       outcomeId: outcomeId,
       teamId: teamId,
+      projectId: projectId,
       status: status,
     );
   }
@@ -647,6 +658,7 @@ class HypothesisListProvider extends AutoDisposeAsyncNotifierProviderImpl<
         () => create()
           ..outcomeId = outcomeId
           ..teamId = teamId
+          ..projectId = projectId
           ..status = status,
         from: from,
         name: null,
@@ -655,6 +667,7 @@ class HypothesisListProvider extends AutoDisposeAsyncNotifierProviderImpl<
         debugGetCreateSourceHash: null,
         outcomeId: outcomeId,
         teamId: teamId,
+        projectId: projectId,
         status: status,
       ),
     );
@@ -671,6 +684,7 @@ class HypothesisListProvider extends AutoDisposeAsyncNotifierProviderImpl<
     return other is HypothesisListProvider &&
         other.outcomeId == outcomeId &&
         other.teamId == teamId &&
+        other.projectId == projectId &&
         other.status == status;
   }
 
@@ -679,6 +693,7 @@ class HypothesisListProvider extends AutoDisposeAsyncNotifierProviderImpl<
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, outcomeId.hashCode);
     hash = _SystemHash.combine(hash, teamId.hashCode);
+    hash = _SystemHash.combine(hash, projectId.hashCode);
     hash = _SystemHash.combine(hash, status.hashCode);
 
     return _SystemHash.finish(hash);
@@ -693,6 +708,9 @@ mixin HypothesisListRef
   /// The parameter `teamId` of this provider.
   String? get teamId;
 
+  /// The parameter `projectId` of this provider.
+  String? get projectId;
+
   /// The parameter `status` of this provider.
   HypothesisStatus? get status;
 }
@@ -706,6 +724,8 @@ class _HypothesisListProviderElement
   String? get outcomeId => (origin as HypothesisListProvider).outcomeId;
   @override
   String? get teamId => (origin as HypothesisListProvider).teamId;
+  @override
+  String? get projectId => (origin as HypothesisListProvider).projectId;
   @override
   HypothesisStatus? get status => (origin as HypothesisListProvider).status;
 }

@@ -359,16 +359,18 @@ class _OutcomeWithKeyResultsProviderElement
   String get id => (origin as OutcomeWithKeyResultsProvider).id;
 }
 
-String _$outcomeListHash() => r'3dc54eafbed478a49ae1757cdf89781fae7e6133';
+String _$outcomeListHash() => r'f0d1134eb19965749f34e1ea7549ed8464549427';
 
 abstract class _$OutcomeList
     extends BuildlessAutoDisposeAsyncNotifier<PaginatedResponse<Outcome>> {
   late final String? teamId;
+  late final String? projectId;
   late final OutcomeStatus? status;
   late final OutcomePriority? priority;
 
   FutureOr<PaginatedResponse<Outcome>> build({
     String? teamId,
+    String? projectId,
     OutcomeStatus? status,
     OutcomePriority? priority,
   });
@@ -394,11 +396,13 @@ class OutcomeListFamily extends Family<AsyncValue<PaginatedResponse<Outcome>>> {
   /// Copied from [OutcomeList].
   OutcomeListProvider call({
     String? teamId,
+    String? projectId,
     OutcomeStatus? status,
     OutcomePriority? priority,
   }) {
     return OutcomeListProvider(
       teamId: teamId,
+      projectId: projectId,
       status: status,
       priority: priority,
     );
@@ -410,6 +414,7 @@ class OutcomeListFamily extends Family<AsyncValue<PaginatedResponse<Outcome>>> {
   ) {
     return call(
       teamId: provider.teamId,
+      projectId: provider.projectId,
       status: provider.status,
       priority: provider.priority,
     );
@@ -440,11 +445,13 @@ class OutcomeListProvider extends AutoDisposeAsyncNotifierProviderImpl<
   /// Copied from [OutcomeList].
   OutcomeListProvider({
     String? teamId,
+    String? projectId,
     OutcomeStatus? status,
     OutcomePriority? priority,
   }) : this._internal(
           () => OutcomeList()
             ..teamId = teamId
+            ..projectId = projectId
             ..status = status
             ..priority = priority,
           from: outcomeListProvider,
@@ -457,6 +464,7 @@ class OutcomeListProvider extends AutoDisposeAsyncNotifierProviderImpl<
           allTransitiveDependencies:
               OutcomeListFamily._allTransitiveDependencies,
           teamId: teamId,
+          projectId: projectId,
           status: status,
           priority: priority,
         );
@@ -469,11 +477,13 @@ class OutcomeListProvider extends AutoDisposeAsyncNotifierProviderImpl<
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.teamId,
+    required this.projectId,
     required this.status,
     required this.priority,
   }) : super.internal();
 
   final String? teamId;
+  final String? projectId;
   final OutcomeStatus? status;
   final OutcomePriority? priority;
 
@@ -483,6 +493,7 @@ class OutcomeListProvider extends AutoDisposeAsyncNotifierProviderImpl<
   ) {
     return notifier.build(
       teamId: teamId,
+      projectId: projectId,
       status: status,
       priority: priority,
     );
@@ -495,6 +506,7 @@ class OutcomeListProvider extends AutoDisposeAsyncNotifierProviderImpl<
       override: OutcomeListProvider._internal(
         () => create()
           ..teamId = teamId
+          ..projectId = projectId
           ..status = status
           ..priority = priority,
         from: from,
@@ -503,6 +515,7 @@ class OutcomeListProvider extends AutoDisposeAsyncNotifierProviderImpl<
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         teamId: teamId,
+        projectId: projectId,
         status: status,
         priority: priority,
       ),
@@ -519,6 +532,7 @@ class OutcomeListProvider extends AutoDisposeAsyncNotifierProviderImpl<
   bool operator ==(Object other) {
     return other is OutcomeListProvider &&
         other.teamId == teamId &&
+        other.projectId == projectId &&
         other.status == status &&
         other.priority == priority;
   }
@@ -527,6 +541,7 @@ class OutcomeListProvider extends AutoDisposeAsyncNotifierProviderImpl<
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, teamId.hashCode);
+    hash = _SystemHash.combine(hash, projectId.hashCode);
     hash = _SystemHash.combine(hash, status.hashCode);
     hash = _SystemHash.combine(hash, priority.hashCode);
 
@@ -538,6 +553,9 @@ mixin OutcomeListRef
     on AutoDisposeAsyncNotifierProviderRef<PaginatedResponse<Outcome>> {
   /// The parameter `teamId` of this provider.
   String? get teamId;
+
+  /// The parameter `projectId` of this provider.
+  String? get projectId;
 
   /// The parameter `status` of this provider.
   OutcomeStatus? get status;
@@ -553,6 +571,8 @@ class _OutcomeListProviderElement
 
   @override
   String? get teamId => (origin as OutcomeListProvider).teamId;
+  @override
+  String? get projectId => (origin as OutcomeListProvider).projectId;
   @override
   OutcomeStatus? get status => (origin as OutcomeListProvider).status;
   @override

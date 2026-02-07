@@ -26,6 +26,9 @@ mixin _$Hypothesis {
   /// ID of the tenant this hypothesis belongs to.
   String? get tenantId => throw _privateConstructorUsedError;
 
+  /// Associated project.
+  ProjectSummary? get project => throw _privateConstructorUsedError;
+
   /// ID of the parent outcome.
   String? get outcomeId => throw _privateConstructorUsedError;
 
@@ -100,6 +103,7 @@ abstract class $HypothesisCopyWith<$Res> {
   $Res call(
       {String id,
       String? tenantId,
+      ProjectSummary? project,
       String? outcomeId,
       String? teamId,
       String statement,
@@ -120,6 +124,8 @@ abstract class $HypothesisCopyWith<$Res> {
       DateTime updatedAt,
       DateTime? validatedAt,
       DateTime? invalidatedAt});
+
+  $ProjectSummaryCopyWith<$Res>? get project;
 }
 
 /// @nodoc
@@ -137,6 +143,7 @@ class _$HypothesisCopyWithImpl<$Res, $Val extends Hypothesis>
   $Res call({
     Object? id = null,
     Object? tenantId = freezed,
+    Object? project = freezed,
     Object? outcomeId = freezed,
     Object? teamId = freezed,
     Object? statement = null,
@@ -167,6 +174,10 @@ class _$HypothesisCopyWithImpl<$Res, $Val extends Hypothesis>
           ? _value.tenantId
           : tenantId // ignore: cast_nullable_to_non_nullable
               as String?,
+      project: freezed == project
+          ? _value.project
+          : project // ignore: cast_nullable_to_non_nullable
+              as ProjectSummary?,
       outcomeId: freezed == outcomeId
           ? _value.outcomeId
           : outcomeId // ignore: cast_nullable_to_non_nullable
@@ -249,6 +260,18 @@ class _$HypothesisCopyWithImpl<$Res, $Val extends Hypothesis>
               as DateTime?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProjectSummaryCopyWith<$Res>? get project {
+    if (_value.project == null) {
+      return null;
+    }
+
+    return $ProjectSummaryCopyWith<$Res>(_value.project!, (value) {
+      return _then(_value.copyWith(project: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -262,6 +285,7 @@ abstract class _$$HypothesisImplCopyWith<$Res>
   $Res call(
       {String id,
       String? tenantId,
+      ProjectSummary? project,
       String? outcomeId,
       String? teamId,
       String statement,
@@ -282,6 +306,9 @@ abstract class _$$HypothesisImplCopyWith<$Res>
       DateTime updatedAt,
       DateTime? validatedAt,
       DateTime? invalidatedAt});
+
+  @override
+  $ProjectSummaryCopyWith<$Res>? get project;
 }
 
 /// @nodoc
@@ -297,6 +324,7 @@ class __$$HypothesisImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? tenantId = freezed,
+    Object? project = freezed,
     Object? outcomeId = freezed,
     Object? teamId = freezed,
     Object? statement = null,
@@ -327,6 +355,10 @@ class __$$HypothesisImplCopyWithImpl<$Res>
           ? _value.tenantId
           : tenantId // ignore: cast_nullable_to_non_nullable
               as String?,
+      project: freezed == project
+          ? _value.project
+          : project // ignore: cast_nullable_to_non_nullable
+              as ProjectSummary?,
       outcomeId: freezed == outcomeId
           ? _value.outcomeId
           : outcomeId // ignore: cast_nullable_to_non_nullable
@@ -417,6 +449,7 @@ class _$HypothesisImpl implements _Hypothesis {
   const _$HypothesisImpl(
       {required this.id,
       this.tenantId,
+      this.project,
       this.outcomeId,
       this.teamId,
       this.statement = '',
@@ -449,6 +482,10 @@ class _$HypothesisImpl implements _Hypothesis {
   /// ID of the tenant this hypothesis belongs to.
   @override
   final String? tenantId;
+
+  /// Associated project.
+  @override
+  final ProjectSummary? project;
 
   /// ID of the parent outcome.
   @override
@@ -545,7 +582,7 @@ class _$HypothesisImpl implements _Hypothesis {
 
   @override
   String toString() {
-    return 'Hypothesis(id: $id, tenantId: $tenantId, outcomeId: $outcomeId, teamId: $teamId, statement: $statement, description: $description, status: $status, confidence: $confidence, ownerId: $ownerId, effort: $effort, impact: $impact, statusChangedAt: $statusChangedAt, pendingDecisionCount: $pendingDecisionCount, metrics: $metrics, ownerName: $ownerName, ownerAvatarUrl: $ownerAvatarUrl, outcomeName: $outcomeName, teamName: $teamName, createdAt: $createdAt, updatedAt: $updatedAt, validatedAt: $validatedAt, invalidatedAt: $invalidatedAt)';
+    return 'Hypothesis(id: $id, tenantId: $tenantId, project: $project, outcomeId: $outcomeId, teamId: $teamId, statement: $statement, description: $description, status: $status, confidence: $confidence, ownerId: $ownerId, effort: $effort, impact: $impact, statusChangedAt: $statusChangedAt, pendingDecisionCount: $pendingDecisionCount, metrics: $metrics, ownerName: $ownerName, ownerAvatarUrl: $ownerAvatarUrl, outcomeName: $outcomeName, teamName: $teamName, createdAt: $createdAt, updatedAt: $updatedAt, validatedAt: $validatedAt, invalidatedAt: $invalidatedAt)';
   }
 
   @override
@@ -556,6 +593,7 @@ class _$HypothesisImpl implements _Hypothesis {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.tenantId, tenantId) ||
                 other.tenantId == tenantId) &&
+            (identical(other.project, project) || other.project == project) &&
             (identical(other.outcomeId, outcomeId) ||
                 other.outcomeId == outcomeId) &&
             (identical(other.teamId, teamId) || other.teamId == teamId) &&
@@ -598,6 +636,7 @@ class _$HypothesisImpl implements _Hypothesis {
         runtimeType,
         id,
         tenantId,
+        project,
         outcomeId,
         teamId,
         statement,
@@ -638,6 +677,7 @@ abstract class _Hypothesis implements Hypothesis {
   const factory _Hypothesis(
       {required final String id,
       final String? tenantId,
+      final ProjectSummary? project,
       final String? outcomeId,
       final String? teamId,
       final String statement,
@@ -670,6 +710,10 @@ abstract class _Hypothesis implements Hypothesis {
 
   /// ID of the tenant this hypothesis belongs to.
   String? get tenantId;
+  @override
+
+  /// Associated project.
+  ProjectSummary? get project;
   @override
 
   /// ID of the parent outcome.

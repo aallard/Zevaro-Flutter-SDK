@@ -668,18 +668,20 @@ class _DecisionQueueStatsProviderElement
   String? get teamId => (origin as DecisionQueueStatsProvider).teamId;
 }
 
-String _$decisionListHash() => r'117b8a0b7c7602eab8070e40125444d06d8d2725';
+String _$decisionListHash() => r'514360470d5c363b857c6ebaa91bb8b03e7c3693';
 
 abstract class _$DecisionList
     extends BuildlessAutoDisposeAsyncNotifier<PaginatedResponse<Decision>> {
   late final String? hypothesisId;
   late final String? teamId;
+  late final String? projectId;
   late final DecisionStatus? status;
   late final DecisionUrgency? urgency;
 
   FutureOr<PaginatedResponse<Decision>> build({
     String? hypothesisId,
     String? teamId,
+    String? projectId,
     DecisionStatus? status,
     DecisionUrgency? urgency,
   });
@@ -707,12 +709,14 @@ class DecisionListFamily
   DecisionListProvider call({
     String? hypothesisId,
     String? teamId,
+    String? projectId,
     DecisionStatus? status,
     DecisionUrgency? urgency,
   }) {
     return DecisionListProvider(
       hypothesisId: hypothesisId,
       teamId: teamId,
+      projectId: projectId,
       status: status,
       urgency: urgency,
     );
@@ -725,6 +729,7 @@ class DecisionListFamily
     return call(
       hypothesisId: provider.hypothesisId,
       teamId: provider.teamId,
+      projectId: provider.projectId,
       status: provider.status,
       urgency: provider.urgency,
     );
@@ -756,12 +761,14 @@ class DecisionListProvider extends AutoDisposeAsyncNotifierProviderImpl<
   DecisionListProvider({
     String? hypothesisId,
     String? teamId,
+    String? projectId,
     DecisionStatus? status,
     DecisionUrgency? urgency,
   }) : this._internal(
           () => DecisionList()
             ..hypothesisId = hypothesisId
             ..teamId = teamId
+            ..projectId = projectId
             ..status = status
             ..urgency = urgency,
           from: decisionListProvider,
@@ -775,6 +782,7 @@ class DecisionListProvider extends AutoDisposeAsyncNotifierProviderImpl<
               DecisionListFamily._allTransitiveDependencies,
           hypothesisId: hypothesisId,
           teamId: teamId,
+          projectId: projectId,
           status: status,
           urgency: urgency,
         );
@@ -788,12 +796,14 @@ class DecisionListProvider extends AutoDisposeAsyncNotifierProviderImpl<
     required super.from,
     required this.hypothesisId,
     required this.teamId,
+    required this.projectId,
     required this.status,
     required this.urgency,
   }) : super.internal();
 
   final String? hypothesisId;
   final String? teamId;
+  final String? projectId;
   final DecisionStatus? status;
   final DecisionUrgency? urgency;
 
@@ -804,6 +814,7 @@ class DecisionListProvider extends AutoDisposeAsyncNotifierProviderImpl<
     return notifier.build(
       hypothesisId: hypothesisId,
       teamId: teamId,
+      projectId: projectId,
       status: status,
       urgency: urgency,
     );
@@ -817,6 +828,7 @@ class DecisionListProvider extends AutoDisposeAsyncNotifierProviderImpl<
         () => create()
           ..hypothesisId = hypothesisId
           ..teamId = teamId
+          ..projectId = projectId
           ..status = status
           ..urgency = urgency,
         from: from,
@@ -826,6 +838,7 @@ class DecisionListProvider extends AutoDisposeAsyncNotifierProviderImpl<
         debugGetCreateSourceHash: null,
         hypothesisId: hypothesisId,
         teamId: teamId,
+        projectId: projectId,
         status: status,
         urgency: urgency,
       ),
@@ -843,6 +856,7 @@ class DecisionListProvider extends AutoDisposeAsyncNotifierProviderImpl<
     return other is DecisionListProvider &&
         other.hypothesisId == hypothesisId &&
         other.teamId == teamId &&
+        other.projectId == projectId &&
         other.status == status &&
         other.urgency == urgency;
   }
@@ -852,6 +866,7 @@ class DecisionListProvider extends AutoDisposeAsyncNotifierProviderImpl<
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, hypothesisId.hashCode);
     hash = _SystemHash.combine(hash, teamId.hashCode);
+    hash = _SystemHash.combine(hash, projectId.hashCode);
     hash = _SystemHash.combine(hash, status.hashCode);
     hash = _SystemHash.combine(hash, urgency.hashCode);
 
@@ -866,6 +881,9 @@ mixin DecisionListRef
 
   /// The parameter `teamId` of this provider.
   String? get teamId;
+
+  /// The parameter `projectId` of this provider.
+  String? get projectId;
 
   /// The parameter `status` of this provider.
   DecisionStatus? get status;
@@ -883,6 +901,8 @@ class _DecisionListProviderElement
   String? get hypothesisId => (origin as DecisionListProvider).hypothesisId;
   @override
   String? get teamId => (origin as DecisionListProvider).teamId;
+  @override
+  String? get projectId => (origin as DecisionListProvider).projectId;
   @override
   DecisionStatus? get status => (origin as DecisionListProvider).status;
   @override

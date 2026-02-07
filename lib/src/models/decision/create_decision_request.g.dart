@@ -10,6 +10,7 @@ _$CreateDecisionRequestImpl _$$CreateDecisionRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$CreateDecisionRequestImpl(
       hypothesisId: json['hypothesisId'] as String,
+      projectId: json['projectId'] as String?,
       title: json['title'] as String,
       description: json['description'] as String,
       urgency: $enumDecodeNullable(_$DecisionUrgencyEnumMap, json['urgency']) ??
@@ -28,6 +29,7 @@ Map<String, dynamic> _$$CreateDecisionRequestImplToJson(
         _$CreateDecisionRequestImpl instance) =>
     <String, dynamic>{
       'hypothesisId': instance.hypothesisId,
+      'projectId': instance.projectId,
       'title': instance.title,
       'description': instance.description,
       'urgency': _$DecisionUrgencyEnumMap[instance.urgency]!,
