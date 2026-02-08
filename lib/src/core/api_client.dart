@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 
 import '../config/sdk_config.dart';
@@ -160,9 +158,6 @@ class ApiClient {
         return const CancelledException();
 
       case DioExceptionType.connectionError:
-        if (e.error is SocketException) {
-          return const NetworkException();
-        }
         return NetworkException(e.message ?? 'Connection error');
 
       case DioExceptionType.badResponse:
@@ -173,9 +168,6 @@ class ApiClient {
 
       case DioExceptionType.unknown:
       default:
-        if (e.error is SocketException) {
-          return const NetworkException();
-        }
         return ServerException(e.message ?? 'Unknown error');
     }
   }
