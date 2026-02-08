@@ -45,3 +45,12 @@ export 'portfolio/portfolio_providers.dart';
 
 // Experiment
 export 'experiment/experiment_providers.dart';
+
+// Workstream
+export 'workstream/workstream_providers.dart';
+
+// Specification
+export 'specification/specification_providers.dart';
+
+// Requirement
+export 'requirement/requirement_providers.dart';

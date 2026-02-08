@@ -101,6 +101,21 @@ export 'src/models/portfolio/portfolio_models.dart';
 export 'src/models/experiment/experiment_models.dart';
 
 // ============================================
+// Models - Workstream
+// ============================================
+export 'src/models/workstream/workstream_models.dart';
+
+// ============================================
+// Models - Specification
+// ============================================
+export 'src/models/specification/specification_models.dart';
+
+// ============================================
+// Models - Requirement
+// ============================================
+export 'src/models/requirement/requirement_models.dart';
+
+// ============================================
 // Services
 // ============================================
 export 'src/services/auth_service.dart';
@@ -117,6 +132,9 @@ export 'src/services/audit_service.dart';
 export 'src/services/program_service.dart';
 export 'src/services/portfolio_service.dart';
 export 'src/services/experiment_service.dart';
+export 'src/services/workstream_service.dart';
+export 'src/services/specification_service.dart';
+export 'src/services/requirement_service.dart';
 
 // ============================================
 // Providers (State Management)
