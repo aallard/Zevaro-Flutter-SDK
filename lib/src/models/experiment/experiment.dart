@@ -59,8 +59,8 @@ class Experiment with _$Experiment {
 
     // Traffic & metrics
 
-    /// Traffic split percentage for variant (0-100).
-    @Default(50) int trafficSplit,
+    /// Traffic split description (e.g. "50/50", "80/20").
+    @Default("50/50") String trafficSplit,
 
     /// Primary metric being measured.
     String? primaryMetric,

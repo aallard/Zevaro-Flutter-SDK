@@ -42,8 +42,8 @@ mixin _$CreateExperimentRequest {
   /// Planned duration in days.
   int? get durationDays => throw _privateConstructorUsedError;
 
-  /// Traffic split percentage for variant (0-100).
-  int get trafficSplit => throw _privateConstructorUsedError;
+  /// Traffic split description (e.g. "50/50", "80/20").
+  String get trafficSplit => throw _privateConstructorUsedError;
 
   /// Primary metric being measured.
   String? get primaryMetric => throw _privateConstructorUsedError;
@@ -77,7 +77,7 @@ abstract class $CreateExperimentRequestCopyWith<$Res> {
       ExperimentType type,
       String? config,
       int? durationDays,
-      int trafficSplit,
+      String trafficSplit,
       String? primaryMetric,
       String? secondaryMetrics,
       String? audienceFilter,
@@ -143,7 +143,7 @@ class _$CreateExperimentRequestCopyWithImpl<$Res,
       trafficSplit: null == trafficSplit
           ? _value.trafficSplit
           : trafficSplit // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       primaryMetric: freezed == primaryMetric
           ? _value.primaryMetric
           : primaryMetric // ignore: cast_nullable_to_non_nullable
@@ -181,7 +181,7 @@ abstract class _$$CreateExperimentRequestImplCopyWith<$Res>
       ExperimentType type,
       String? config,
       int? durationDays,
-      int trafficSplit,
+      String trafficSplit,
       String? primaryMetric,
       String? secondaryMetrics,
       String? audienceFilter,
@@ -246,7 +246,7 @@ class __$$CreateExperimentRequestImplCopyWithImpl<$Res>
       trafficSplit: null == trafficSplit
           ? _value.trafficSplit
           : trafficSplit // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       primaryMetric: freezed == primaryMetric
           ? _value.primaryMetric
           : primaryMetric // ignore: cast_nullable_to_non_nullable
@@ -278,7 +278,7 @@ class _$CreateExperimentRequestImpl implements _CreateExperimentRequest {
       required this.type,
       this.config,
       this.durationDays,
-      this.trafficSplit = 50,
+      this.trafficSplit = "50/50",
       this.primaryMetric,
       this.secondaryMetrics,
       this.audienceFilter,
@@ -315,10 +315,10 @@ class _$CreateExperimentRequestImpl implements _CreateExperimentRequest {
   @override
   final int? durationDays;
 
-  /// Traffic split percentage for variant (0-100).
+  /// Traffic split description (e.g. "50/50", "80/20").
   @override
   @JsonKey()
-  final int trafficSplit;
+  final String trafficSplit;
 
   /// Primary metric being measured.
   @override
@@ -410,7 +410,7 @@ abstract class _CreateExperimentRequest implements CreateExperimentRequest {
       required final ExperimentType type,
       final String? config,
       final int? durationDays,
-      final int trafficSplit,
+      final String trafficSplit,
       final String? primaryMetric,
       final String? secondaryMetrics,
       final String? audienceFilter,
@@ -449,8 +449,8 @@ abstract class _CreateExperimentRequest implements CreateExperimentRequest {
   int? get durationDays;
   @override
 
-  /// Traffic split percentage for variant (0-100).
-  int get trafficSplit;
+  /// Traffic split description (e.g. "50/50", "80/20").
+  String get trafficSplit;
   @override
 
   /// Primary metric being measured.

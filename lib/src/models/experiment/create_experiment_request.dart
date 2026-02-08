@@ -31,8 +31,8 @@ class CreateExperimentRequest with _$CreateExperimentRequest {
     /// Planned duration in days.
     int? durationDays,
 
-    /// Traffic split percentage for variant (0-100).
-    @Default(50) int trafficSplit,
+    /// Traffic split description (e.g. "50/50", "80/20").
+    @Default("50/50") String trafficSplit,
 
     /// Primary metric being measured.
     String? primaryMetric,

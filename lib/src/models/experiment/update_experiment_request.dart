@@ -27,8 +27,8 @@ class UpdateExperimentRequest with _$UpdateExperimentRequest {
     /// Updated duration in days.
     int? durationDays,
 
-    /// Updated traffic split.
-    int? trafficSplit,
+    /// Updated traffic split (e.g. "50/50", "80/20").
+    String? trafficSplit,
 
     /// Updated primary metric.
     String? primaryMetric,

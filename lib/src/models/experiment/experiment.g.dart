@@ -29,7 +29,7 @@ _$ExperimentImpl _$$ExperimentImplFromJson(Map<String, dynamic> json) =>
       durationDays: (json['durationDays'] as num?)?.toInt(),
       results: json['results'] as String?,
       conclusion: json['conclusion'] as String?,
-      trafficSplit: (json['trafficSplit'] as num?)?.toInt() ?? 50,
+      trafficSplit: json['trafficSplit'] as String? ?? "50/50",
       primaryMetric: json['primaryMetric'] as String?,
       secondaryMetrics: json['secondaryMetrics'] as String?,
       audienceFilter: json['audienceFilter'] as String?,

@@ -16,7 +16,7 @@ _$CreateExperimentRequestImpl _$$CreateExperimentRequestImplFromJson(
       type: $enumDecode(_$ExperimentTypeEnumMap, json['type']),
       config: json['config'] as String?,
       durationDays: (json['durationDays'] as num?)?.toInt(),
-      trafficSplit: (json['trafficSplit'] as num?)?.toInt() ?? 50,
+      trafficSplit: json['trafficSplit'] as String? ?? "50/50",
       primaryMetric: json['primaryMetric'] as String?,
       secondaryMetrics: json['secondaryMetrics'] as String?,
       audienceFilter: json['audienceFilter'] as String?,

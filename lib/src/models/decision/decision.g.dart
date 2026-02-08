@@ -139,10 +139,12 @@ const _$DecisionStatusEnumMap = {
 
 const _$DecisionTypeEnumMap = {
   DecisionType.PRODUCT: 'PRODUCT',
+  DecisionType.UX: 'UX',
   DecisionType.TECHNICAL: 'TECHNICAL',
   DecisionType.ARCHITECTURAL: 'ARCHITECTURAL',
-  DecisionType.DESIGN: 'DESIGN',
-  DecisionType.BUSINESS: 'BUSINESS',
-  DecisionType.PROCESS: 'PROCESS',
+  DecisionType.STRATEGIC: 'STRATEGIC',
+  DecisionType.OPERATIONAL: 'OPERATIONAL',
   DecisionType.RESOURCE: 'RESOURCE',
+  DecisionType.SCOPE: 'SCOPE',
+  DecisionType.TIMELINE: 'TIMELINE',
 };

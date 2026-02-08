@@ -65,8 +65,8 @@ mixin _$Experiment {
   /// Conclusion summary.
   String? get conclusion =>
       throw _privateConstructorUsedError; // Traffic & metrics
-  /// Traffic split percentage for variant (0-100).
-  int get trafficSplit => throw _privateConstructorUsedError;
+  /// Traffic split description (e.g. "50/50", "80/20").
+  String get trafficSplit => throw _privateConstructorUsedError;
 
   /// Primary metric being measured.
   String? get primaryMetric => throw _privateConstructorUsedError;
@@ -135,7 +135,7 @@ abstract class $ExperimentCopyWith<$Res> {
       int? durationDays,
       String? results,
       String? conclusion,
-      int trafficSplit,
+      String trafficSplit,
       String? primaryMetric,
       String? secondaryMetrics,
       String? audienceFilter,
@@ -260,7 +260,7 @@ class _$ExperimentCopyWithImpl<$Res, $Val extends Experiment>
       trafficSplit: null == trafficSplit
           ? _value.trafficSplit
           : trafficSplit // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       primaryMetric: freezed == primaryMetric
           ? _value.primaryMetric
           : primaryMetric // ignore: cast_nullable_to_non_nullable
@@ -353,7 +353,7 @@ abstract class _$$ExperimentImplCopyWith<$Res>
       int? durationDays,
       String? results,
       String? conclusion,
-      int trafficSplit,
+      String trafficSplit,
       String? primaryMetric,
       String? secondaryMetrics,
       String? audienceFilter,
@@ -477,7 +477,7 @@ class __$$ExperimentImplCopyWithImpl<$Res>
       trafficSplit: null == trafficSplit
           ? _value.trafficSplit
           : trafficSplit // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       primaryMetric: freezed == primaryMetric
           ? _value.primaryMetric
           : primaryMetric // ignore: cast_nullable_to_non_nullable
@@ -553,7 +553,7 @@ class _$ExperimentImpl implements _Experiment {
       this.durationDays,
       this.results,
       this.conclusion,
-      this.trafficSplit = 50,
+      this.trafficSplit = "50/50",
       this.primaryMetric,
       this.secondaryMetrics,
       this.audienceFilter,
@@ -631,10 +631,10 @@ class _$ExperimentImpl implements _Experiment {
   @override
   final String? conclusion;
 // Traffic & metrics
-  /// Traffic split percentage for variant (0-100).
+  /// Traffic split description (e.g. "50/50", "80/20").
   @override
   @JsonKey()
-  final int trafficSplit;
+  final String trafficSplit;
 
   /// Primary metric being measured.
   @override
@@ -817,7 +817,7 @@ abstract class _Experiment implements Experiment {
       final int? durationDays,
       final String? results,
       final String? conclusion,
-      final int trafficSplit,
+      final String trafficSplit,
       final String? primaryMetric,
       final String? secondaryMetrics,
       final String? audienceFilter,
@@ -896,8 +896,8 @@ abstract class _Experiment implements Experiment {
   /// Conclusion summary.
   String? get conclusion;
   @override // Traffic & metrics
-  /// Traffic split percentage for variant (0-100).
-  int get trafficSplit;
+  /// Traffic split description (e.g. "50/50", "80/20").
+  String get trafficSplit;
   @override
 
   /// Primary metric being measured.

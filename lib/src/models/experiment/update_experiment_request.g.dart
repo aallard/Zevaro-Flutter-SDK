@@ -14,7 +14,7 @@ _$UpdateExperimentRequestImpl _$$UpdateExperimentRequestImplFromJson(
       type: $enumDecodeNullable(_$ExperimentTypeEnumMap, json['type']),
       config: json['config'] as String?,
       durationDays: (json['durationDays'] as num?)?.toInt(),
-      trafficSplit: (json['trafficSplit'] as num?)?.toInt(),
+      trafficSplit: json['trafficSplit'] as String?,
       primaryMetric: json['primaryMetric'] as String?,
       secondaryMetrics: json['secondaryMetrics'] as String?,
       audienceFilter: json['audienceFilter'] as String?,

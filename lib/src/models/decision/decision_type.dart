@@ -1,25 +1,31 @@
 /// Category of a Decision.
 enum DecisionType {
-  /// Product direction, features.
+  /// Product direction, features, prioritization.
   PRODUCT,
 
-  /// Architecture, tech choices.
+  /// User experience, design choices.
+  UX,
+
+  /// Implementation approach, tech stack.
   TECHNICAL,
 
-  /// System architecture decisions.
+  /// System design, infrastructure.
   ARCHITECTURAL,
 
-  /// UX/UI decisions.
-  DESIGN,
+  /// Business strategy, market positioning.
+  STRATEGIC,
 
-  /// Business rules, pricing.
-  BUSINESS,
+  /// Process, workflow decisions.
+  OPERATIONAL,
 
-  /// How we work.
-  PROCESS,
-
-  /// Staffing, budget.
+  /// Team allocation, hiring.
   RESOURCE,
+
+  /// Feature scope, MVP definition.
+  SCOPE,
+
+  /// Deadlines, milestones.
+  TIMELINE,
 }
 
 /// Extension methods for [DecisionType].
@@ -29,18 +35,22 @@ extension DecisionTypeExtension on DecisionType {
     switch (this) {
       case DecisionType.PRODUCT:
         return 'Product';
+      case DecisionType.UX:
+        return 'UX';
       case DecisionType.TECHNICAL:
         return 'Technical';
       case DecisionType.ARCHITECTURAL:
         return 'Architectural';
-      case DecisionType.DESIGN:
-        return 'Design';
-      case DecisionType.BUSINESS:
-        return 'Business';
-      case DecisionType.PROCESS:
-        return 'Process';
+      case DecisionType.STRATEGIC:
+        return 'Strategic';
+      case DecisionType.OPERATIONAL:
+        return 'Operational';
       case DecisionType.RESOURCE:
         return 'Resource';
+      case DecisionType.SCOPE:
+        return 'Scope';
+      case DecisionType.TIMELINE:
+        return 'Timeline';
     }
   }
 
@@ -49,18 +59,22 @@ extension DecisionTypeExtension on DecisionType {
     switch (this) {
       case DecisionType.PRODUCT:
         return '📦';
+      case DecisionType.UX:
+        return '🎨';
       case DecisionType.TECHNICAL:
         return '⚙️';
       case DecisionType.ARCHITECTURAL:
         return '🏗️';
-      case DecisionType.DESIGN:
-        return '🎨';
-      case DecisionType.BUSINESS:
+      case DecisionType.STRATEGIC:
         return '💼';
-      case DecisionType.PROCESS:
+      case DecisionType.OPERATIONAL:
         return '📋';
       case DecisionType.RESOURCE:
         return '👥';
+      case DecisionType.SCOPE:
+        return '🎯';
+      case DecisionType.TIMELINE:
+        return '📅';
     }
   }
 }

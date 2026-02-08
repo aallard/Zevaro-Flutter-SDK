@@ -36,8 +36,8 @@ mixin _$UpdateExperimentRequest {
   /// Updated duration in days.
   int? get durationDays => throw _privateConstructorUsedError;
 
-  /// Updated traffic split.
-  int? get trafficSplit => throw _privateConstructorUsedError;
+  /// Updated traffic split (e.g. "50/50", "80/20").
+  String? get trafficSplit => throw _privateConstructorUsedError;
 
   /// Updated primary metric.
   String? get primaryMetric => throw _privateConstructorUsedError;
@@ -69,7 +69,7 @@ abstract class $UpdateExperimentRequestCopyWith<$Res> {
       ExperimentType? type,
       String? config,
       int? durationDays,
-      int? trafficSplit,
+      String? trafficSplit,
       String? primaryMetric,
       String? secondaryMetrics,
       String? audienceFilter,
@@ -125,7 +125,7 @@ class _$UpdateExperimentRequestCopyWithImpl<$Res,
       trafficSplit: freezed == trafficSplit
           ? _value.trafficSplit
           : trafficSplit // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       primaryMetric: freezed == primaryMetric
           ? _value.primaryMetric
           : primaryMetric // ignore: cast_nullable_to_non_nullable
@@ -161,7 +161,7 @@ abstract class _$$UpdateExperimentRequestImplCopyWith<$Res>
       ExperimentType? type,
       String? config,
       int? durationDays,
-      int? trafficSplit,
+      String? trafficSplit,
       String? primaryMetric,
       String? secondaryMetrics,
       String? audienceFilter,
@@ -216,7 +216,7 @@ class __$$UpdateExperimentRequestImplCopyWithImpl<$Res>
       trafficSplit: freezed == trafficSplit
           ? _value.trafficSplit
           : trafficSplit // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       primaryMetric: freezed == primaryMetric
           ? _value.primaryMetric
           : primaryMetric // ignore: cast_nullable_to_non_nullable
@@ -275,9 +275,9 @@ class _$UpdateExperimentRequestImpl implements _UpdateExperimentRequest {
   @override
   final int? durationDays;
 
-  /// Updated traffic split.
+  /// Updated traffic split (e.g. "50/50", "80/20").
   @override
-  final int? trafficSplit;
+  final String? trafficSplit;
 
   /// Updated primary metric.
   @override
@@ -361,7 +361,7 @@ abstract class _UpdateExperimentRequest implements UpdateExperimentRequest {
       final ExperimentType? type,
       final String? config,
       final int? durationDays,
-      final int? trafficSplit,
+      final String? trafficSplit,
       final String? primaryMetric,
       final String? secondaryMetrics,
       final String? audienceFilter,
@@ -392,8 +392,8 @@ abstract class _UpdateExperimentRequest implements UpdateExperimentRequest {
   int? get durationDays;
   @override
 
-  /// Updated traffic split.
-  int? get trafficSplit;
+  /// Updated traffic split (e.g. "50/50", "80/20").
+  String? get trafficSplit;
   @override
 
   /// Updated primary metric.
