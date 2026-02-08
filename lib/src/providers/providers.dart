@@ -54,3 +54,12 @@ export 'specification/specification_providers.dart';
 
 // Requirement
 export 'requirement/requirement_providers.dart';
+
+// Ticket
+export 'ticket/ticket_providers.dart';
+
+// Space
+export 'space/space_providers.dart';
+
+// Document
+export 'document/document_providers.dart';
