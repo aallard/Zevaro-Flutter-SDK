@@ -78,3 +78,6 @@ export 'search/search_providers.dart';
 
 // Template
 export 'template/template_providers.dart';
+
+// Activity
+export 'activity/activity_providers.dart';

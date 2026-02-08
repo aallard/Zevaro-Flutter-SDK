@@ -156,6 +156,11 @@ export 'src/models/search/search_models.dart';
 export 'src/models/template/template_models.dart';
 
 // ============================================
+// Models - Activity
+// ============================================
+export 'src/models/activity/activity_models.dart';
+
+// ============================================
 // Services
 // ============================================
 export 'src/services/auth_service.dart';
@@ -183,6 +188,7 @@ export 'src/services/attachment_service.dart';
 export 'src/services/entity_link_service.dart';
 export 'src/services/search_service.dart';
 export 'src/services/template_service.dart';
+export 'src/services/activity_service.dart';
 
 // ============================================
 // Providers (State Management)
