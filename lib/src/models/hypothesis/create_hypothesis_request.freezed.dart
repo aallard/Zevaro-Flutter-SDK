@@ -24,8 +24,8 @@ mixin _$CreateHypothesisRequest {
   /// ID of the parent outcome.
   String get outcomeId => throw _privateConstructorUsedError;
 
-  /// ID of the project this belongs to.
-  String? get projectId => throw _privateConstructorUsedError;
+  /// ID of the program this belongs to.
+  String? get programId => throw _privateConstructorUsedError;
 
   /// Hypothesis statement.
   String get statement => throw _privateConstructorUsedError;
@@ -63,7 +63,7 @@ abstract class $CreateHypothesisRequestCopyWith<$Res> {
   @useResult
   $Res call(
       {String outcomeId,
-      String? projectId,
+      String? programId,
       String statement,
       String? description,
       HypothesisConfidence confidence,
@@ -88,7 +88,7 @@ class _$CreateHypothesisRequestCopyWithImpl<$Res,
   @override
   $Res call({
     Object? outcomeId = null,
-    Object? projectId = freezed,
+    Object? programId = freezed,
     Object? statement = null,
     Object? description = freezed,
     Object? confidence = null,
@@ -102,9 +102,9 @@ class _$CreateHypothesisRequestCopyWithImpl<$Res,
           ? _value.outcomeId
           : outcomeId // ignore: cast_nullable_to_non_nullable
               as String,
-      projectId: freezed == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
+      programId: freezed == programId
+          ? _value.programId
+          : programId // ignore: cast_nullable_to_non_nullable
               as String?,
       statement: null == statement
           ? _value.statement
@@ -149,7 +149,7 @@ abstract class _$$CreateHypothesisRequestImplCopyWith<$Res>
   @useResult
   $Res call(
       {String outcomeId,
-      String? projectId,
+      String? programId,
       String statement,
       String? description,
       HypothesisConfidence confidence,
@@ -173,7 +173,7 @@ class __$$CreateHypothesisRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? outcomeId = null,
-    Object? projectId = freezed,
+    Object? programId = freezed,
     Object? statement = null,
     Object? description = freezed,
     Object? confidence = null,
@@ -187,9 +187,9 @@ class __$$CreateHypothesisRequestImplCopyWithImpl<$Res>
           ? _value.outcomeId
           : outcomeId // ignore: cast_nullable_to_non_nullable
               as String,
-      projectId: freezed == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
+      programId: freezed == programId
+          ? _value.programId
+          : programId // ignore: cast_nullable_to_non_nullable
               as String?,
       statement: null == statement
           ? _value.statement
@@ -228,7 +228,7 @@ class __$$CreateHypothesisRequestImplCopyWithImpl<$Res>
 class _$CreateHypothesisRequestImpl implements _CreateHypothesisRequest {
   const _$CreateHypothesisRequestImpl(
       {required this.outcomeId,
-      this.projectId,
+      this.programId,
       required this.statement,
       this.description,
       this.confidence = HypothesisConfidence.MEDIUM,
@@ -245,9 +245,9 @@ class _$CreateHypothesisRequestImpl implements _CreateHypothesisRequest {
   @override
   final String outcomeId;
 
-  /// ID of the project this belongs to.
+  /// ID of the program this belongs to.
   @override
-  final String? projectId;
+  final String? programId;
 
   /// Hypothesis statement.
   @override
@@ -289,7 +289,7 @@ class _$CreateHypothesisRequestImpl implements _CreateHypothesisRequest {
 
   @override
   String toString() {
-    return 'CreateHypothesisRequest(outcomeId: $outcomeId, projectId: $projectId, statement: $statement, description: $description, confidence: $confidence, ownerId: $ownerId, effort: $effort, impact: $impact, metrics: $metrics)';
+    return 'CreateHypothesisRequest(outcomeId: $outcomeId, programId: $programId, statement: $statement, description: $description, confidence: $confidence, ownerId: $ownerId, effort: $effort, impact: $impact, metrics: $metrics)';
   }
 
   @override
@@ -299,8 +299,8 @@ class _$CreateHypothesisRequestImpl implements _CreateHypothesisRequest {
             other is _$CreateHypothesisRequestImpl &&
             (identical(other.outcomeId, outcomeId) ||
                 other.outcomeId == outcomeId) &&
-            (identical(other.projectId, projectId) ||
-                other.projectId == projectId) &&
+            (identical(other.programId, programId) ||
+                other.programId == programId) &&
             (identical(other.statement, statement) ||
                 other.statement == statement) &&
             (identical(other.description, description) ||
@@ -318,7 +318,7 @@ class _$CreateHypothesisRequestImpl implements _CreateHypothesisRequest {
   int get hashCode => Object.hash(
       runtimeType,
       outcomeId,
-      projectId,
+      programId,
       statement,
       description,
       confidence,
@@ -345,7 +345,7 @@ class _$CreateHypothesisRequestImpl implements _CreateHypothesisRequest {
 abstract class _CreateHypothesisRequest implements CreateHypothesisRequest {
   const factory _CreateHypothesisRequest(
           {required final String outcomeId,
-          final String? projectId,
+          final String? programId,
           required final String statement,
           final String? description,
           final HypothesisConfidence confidence,
@@ -364,8 +364,8 @@ abstract class _CreateHypothesisRequest implements CreateHypothesisRequest {
   String get outcomeId;
   @override
 
-  /// ID of the project this belongs to.
-  String? get projectId;
+  /// ID of the program this belongs to.
+  String? get programId;
   @override
 
   /// Hypothesis statement.

@@ -10,9 +10,9 @@ _$HypothesisImpl _$$HypothesisImplFromJson(Map<String, dynamic> json) =>
     _$HypothesisImpl(
       id: json['id'] as String,
       tenantId: json['tenantId'] as String?,
-      project: json['project'] == null
+      program: json['program'] == null
           ? null
-          : ProjectSummary.fromJson(json['project'] as Map<String, dynamic>),
+          : ProgramSummary.fromJson(json['program'] as Map<String, dynamic>),
       outcomeId: json['outcomeId'] as String?,
       teamId: json['teamId'] as String?,
       statement: json['statement'] as String? ?? '',
@@ -50,7 +50,7 @@ Map<String, dynamic> _$$HypothesisImplToJson(_$HypothesisImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'tenantId': instance.tenantId,
-      'project': instance.project,
+      'program': instance.program,
       'outcomeId': instance.outcomeId,
       'teamId': instance.teamId,
       'statement': instance.statement,

@@ -10,8 +10,8 @@ part 'create_experiment_request.g.dart';
 class CreateExperimentRequest with _$CreateExperimentRequest {
   /// Creates an experiment creation request.
   const factory CreateExperimentRequest({
-    /// ID of the project.
-    String? projectId,
+    /// ID of the program.
+    String? programId,
 
     /// ID of the linked hypothesis.
     String? hypothesisId,

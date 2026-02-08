@@ -9,7 +9,7 @@ part of 'create_experiment_request.dart';
 _$CreateExperimentRequestImpl _$$CreateExperimentRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$CreateExperimentRequestImpl(
-      projectId: json['projectId'] as String?,
+      programId: json['programId'] as String?,
       hypothesisId: json['hypothesisId'] as String?,
       name: json['name'] as String,
       description: json['description'] as String?,
@@ -26,7 +26,7 @@ _$CreateExperimentRequestImpl _$$CreateExperimentRequestImplFromJson(
 Map<String, dynamic> _$$CreateExperimentRequestImplToJson(
         _$CreateExperimentRequestImpl instance) =>
     <String, dynamic>{
-      'projectId': instance.projectId,
+      'programId': instance.programId,
       'hypothesisId': instance.hypothesisId,
       'name': instance.name,
       'description': instance.description,

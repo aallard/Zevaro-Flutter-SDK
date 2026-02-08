@@ -10,7 +10,7 @@ _$CreateHypothesisRequestImpl _$$CreateHypothesisRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$CreateHypothesisRequestImpl(
       outcomeId: json['outcomeId'] as String,
-      projectId: json['projectId'] as String?,
+      programId: json['programId'] as String?,
       statement: json['statement'] as String,
       description: json['description'] as String?,
       confidence: $enumDecodeNullable(
@@ -29,7 +29,7 @@ Map<String, dynamic> _$$CreateHypothesisRequestImplToJson(
         _$CreateHypothesisRequestImpl instance) =>
     <String, dynamic>{
       'outcomeId': instance.outcomeId,
-      'projectId': instance.projectId,
+      'programId': instance.programId,
       'statement': instance.statement,
       'description': instance.description,
       'confidence': _$HypothesisConfidenceEnumMap[instance.confidence]!,

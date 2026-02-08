@@ -82,7 +82,7 @@ class DecisionList extends _$DecisionList {
   Future<PaginatedResponse<Decision>> build({
     String? hypothesisId,
     String? teamId,
-    String? projectId,
+    String? programId,
     DecisionStatus? status,
     DecisionUrgency? urgency,
   }) async {
@@ -90,7 +90,7 @@ class DecisionList extends _$DecisionList {
     return decisionService.listDecisions(
       hypothesisId: hypothesisId,
       teamId: teamId,
-      projectId: projectId,
+      programId: programId,
       status: status,
       urgency: urgency,
     );
@@ -106,7 +106,7 @@ class DecisionList extends _$DecisionList {
       page: current.page + 1,
       hypothesisId: hypothesisId,
       teamId: teamId,
-      projectId: projectId,
+      programId: programId,
       status: status,
       urgency: urgency,
     );

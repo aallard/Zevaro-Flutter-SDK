@@ -10,9 +10,9 @@ _$ExperimentImpl _$$ExperimentImplFromJson(Map<String, dynamic> json) =>
     _$ExperimentImpl(
       id: json['id'] as String,
       tenantId: json['tenantId'] as String?,
-      project: json['project'] == null
+      program: json['program'] == null
           ? null
-          : ProjectSummary.fromJson(json['project'] as Map<String, dynamic>),
+          : ProgramSummary.fromJson(json['program'] as Map<String, dynamic>),
       hypothesisId: json['hypothesisId'] as String?,
       hypothesisTitle: json['hypothesisTitle'] as String?,
       name: json['name'] as String,
@@ -49,7 +49,7 @@ Map<String, dynamic> _$$ExperimentImplToJson(_$ExperimentImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'tenantId': instance.tenantId,
-      'project': instance.project,
+      'program': instance.program,
       'hypothesisId': instance.hypothesisId,
       'hypothesisTitle': instance.hypothesisTitle,
       'name': instance.name,

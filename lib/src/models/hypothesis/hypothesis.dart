@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../project/project_summary.dart';
+import '../program/program_summary.dart';
 import 'hypothesis_confidence.dart';
 import 'hypothesis_metric.dart';
 import 'hypothesis_status.dart';
@@ -19,8 +19,8 @@ class Hypothesis with _$Hypothesis {
     /// ID of the tenant this hypothesis belongs to.
     String? tenantId,
 
-    /// Associated project.
-    ProjectSummary? project,
+    /// Associated program.
+    ProgramSummary? program,
 
     /// ID of the parent outcome.
     String? outcomeId,

@@ -24,8 +24,8 @@ mixin _$CreateDecisionRequest {
   /// ID of the hypothesis this decision is blocking.
   String get hypothesisId => throw _privateConstructorUsedError;
 
-  /// ID of the project this belongs to.
-  String? get projectId => throw _privateConstructorUsedError;
+  /// ID of the program this belongs to.
+  String? get programId => throw _privateConstructorUsedError;
 
   /// Decision title.
   String get title => throw _privateConstructorUsedError;
@@ -62,7 +62,7 @@ abstract class $CreateDecisionRequestCopyWith<$Res> {
   @useResult
   $Res call(
       {String hypothesisId,
-      String? projectId,
+      String? programId,
       String title,
       String description,
       DecisionUrgency urgency,
@@ -87,7 +87,7 @@ class _$CreateDecisionRequestCopyWithImpl<$Res,
   @override
   $Res call({
     Object? hypothesisId = null,
-    Object? projectId = freezed,
+    Object? programId = freezed,
     Object? title = null,
     Object? description = null,
     Object? urgency = null,
@@ -101,9 +101,9 @@ class _$CreateDecisionRequestCopyWithImpl<$Res,
           ? _value.hypothesisId
           : hypothesisId // ignore: cast_nullable_to_non_nullable
               as String,
-      projectId: freezed == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
+      programId: freezed == programId
+          ? _value.programId
+          : programId // ignore: cast_nullable_to_non_nullable
               as String?,
       title: null == title
           ? _value.title
@@ -148,7 +148,7 @@ abstract class _$$CreateDecisionRequestImplCopyWith<$Res>
   @useResult
   $Res call(
       {String hypothesisId,
-      String? projectId,
+      String? programId,
       String title,
       String description,
       DecisionUrgency urgency,
@@ -171,7 +171,7 @@ class __$$CreateDecisionRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? hypothesisId = null,
-    Object? projectId = freezed,
+    Object? programId = freezed,
     Object? title = null,
     Object? description = null,
     Object? urgency = null,
@@ -185,9 +185,9 @@ class __$$CreateDecisionRequestImplCopyWithImpl<$Res>
           ? _value.hypothesisId
           : hypothesisId // ignore: cast_nullable_to_non_nullable
               as String,
-      projectId: freezed == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
+      programId: freezed == programId
+          ? _value.programId
+          : programId // ignore: cast_nullable_to_non_nullable
               as String?,
       title: null == title
           ? _value.title
@@ -226,7 +226,7 @@ class __$$CreateDecisionRequestImplCopyWithImpl<$Res>
 class _$CreateDecisionRequestImpl implements _CreateDecisionRequest {
   const _$CreateDecisionRequestImpl(
       {required this.hypothesisId,
-      this.projectId,
+      this.programId,
       required this.title,
       required this.description,
       this.urgency = DecisionUrgency.NORMAL,
@@ -244,9 +244,9 @@ class _$CreateDecisionRequestImpl implements _CreateDecisionRequest {
   @override
   final String hypothesisId;
 
-  /// ID of the project this belongs to.
+  /// ID of the program this belongs to.
   @override
-  final String? projectId;
+  final String? programId;
 
   /// Decision title.
   @override
@@ -296,7 +296,7 @@ class _$CreateDecisionRequestImpl implements _CreateDecisionRequest {
 
   @override
   String toString() {
-    return 'CreateDecisionRequest(hypothesisId: $hypothesisId, projectId: $projectId, title: $title, description: $description, urgency: $urgency, type: $type, context: $context, options: $options, stakeholderIds: $stakeholderIds)';
+    return 'CreateDecisionRequest(hypothesisId: $hypothesisId, programId: $programId, title: $title, description: $description, urgency: $urgency, type: $type, context: $context, options: $options, stakeholderIds: $stakeholderIds)';
   }
 
   @override
@@ -306,8 +306,8 @@ class _$CreateDecisionRequestImpl implements _CreateDecisionRequest {
             other is _$CreateDecisionRequestImpl &&
             (identical(other.hypothesisId, hypothesisId) ||
                 other.hypothesisId == hypothesisId) &&
-            (identical(other.projectId, projectId) ||
-                other.projectId == projectId) &&
+            (identical(other.programId, programId) ||
+                other.programId == programId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -324,7 +324,7 @@ class _$CreateDecisionRequestImpl implements _CreateDecisionRequest {
   int get hashCode => Object.hash(
       runtimeType,
       hypothesisId,
-      projectId,
+      programId,
       title,
       description,
       urgency,
@@ -351,7 +351,7 @@ class _$CreateDecisionRequestImpl implements _CreateDecisionRequest {
 abstract class _CreateDecisionRequest implements CreateDecisionRequest {
   const factory _CreateDecisionRequest(
           {required final String hypothesisId,
-          final String? projectId,
+          final String? programId,
           required final String title,
           required final String description,
           final DecisionUrgency urgency,
@@ -370,8 +370,8 @@ abstract class _CreateDecisionRequest implements CreateDecisionRequest {
   String get hypothesisId;
   @override
 
-  /// ID of the project this belongs to.
-  String? get projectId;
+  /// ID of the program this belongs to.
+  String? get programId;
   @override
 
   /// Decision title.

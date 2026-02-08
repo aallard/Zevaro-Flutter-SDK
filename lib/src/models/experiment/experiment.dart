@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../project/project_summary.dart';
+import '../program/program_summary.dart';
 import 'experiment_status.dart';
 import 'experiment_type.dart';
 
@@ -18,8 +18,8 @@ class Experiment with _$Experiment {
     /// ID of the tenant.
     String? tenantId,
 
-    /// Associated project summary.
-    ProjectSummary? project,
+    /// Associated program summary.
+    ProgramSummary? program,
 
     /// ID of the linked hypothesis.
     String? hypothesisId,

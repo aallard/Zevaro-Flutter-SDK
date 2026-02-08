@@ -86,9 +86,14 @@ export 'src/models/role/role_models.dart';
 export 'src/models/audit/audit_models.dart';
 
 // ============================================
-// Models - Project
+// Models - Program
 // ============================================
-export 'src/models/project/project_models.dart';
+export 'src/models/program/program_models.dart';
+
+// ============================================
+// Models - Portfolio
+// ============================================
+export 'src/models/portfolio/portfolio_models.dart';
 
 // ============================================
 // Models - Experiment
@@ -109,7 +114,8 @@ export 'src/services/stakeholder_service.dart';
 export 'src/services/queue_service.dart';
 export 'src/services/role_service.dart';
 export 'src/services/audit_service.dart';
-export 'src/services/project_service.dart';
+export 'src/services/program_service.dart';
+export 'src/services/portfolio_service.dart';
 export 'src/services/experiment_service.dart';
 
 // ============================================

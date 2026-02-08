@@ -21,8 +21,8 @@ CreateExperimentRequest _$CreateExperimentRequestFromJson(
 
 /// @nodoc
 mixin _$CreateExperimentRequest {
-  /// ID of the project.
-  String? get projectId => throw _privateConstructorUsedError;
+  /// ID of the program.
+  String? get programId => throw _privateConstructorUsedError;
 
   /// ID of the linked hypothesis.
   String? get hypothesisId => throw _privateConstructorUsedError;
@@ -70,7 +70,7 @@ abstract class $CreateExperimentRequestCopyWith<$Res> {
       _$CreateExperimentRequestCopyWithImpl<$Res, CreateExperimentRequest>;
   @useResult
   $Res call(
-      {String? projectId,
+      {String? programId,
       String? hypothesisId,
       String name,
       String? description,
@@ -98,7 +98,7 @@ class _$CreateExperimentRequestCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projectId = freezed,
+    Object? programId = freezed,
     Object? hypothesisId = freezed,
     Object? name = null,
     Object? description = freezed,
@@ -112,9 +112,9 @@ class _$CreateExperimentRequestCopyWithImpl<$Res,
     Object? sampleSizeTarget = freezed,
   }) {
     return _then(_value.copyWith(
-      projectId: freezed == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
+      programId: freezed == programId
+          ? _value.programId
+          : programId // ignore: cast_nullable_to_non_nullable
               as String?,
       hypothesisId: freezed == hypothesisId
           ? _value.hypothesisId
@@ -174,7 +174,7 @@ abstract class _$$CreateExperimentRequestImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? projectId,
+      {String? programId,
       String? hypothesisId,
       String name,
       String? description,
@@ -201,7 +201,7 @@ class __$$CreateExperimentRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projectId = freezed,
+    Object? programId = freezed,
     Object? hypothesisId = freezed,
     Object? name = null,
     Object? description = freezed,
@@ -215,9 +215,9 @@ class __$$CreateExperimentRequestImplCopyWithImpl<$Res>
     Object? sampleSizeTarget = freezed,
   }) {
     return _then(_$CreateExperimentRequestImpl(
-      projectId: freezed == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
+      programId: freezed == programId
+          ? _value.programId
+          : programId // ignore: cast_nullable_to_non_nullable
               as String?,
       hypothesisId: freezed == hypothesisId
           ? _value.hypothesisId
@@ -271,7 +271,7 @@ class __$$CreateExperimentRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CreateExperimentRequestImpl implements _CreateExperimentRequest {
   const _$CreateExperimentRequestImpl(
-      {this.projectId,
+      {this.programId,
       this.hypothesisId,
       required this.name,
       this.description,
@@ -287,9 +287,9 @@ class _$CreateExperimentRequestImpl implements _CreateExperimentRequest {
   factory _$CreateExperimentRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreateExperimentRequestImplFromJson(json);
 
-  /// ID of the project.
+  /// ID of the program.
   @override
-  final String? projectId;
+  final String? programId;
 
   /// ID of the linked hypothesis.
   @override
@@ -338,7 +338,7 @@ class _$CreateExperimentRequestImpl implements _CreateExperimentRequest {
 
   @override
   String toString() {
-    return 'CreateExperimentRequest(projectId: $projectId, hypothesisId: $hypothesisId, name: $name, description: $description, type: $type, config: $config, durationDays: $durationDays, trafficSplit: $trafficSplit, primaryMetric: $primaryMetric, secondaryMetrics: $secondaryMetrics, audienceFilter: $audienceFilter, sampleSizeTarget: $sampleSizeTarget)';
+    return 'CreateExperimentRequest(programId: $programId, hypothesisId: $hypothesisId, name: $name, description: $description, type: $type, config: $config, durationDays: $durationDays, trafficSplit: $trafficSplit, primaryMetric: $primaryMetric, secondaryMetrics: $secondaryMetrics, audienceFilter: $audienceFilter, sampleSizeTarget: $sampleSizeTarget)';
   }
 
   @override
@@ -346,8 +346,8 @@ class _$CreateExperimentRequestImpl implements _CreateExperimentRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateExperimentRequestImpl &&
-            (identical(other.projectId, projectId) ||
-                other.projectId == projectId) &&
+            (identical(other.programId, programId) ||
+                other.programId == programId) &&
             (identical(other.hypothesisId, hypothesisId) ||
                 other.hypothesisId == hypothesisId) &&
             (identical(other.name, name) || other.name == name) &&
@@ -373,7 +373,7 @@ class _$CreateExperimentRequestImpl implements _CreateExperimentRequest {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      projectId,
+      programId,
       hypothesisId,
       name,
       description,
@@ -403,7 +403,7 @@ class _$CreateExperimentRequestImpl implements _CreateExperimentRequest {
 
 abstract class _CreateExperimentRequest implements CreateExperimentRequest {
   const factory _CreateExperimentRequest(
-      {final String? projectId,
+      {final String? programId,
       final String? hypothesisId,
       required final String name,
       final String? description,
@@ -421,8 +421,8 @@ abstract class _CreateExperimentRequest implements CreateExperimentRequest {
 
   @override
 
-  /// ID of the project.
-  String? get projectId;
+  /// ID of the program.
+  String? get programId;
   @override
 
   /// ID of the linked hypothesis.

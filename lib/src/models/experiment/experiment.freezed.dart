@@ -26,8 +26,8 @@ mixin _$Experiment {
   /// ID of the tenant.
   String? get tenantId => throw _privateConstructorUsedError;
 
-  /// Associated project summary.
-  ProjectSummary? get project => throw _privateConstructorUsedError;
+  /// Associated program summary.
+  ProgramSummary? get program => throw _privateConstructorUsedError;
 
   /// ID of the linked hypothesis.
   String? get hypothesisId => throw _privateConstructorUsedError;
@@ -122,7 +122,7 @@ abstract class $ExperimentCopyWith<$Res> {
   $Res call(
       {String id,
       String? tenantId,
-      ProjectSummary? project,
+      ProgramSummary? program,
       String? hypothesisId,
       String? hypothesisTitle,
       String name,
@@ -150,7 +150,7 @@ abstract class $ExperimentCopyWith<$Res> {
       DateTime createdAt,
       DateTime updatedAt});
 
-  $ProjectSummaryCopyWith<$Res>? get project;
+  $ProgramSummaryCopyWith<$Res>? get program;
 }
 
 /// @nodoc
@@ -168,7 +168,7 @@ class _$ExperimentCopyWithImpl<$Res, $Val extends Experiment>
   $Res call({
     Object? id = null,
     Object? tenantId = freezed,
-    Object? project = freezed,
+    Object? program = freezed,
     Object? hypothesisId = freezed,
     Object? hypothesisTitle = freezed,
     Object? name = null,
@@ -205,10 +205,10 @@ class _$ExperimentCopyWithImpl<$Res, $Val extends Experiment>
           ? _value.tenantId
           : tenantId // ignore: cast_nullable_to_non_nullable
               as String?,
-      project: freezed == project
-          ? _value.project
-          : project // ignore: cast_nullable_to_non_nullable
-              as ProjectSummary?,
+      program: freezed == program
+          ? _value.program
+          : program // ignore: cast_nullable_to_non_nullable
+              as ProgramSummary?,
       hypothesisId: freezed == hypothesisId
           ? _value.hypothesisId
           : hypothesisId // ignore: cast_nullable_to_non_nullable
@@ -318,13 +318,13 @@ class _$ExperimentCopyWithImpl<$Res, $Val extends Experiment>
 
   @override
   @pragma('vm:prefer-inline')
-  $ProjectSummaryCopyWith<$Res>? get project {
-    if (_value.project == null) {
+  $ProgramSummaryCopyWith<$Res>? get program {
+    if (_value.program == null) {
       return null;
     }
 
-    return $ProjectSummaryCopyWith<$Res>(_value.project!, (value) {
-      return _then(_value.copyWith(project: value) as $Val);
+    return $ProgramSummaryCopyWith<$Res>(_value.program!, (value) {
+      return _then(_value.copyWith(program: value) as $Val);
     });
   }
 }
@@ -340,7 +340,7 @@ abstract class _$$ExperimentImplCopyWith<$Res>
   $Res call(
       {String id,
       String? tenantId,
-      ProjectSummary? project,
+      ProgramSummary? program,
       String? hypothesisId,
       String? hypothesisTitle,
       String name,
@@ -369,7 +369,7 @@ abstract class _$$ExperimentImplCopyWith<$Res>
       DateTime updatedAt});
 
   @override
-  $ProjectSummaryCopyWith<$Res>? get project;
+  $ProgramSummaryCopyWith<$Res>? get program;
 }
 
 /// @nodoc
@@ -385,7 +385,7 @@ class __$$ExperimentImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? tenantId = freezed,
-    Object? project = freezed,
+    Object? program = freezed,
     Object? hypothesisId = freezed,
     Object? hypothesisTitle = freezed,
     Object? name = null,
@@ -422,10 +422,10 @@ class __$$ExperimentImplCopyWithImpl<$Res>
           ? _value.tenantId
           : tenantId // ignore: cast_nullable_to_non_nullable
               as String?,
-      project: freezed == project
-          ? _value.project
-          : project // ignore: cast_nullable_to_non_nullable
-              as ProjectSummary?,
+      program: freezed == program
+          ? _value.program
+          : program // ignore: cast_nullable_to_non_nullable
+              as ProgramSummary?,
       hypothesisId: freezed == hypothesisId
           ? _value.hypothesisId
           : hypothesisId // ignore: cast_nullable_to_non_nullable
@@ -540,7 +540,7 @@ class _$ExperimentImpl implements _Experiment {
   const _$ExperimentImpl(
       {required this.id,
       this.tenantId,
-      this.project,
+      this.program,
       this.hypothesisId,
       this.hypothesisTitle,
       required this.name,
@@ -579,9 +579,9 @@ class _$ExperimentImpl implements _Experiment {
   @override
   final String? tenantId;
 
-  /// Associated project summary.
+  /// Associated program summary.
   @override
-  final ProjectSummary? project;
+  final ProgramSummary? program;
 
   /// ID of the linked hypothesis.
   @override
@@ -692,7 +692,7 @@ class _$ExperimentImpl implements _Experiment {
 
   @override
   String toString() {
-    return 'Experiment(id: $id, tenantId: $tenantId, project: $project, hypothesisId: $hypothesisId, hypothesisTitle: $hypothesisTitle, name: $name, description: $description, type: $type, status: $status, config: $config, startDate: $startDate, endDate: $endDate, durationDays: $durationDays, results: $results, conclusion: $conclusion, trafficSplit: $trafficSplit, primaryMetric: $primaryMetric, secondaryMetrics: $secondaryMetrics, audienceFilter: $audienceFilter, sampleSizeTarget: $sampleSizeTarget, currentSampleSize: $currentSampleSize, controlValue: $controlValue, variantValue: $variantValue, confidenceLevel: $confidenceLevel, ownerId: $ownerId, ownerName: $ownerName, ownerAvatarUrl: $ownerAvatarUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Experiment(id: $id, tenantId: $tenantId, program: $program, hypothesisId: $hypothesisId, hypothesisTitle: $hypothesisTitle, name: $name, description: $description, type: $type, status: $status, config: $config, startDate: $startDate, endDate: $endDate, durationDays: $durationDays, results: $results, conclusion: $conclusion, trafficSplit: $trafficSplit, primaryMetric: $primaryMetric, secondaryMetrics: $secondaryMetrics, audienceFilter: $audienceFilter, sampleSizeTarget: $sampleSizeTarget, currentSampleSize: $currentSampleSize, controlValue: $controlValue, variantValue: $variantValue, confidenceLevel: $confidenceLevel, ownerId: $ownerId, ownerName: $ownerName, ownerAvatarUrl: $ownerAvatarUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -703,7 +703,7 @@ class _$ExperimentImpl implements _Experiment {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.tenantId, tenantId) ||
                 other.tenantId == tenantId) &&
-            (identical(other.project, project) || other.project == project) &&
+            (identical(other.program, program) || other.program == program) &&
             (identical(other.hypothesisId, hypothesisId) ||
                 other.hypothesisId == hypothesisId) &&
             (identical(other.hypothesisTitle, hypothesisTitle) ||
@@ -757,7 +757,7 @@ class _$ExperimentImpl implements _Experiment {
         runtimeType,
         id,
         tenantId,
-        project,
+        program,
         hypothesisId,
         hypothesisTitle,
         name,
@@ -804,7 +804,7 @@ abstract class _Experiment implements Experiment {
   const factory _Experiment(
       {required final String id,
       final String? tenantId,
-      final ProjectSummary? project,
+      final ProgramSummary? program,
       final String? hypothesisId,
       final String? hypothesisTitle,
       required final String name,
@@ -845,8 +845,8 @@ abstract class _Experiment implements Experiment {
   String? get tenantId;
   @override
 
-  /// Associated project summary.
-  ProjectSummary? get project;
+  /// Associated program summary.
+  ProgramSummary? get program;
   @override
 
   /// ID of the linked hypothesis.

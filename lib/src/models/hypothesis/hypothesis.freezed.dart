@@ -26,8 +26,8 @@ mixin _$Hypothesis {
   /// ID of the tenant this hypothesis belongs to.
   String? get tenantId => throw _privateConstructorUsedError;
 
-  /// Associated project.
-  ProjectSummary? get project => throw _privateConstructorUsedError;
+  /// Associated program.
+  ProgramSummary? get program => throw _privateConstructorUsedError;
 
   /// ID of the parent outcome.
   String? get outcomeId => throw _privateConstructorUsedError;
@@ -103,7 +103,7 @@ abstract class $HypothesisCopyWith<$Res> {
   $Res call(
       {String id,
       String? tenantId,
-      ProjectSummary? project,
+      ProgramSummary? program,
       String? outcomeId,
       String? teamId,
       String statement,
@@ -125,7 +125,7 @@ abstract class $HypothesisCopyWith<$Res> {
       DateTime? validatedAt,
       DateTime? invalidatedAt});
 
-  $ProjectSummaryCopyWith<$Res>? get project;
+  $ProgramSummaryCopyWith<$Res>? get program;
 }
 
 /// @nodoc
@@ -143,7 +143,7 @@ class _$HypothesisCopyWithImpl<$Res, $Val extends Hypothesis>
   $Res call({
     Object? id = null,
     Object? tenantId = freezed,
-    Object? project = freezed,
+    Object? program = freezed,
     Object? outcomeId = freezed,
     Object? teamId = freezed,
     Object? statement = null,
@@ -174,10 +174,10 @@ class _$HypothesisCopyWithImpl<$Res, $Val extends Hypothesis>
           ? _value.tenantId
           : tenantId // ignore: cast_nullable_to_non_nullable
               as String?,
-      project: freezed == project
-          ? _value.project
-          : project // ignore: cast_nullable_to_non_nullable
-              as ProjectSummary?,
+      program: freezed == program
+          ? _value.program
+          : program // ignore: cast_nullable_to_non_nullable
+              as ProgramSummary?,
       outcomeId: freezed == outcomeId
           ? _value.outcomeId
           : outcomeId // ignore: cast_nullable_to_non_nullable
@@ -263,13 +263,13 @@ class _$HypothesisCopyWithImpl<$Res, $Val extends Hypothesis>
 
   @override
   @pragma('vm:prefer-inline')
-  $ProjectSummaryCopyWith<$Res>? get project {
-    if (_value.project == null) {
+  $ProgramSummaryCopyWith<$Res>? get program {
+    if (_value.program == null) {
       return null;
     }
 
-    return $ProjectSummaryCopyWith<$Res>(_value.project!, (value) {
-      return _then(_value.copyWith(project: value) as $Val);
+    return $ProgramSummaryCopyWith<$Res>(_value.program!, (value) {
+      return _then(_value.copyWith(program: value) as $Val);
     });
   }
 }
@@ -285,7 +285,7 @@ abstract class _$$HypothesisImplCopyWith<$Res>
   $Res call(
       {String id,
       String? tenantId,
-      ProjectSummary? project,
+      ProgramSummary? program,
       String? outcomeId,
       String? teamId,
       String statement,
@@ -308,7 +308,7 @@ abstract class _$$HypothesisImplCopyWith<$Res>
       DateTime? invalidatedAt});
 
   @override
-  $ProjectSummaryCopyWith<$Res>? get project;
+  $ProgramSummaryCopyWith<$Res>? get program;
 }
 
 /// @nodoc
@@ -324,7 +324,7 @@ class __$$HypothesisImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? tenantId = freezed,
-    Object? project = freezed,
+    Object? program = freezed,
     Object? outcomeId = freezed,
     Object? teamId = freezed,
     Object? statement = null,
@@ -355,10 +355,10 @@ class __$$HypothesisImplCopyWithImpl<$Res>
           ? _value.tenantId
           : tenantId // ignore: cast_nullable_to_non_nullable
               as String?,
-      project: freezed == project
-          ? _value.project
-          : project // ignore: cast_nullable_to_non_nullable
-              as ProjectSummary?,
+      program: freezed == program
+          ? _value.program
+          : program // ignore: cast_nullable_to_non_nullable
+              as ProgramSummary?,
       outcomeId: freezed == outcomeId
           ? _value.outcomeId
           : outcomeId // ignore: cast_nullable_to_non_nullable
@@ -449,7 +449,7 @@ class _$HypothesisImpl implements _Hypothesis {
   const _$HypothesisImpl(
       {required this.id,
       this.tenantId,
-      this.project,
+      this.program,
       this.outcomeId,
       this.teamId,
       this.statement = '',
@@ -483,9 +483,9 @@ class _$HypothesisImpl implements _Hypothesis {
   @override
   final String? tenantId;
 
-  /// Associated project.
+  /// Associated program.
   @override
-  final ProjectSummary? project;
+  final ProgramSummary? program;
 
   /// ID of the parent outcome.
   @override
@@ -582,7 +582,7 @@ class _$HypothesisImpl implements _Hypothesis {
 
   @override
   String toString() {
-    return 'Hypothesis(id: $id, tenantId: $tenantId, project: $project, outcomeId: $outcomeId, teamId: $teamId, statement: $statement, description: $description, status: $status, confidence: $confidence, ownerId: $ownerId, effort: $effort, impact: $impact, statusChangedAt: $statusChangedAt, pendingDecisionCount: $pendingDecisionCount, metrics: $metrics, ownerName: $ownerName, ownerAvatarUrl: $ownerAvatarUrl, outcomeName: $outcomeName, teamName: $teamName, createdAt: $createdAt, updatedAt: $updatedAt, validatedAt: $validatedAt, invalidatedAt: $invalidatedAt)';
+    return 'Hypothesis(id: $id, tenantId: $tenantId, program: $program, outcomeId: $outcomeId, teamId: $teamId, statement: $statement, description: $description, status: $status, confidence: $confidence, ownerId: $ownerId, effort: $effort, impact: $impact, statusChangedAt: $statusChangedAt, pendingDecisionCount: $pendingDecisionCount, metrics: $metrics, ownerName: $ownerName, ownerAvatarUrl: $ownerAvatarUrl, outcomeName: $outcomeName, teamName: $teamName, createdAt: $createdAt, updatedAt: $updatedAt, validatedAt: $validatedAt, invalidatedAt: $invalidatedAt)';
   }
 
   @override
@@ -593,7 +593,7 @@ class _$HypothesisImpl implements _Hypothesis {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.tenantId, tenantId) ||
                 other.tenantId == tenantId) &&
-            (identical(other.project, project) || other.project == project) &&
+            (identical(other.program, program) || other.program == program) &&
             (identical(other.outcomeId, outcomeId) ||
                 other.outcomeId == outcomeId) &&
             (identical(other.teamId, teamId) || other.teamId == teamId) &&
@@ -636,7 +636,7 @@ class _$HypothesisImpl implements _Hypothesis {
         runtimeType,
         id,
         tenantId,
-        project,
+        program,
         outcomeId,
         teamId,
         statement,
@@ -677,7 +677,7 @@ abstract class _Hypothesis implements Hypothesis {
   const factory _Hypothesis(
       {required final String id,
       final String? tenantId,
-      final ProjectSummary? project,
+      final ProgramSummary? program,
       final String? outcomeId,
       final String? teamId,
       final String statement,
@@ -712,8 +712,8 @@ abstract class _Hypothesis implements Hypothesis {
   String? get tenantId;
   @override
 
-  /// Associated project.
-  ProjectSummary? get project;
+  /// Associated program.
+  ProgramSummary? get program;
   @override
 
   /// ID of the parent outcome.

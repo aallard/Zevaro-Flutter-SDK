@@ -37,8 +37,11 @@ export 'role/role_providers.dart';
 // Audit
 export 'audit/audit_providers.dart';
 
-// Project
-export 'project/project_providers.dart';
+// Program
+export 'program/program_providers.dart';
+
+// Portfolio
+export 'portfolio/portfolio_providers.dart';
 
 // Experiment
 export 'experiment/experiment_providers.dart';

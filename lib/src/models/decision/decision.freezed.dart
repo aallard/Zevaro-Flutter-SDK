@@ -60,8 +60,8 @@ mixin _$Decision {
   /// Team that owns this decision.
   EmbeddedTeam? get team => throw _privateConstructorUsedError;
 
-  /// Associated project.
-  ProjectSummary? get project => throw _privateConstructorUsedError;
+  /// Associated program.
+  ProgramSummary? get program => throw _privateConstructorUsedError;
 
   /// Decision queue this belongs to.
   EmbeddedQueue? get queue => throw _privateConstructorUsedError;
@@ -160,7 +160,7 @@ abstract class $DecisionCopyWith<$Res> {
       EmbeddedOutcome? outcome,
       EmbeddedHypothesis? hypothesis,
       EmbeddedTeam? team,
-      ProjectSummary? project,
+      ProgramSummary? program,
       EmbeddedQueue? queue,
       EmbeddedStakeholder? stakeholder,
       int? slaHours,
@@ -191,7 +191,7 @@ abstract class $DecisionCopyWith<$Res> {
   $EmbeddedOutcomeCopyWith<$Res>? get outcome;
   $EmbeddedHypothesisCopyWith<$Res>? get hypothesis;
   $EmbeddedTeamCopyWith<$Res>? get team;
-  $ProjectSummaryCopyWith<$Res>? get project;
+  $ProgramSummaryCopyWith<$Res>? get program;
   $EmbeddedQueueCopyWith<$Res>? get queue;
   $EmbeddedStakeholderCopyWith<$Res>? get stakeholder;
   $EmbeddedUserCopyWith<$Res>? get escalatedTo;
@@ -224,7 +224,7 @@ class _$DecisionCopyWithImpl<$Res, $Val extends Decision>
     Object? outcome = freezed,
     Object? hypothesis = freezed,
     Object? team = freezed,
-    Object? project = freezed,
+    Object? program = freezed,
     Object? queue = freezed,
     Object? stakeholder = freezed,
     Object? slaHours = freezed,
@@ -303,10 +303,10 @@ class _$DecisionCopyWithImpl<$Res, $Val extends Decision>
           ? _value.team
           : team // ignore: cast_nullable_to_non_nullable
               as EmbeddedTeam?,
-      project: freezed == project
-          ? _value.project
-          : project // ignore: cast_nullable_to_non_nullable
-              as ProjectSummary?,
+      program: freezed == program
+          ? _value.program
+          : program // ignore: cast_nullable_to_non_nullable
+              as ProgramSummary?,
       queue: freezed == queue
           ? _value.queue
           : queue // ignore: cast_nullable_to_non_nullable
@@ -468,13 +468,13 @@ class _$DecisionCopyWithImpl<$Res, $Val extends Decision>
 
   @override
   @pragma('vm:prefer-inline')
-  $ProjectSummaryCopyWith<$Res>? get project {
-    if (_value.project == null) {
+  $ProgramSummaryCopyWith<$Res>? get program {
+    if (_value.program == null) {
       return null;
     }
 
-    return $ProjectSummaryCopyWith<$Res>(_value.project!, (value) {
-      return _then(_value.copyWith(project: value) as $Val);
+    return $ProgramSummaryCopyWith<$Res>(_value.program!, (value) {
+      return _then(_value.copyWith(program: value) as $Val);
     });
   }
 
@@ -549,7 +549,7 @@ abstract class _$$DecisionImplCopyWith<$Res>
       EmbeddedOutcome? outcome,
       EmbeddedHypothesis? hypothesis,
       EmbeddedTeam? team,
-      ProjectSummary? project,
+      ProgramSummary? program,
       EmbeddedQueue? queue,
       EmbeddedStakeholder? stakeholder,
       int? slaHours,
@@ -586,7 +586,7 @@ abstract class _$$DecisionImplCopyWith<$Res>
   @override
   $EmbeddedTeamCopyWith<$Res>? get team;
   @override
-  $ProjectSummaryCopyWith<$Res>? get project;
+  $ProgramSummaryCopyWith<$Res>? get program;
   @override
   $EmbeddedQueueCopyWith<$Res>? get queue;
   @override
@@ -621,7 +621,7 @@ class __$$DecisionImplCopyWithImpl<$Res>
     Object? outcome = freezed,
     Object? hypothesis = freezed,
     Object? team = freezed,
-    Object? project = freezed,
+    Object? program = freezed,
     Object? queue = freezed,
     Object? stakeholder = freezed,
     Object? slaHours = freezed,
@@ -700,10 +700,10 @@ class __$$DecisionImplCopyWithImpl<$Res>
           ? _value.team
           : team // ignore: cast_nullable_to_non_nullable
               as EmbeddedTeam?,
-      project: freezed == project
-          ? _value.project
-          : project // ignore: cast_nullable_to_non_nullable
-              as ProjectSummary?,
+      program: freezed == program
+          ? _value.program
+          : program // ignore: cast_nullable_to_non_nullable
+              as ProgramSummary?,
       queue: freezed == queue
           ? _value.queue
           : queue // ignore: cast_nullable_to_non_nullable
@@ -821,7 +821,7 @@ class _$DecisionImpl implements _Decision {
       this.outcome,
       this.hypothesis,
       this.team,
-      this.project,
+      this.program,
       this.queue,
       this.stakeholder,
       this.slaHours,
@@ -918,9 +918,9 @@ class _$DecisionImpl implements _Decision {
   @override
   final EmbeddedTeam? team;
 
-  /// Associated project.
+  /// Associated program.
   @override
-  final ProjectSummary? project;
+  final ProgramSummary? program;
 
   /// Decision queue this belongs to.
   @override
@@ -1070,7 +1070,7 @@ class _$DecisionImpl implements _Decision {
 
   @override
   String toString() {
-    return 'Decision(id: $id, title: $title, description: $description, context: $context, options: $options, status: $status, priority: $priority, type: $type, owner: $owner, assignedTo: $assignedTo, outcome: $outcome, hypothesis: $hypothesis, team: $team, project: $project, queue: $queue, stakeholder: $stakeholder, slaHours: $slaHours, dueAt: $dueAt, overdue: $overdue, waitTimeHours: $waitTimeHours, escalationLevel: $escalationLevel, escalatedAt: $escalatedAt, escalatedTo: $escalatedTo, decidedBy: $decidedBy, decidedAt: $decidedAt, decisionRationale: $decisionRationale, selectedOption: $selectedOption, resolution: $resolution, wasEscalated: $wasEscalated, blockedItems: $blockedItems, commentCount: $commentCount, voteCount: $voteCount, externalRefs: $externalRefs, tags: $tags, createdAt: $createdAt, updatedAt: $updatedAt, votes: $votes, comments: $comments)';
+    return 'Decision(id: $id, title: $title, description: $description, context: $context, options: $options, status: $status, priority: $priority, type: $type, owner: $owner, assignedTo: $assignedTo, outcome: $outcome, hypothesis: $hypothesis, team: $team, program: $program, queue: $queue, stakeholder: $stakeholder, slaHours: $slaHours, dueAt: $dueAt, overdue: $overdue, waitTimeHours: $waitTimeHours, escalationLevel: $escalationLevel, escalatedAt: $escalatedAt, escalatedTo: $escalatedTo, decidedBy: $decidedBy, decidedAt: $decidedAt, decisionRationale: $decisionRationale, selectedOption: $selectedOption, resolution: $resolution, wasEscalated: $wasEscalated, blockedItems: $blockedItems, commentCount: $commentCount, voteCount: $voteCount, externalRefs: $externalRefs, tags: $tags, createdAt: $createdAt, updatedAt: $updatedAt, votes: $votes, comments: $comments)';
   }
 
   @override
@@ -1095,7 +1095,7 @@ class _$DecisionImpl implements _Decision {
             (identical(other.hypothesis, hypothesis) ||
                 other.hypothesis == hypothesis) &&
             (identical(other.team, team) || other.team == team) &&
-            (identical(other.project, project) || other.project == project) &&
+            (identical(other.program, program) || other.program == program) &&
             (identical(other.queue, queue) || other.queue == queue) &&
             (identical(other.stakeholder, stakeholder) ||
                 other.stakeholder == stakeholder) &&
@@ -1157,7 +1157,7 @@ class _$DecisionImpl implements _Decision {
         outcome,
         hypothesis,
         team,
-        project,
+        program,
         queue,
         stakeholder,
         slaHours,
@@ -1213,7 +1213,7 @@ abstract class _Decision implements Decision {
       final EmbeddedOutcome? outcome,
       final EmbeddedHypothesis? hypothesis,
       final EmbeddedTeam? team,
-      final ProjectSummary? project,
+      final ProgramSummary? program,
       final EmbeddedQueue? queue,
       final EmbeddedStakeholder? stakeholder,
       final int? slaHours,
@@ -1297,8 +1297,8 @@ abstract class _Decision implements Decision {
   EmbeddedTeam? get team;
   @override
 
-  /// Associated project.
-  ProjectSummary? get project;
+  /// Associated program.
+  ProgramSummary? get program;
   @override
 
   /// Decision queue this belongs to.

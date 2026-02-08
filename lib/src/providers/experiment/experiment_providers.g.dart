@@ -332,18 +332,18 @@ class _HypothesisExperimentsProviderElement
       (origin as HypothesisExperimentsProvider).hypothesisId;
 }
 
-String _$experimentListHash() => r'ad15ec6c8533b6a686ae142f19670959e2b2d7ec';
+String _$experimentListHash() => r'a25d725edc34ca5ca42aedbeb5d61493490f293a';
 
 abstract class _$ExperimentList
     extends BuildlessAutoDisposeAsyncNotifier<PaginatedResponse<Experiment>> {
   late final ExperimentStatus? status;
   late final ExperimentType? type;
-  late final String? projectId;
+  late final String? programId;
 
   FutureOr<PaginatedResponse<Experiment>> build({
     ExperimentStatus? status,
     ExperimentType? type,
-    String? projectId,
+    String? programId,
   });
 }
 
@@ -369,12 +369,12 @@ class ExperimentListFamily
   ExperimentListProvider call({
     ExperimentStatus? status,
     ExperimentType? type,
-    String? projectId,
+    String? programId,
   }) {
     return ExperimentListProvider(
       status: status,
       type: type,
-      projectId: projectId,
+      programId: programId,
     );
   }
 
@@ -385,7 +385,7 @@ class ExperimentListFamily
     return call(
       status: provider.status,
       type: provider.type,
-      projectId: provider.projectId,
+      programId: provider.programId,
     );
   }
 
@@ -415,12 +415,12 @@ class ExperimentListProvider extends AutoDisposeAsyncNotifierProviderImpl<
   ExperimentListProvider({
     ExperimentStatus? status,
     ExperimentType? type,
-    String? projectId,
+    String? programId,
   }) : this._internal(
           () => ExperimentList()
             ..status = status
             ..type = type
-            ..projectId = projectId,
+            ..programId = programId,
           from: experimentListProvider,
           name: r'experimentListProvider',
           debugGetCreateSourceHash:
@@ -432,7 +432,7 @@ class ExperimentListProvider extends AutoDisposeAsyncNotifierProviderImpl<
               ExperimentListFamily._allTransitiveDependencies,
           status: status,
           type: type,
-          projectId: projectId,
+          programId: programId,
         );
 
   ExperimentListProvider._internal(
@@ -444,12 +444,12 @@ class ExperimentListProvider extends AutoDisposeAsyncNotifierProviderImpl<
     required super.from,
     required this.status,
     required this.type,
-    required this.projectId,
+    required this.programId,
   }) : super.internal();
 
   final ExperimentStatus? status;
   final ExperimentType? type;
-  final String? projectId;
+  final String? programId;
 
   @override
   FutureOr<PaginatedResponse<Experiment>> runNotifierBuild(
@@ -458,7 +458,7 @@ class ExperimentListProvider extends AutoDisposeAsyncNotifierProviderImpl<
     return notifier.build(
       status: status,
       type: type,
-      projectId: projectId,
+      programId: programId,
     );
   }
 
@@ -470,7 +470,7 @@ class ExperimentListProvider extends AutoDisposeAsyncNotifierProviderImpl<
         () => create()
           ..status = status
           ..type = type
-          ..projectId = projectId,
+          ..programId = programId,
         from: from,
         name: null,
         dependencies: null,
@@ -478,7 +478,7 @@ class ExperimentListProvider extends AutoDisposeAsyncNotifierProviderImpl<
         debugGetCreateSourceHash: null,
         status: status,
         type: type,
-        projectId: projectId,
+        programId: programId,
       ),
     );
   }
@@ -494,7 +494,7 @@ class ExperimentListProvider extends AutoDisposeAsyncNotifierProviderImpl<
     return other is ExperimentListProvider &&
         other.status == status &&
         other.type == type &&
-        other.projectId == projectId;
+        other.programId == programId;
   }
 
   @override
@@ -502,7 +502,7 @@ class ExperimentListProvider extends AutoDisposeAsyncNotifierProviderImpl<
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, status.hashCode);
     hash = _SystemHash.combine(hash, type.hashCode);
-    hash = _SystemHash.combine(hash, projectId.hashCode);
+    hash = _SystemHash.combine(hash, programId.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -516,8 +516,8 @@ mixin ExperimentListRef
   /// The parameter `type` of this provider.
   ExperimentType? get type;
 
-  /// The parameter `projectId` of this provider.
-  String? get projectId;
+  /// The parameter `programId` of this provider.
+  String? get programId;
 }
 
 class _ExperimentListProviderElement
@@ -530,7 +530,7 @@ class _ExperimentListProviderElement
   @override
   ExperimentType? get type => (origin as ExperimentListProvider).type;
   @override
-  String? get projectId => (origin as ExperimentListProvider).projectId;
+  String? get programId => (origin as ExperimentListProvider).programId;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

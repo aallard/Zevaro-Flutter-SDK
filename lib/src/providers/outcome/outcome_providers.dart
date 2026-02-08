@@ -51,14 +51,14 @@ class OutcomeList extends _$OutcomeList {
   @override
   Future<PaginatedResponse<Outcome>> build({
     String? teamId,
-    String? projectId,
+    String? programId,
     OutcomeStatus? status,
     OutcomePriority? priority,
   }) async {
     final outcomeService = ref.watch(outcomeServiceProvider);
     return outcomeService.listOutcomes(
       teamId: teamId,
-      projectId: projectId,
+      programId: programId,
       status: status,
       priority: priority,
     );
@@ -73,7 +73,7 @@ class OutcomeList extends _$OutcomeList {
     final next = await outcomeService.listOutcomes(
       page: current.page + 1,
       teamId: teamId,
-      projectId: projectId,
+      programId: programId,
       status: status,
       priority: priority,
     );

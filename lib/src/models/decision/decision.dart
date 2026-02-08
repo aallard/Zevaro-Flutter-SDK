@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../project/project_summary.dart';
+import '../program/program_summary.dart';
 import 'decision_comment.dart';
 import 'decision_status.dart';
 import 'decision_type.dart';
@@ -57,8 +57,8 @@ class Decision with _$Decision {
     /// Team that owns this decision.
     EmbeddedTeam? team,
 
-    /// Associated project.
-    ProjectSummary? project,
+    /// Associated program.
+    ProgramSummary? program,
 
     /// Decision queue this belongs to.
     EmbeddedQueue? queue,

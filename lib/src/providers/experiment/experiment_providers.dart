@@ -38,13 +38,13 @@ class ExperimentList extends _$ExperimentList {
   Future<PaginatedResponse<Experiment>> build({
     ExperimentStatus? status,
     ExperimentType? type,
-    String? projectId,
+    String? programId,
   }) async {
     final service = ref.watch(experimentServiceProvider);
     return service.listExperimentsPaged(
       status: status,
       type: type,
-      projectId: projectId,
+      programId: programId,
     );
   }
 
@@ -58,7 +58,7 @@ class ExperimentList extends _$ExperimentList {
       page: current.page + 1,
       status: status,
       type: type,
-      projectId: projectId,
+      programId: programId,
     );
     state = AsyncValue.data(current.merge(next));
   }

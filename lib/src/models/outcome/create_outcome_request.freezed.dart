@@ -23,8 +23,8 @@ mixin _$CreateOutcomeRequest {
   /// ID of the team that will own this outcome.
   String get teamId => throw _privateConstructorUsedError;
 
-  /// ID of the project this belongs to.
-  String? get projectId => throw _privateConstructorUsedError;
+  /// ID of the program this belongs to.
+  String? get programId => throw _privateConstructorUsedError;
 
   /// Title of the outcome.
   String get title => throw _privateConstructorUsedError;
@@ -59,7 +59,7 @@ abstract class $CreateOutcomeRequestCopyWith<$Res> {
   @useResult
   $Res call(
       {String teamId,
-      String? projectId,
+      String? programId,
       String title,
       String? description,
       OutcomePriority priority,
@@ -83,7 +83,7 @@ class _$CreateOutcomeRequestCopyWithImpl<$Res,
   @override
   $Res call({
     Object? teamId = null,
-    Object? projectId = freezed,
+    Object? programId = freezed,
     Object? title = null,
     Object? description = freezed,
     Object? priority = null,
@@ -96,9 +96,9 @@ class _$CreateOutcomeRequestCopyWithImpl<$Res,
           ? _value.teamId
           : teamId // ignore: cast_nullable_to_non_nullable
               as String,
-      projectId: freezed == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
+      programId: freezed == programId
+          ? _value.programId
+          : programId // ignore: cast_nullable_to_non_nullable
               as String?,
       title: null == title
           ? _value.title
@@ -138,7 +138,7 @@ abstract class _$$CreateOutcomeRequestImplCopyWith<$Res>
   @useResult
   $Res call(
       {String teamId,
-      String? projectId,
+      String? programId,
       String title,
       String? description,
       OutcomePriority priority,
@@ -159,7 +159,7 @@ class __$$CreateOutcomeRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? teamId = null,
-    Object? projectId = freezed,
+    Object? programId = freezed,
     Object? title = null,
     Object? description = freezed,
     Object? priority = null,
@@ -172,9 +172,9 @@ class __$$CreateOutcomeRequestImplCopyWithImpl<$Res>
           ? _value.teamId
           : teamId // ignore: cast_nullable_to_non_nullable
               as String,
-      projectId: freezed == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
+      programId: freezed == programId
+          ? _value.programId
+          : programId // ignore: cast_nullable_to_non_nullable
               as String?,
       title: null == title
           ? _value.title
@@ -209,7 +209,7 @@ class __$$CreateOutcomeRequestImplCopyWithImpl<$Res>
 class _$CreateOutcomeRequestImpl implements _CreateOutcomeRequest {
   const _$CreateOutcomeRequestImpl(
       {required this.teamId,
-      this.projectId,
+      this.programId,
       required this.title,
       this.description,
       this.priority = OutcomePriority.MEDIUM,
@@ -225,9 +225,9 @@ class _$CreateOutcomeRequestImpl implements _CreateOutcomeRequest {
   @override
   final String teamId;
 
-  /// ID of the project this belongs to.
+  /// ID of the program this belongs to.
   @override
-  final String? projectId;
+  final String? programId;
 
   /// Title of the outcome.
   @override
@@ -265,7 +265,7 @@ class _$CreateOutcomeRequestImpl implements _CreateOutcomeRequest {
 
   @override
   String toString() {
-    return 'CreateOutcomeRequest(teamId: $teamId, projectId: $projectId, title: $title, description: $description, priority: $priority, ownerId: $ownerId, targetDate: $targetDate, keyResults: $keyResults)';
+    return 'CreateOutcomeRequest(teamId: $teamId, programId: $programId, title: $title, description: $description, priority: $priority, ownerId: $ownerId, targetDate: $targetDate, keyResults: $keyResults)';
   }
 
   @override
@@ -274,8 +274,8 @@ class _$CreateOutcomeRequestImpl implements _CreateOutcomeRequest {
         (other.runtimeType == runtimeType &&
             other is _$CreateOutcomeRequestImpl &&
             (identical(other.teamId, teamId) || other.teamId == teamId) &&
-            (identical(other.projectId, projectId) ||
-                other.projectId == projectId) &&
+            (identical(other.programId, programId) ||
+                other.programId == programId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -293,7 +293,7 @@ class _$CreateOutcomeRequestImpl implements _CreateOutcomeRequest {
   int get hashCode => Object.hash(
       runtimeType,
       teamId,
-      projectId,
+      programId,
       title,
       description,
       priority,
@@ -320,7 +320,7 @@ class _$CreateOutcomeRequestImpl implements _CreateOutcomeRequest {
 abstract class _CreateOutcomeRequest implements CreateOutcomeRequest {
   const factory _CreateOutcomeRequest(
           {required final String teamId,
-          final String? projectId,
+          final String? programId,
           required final String title,
           final String? description,
           final OutcomePriority priority,
@@ -338,8 +338,8 @@ abstract class _CreateOutcomeRequest implements CreateOutcomeRequest {
   String get teamId;
   @override
 
-  /// ID of the project this belongs to.
-  String? get projectId;
+  /// ID of the program this belongs to.
+  String? get programId;
   @override
 
   /// Title of the outcome.

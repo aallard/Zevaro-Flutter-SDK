@@ -16,7 +16,7 @@ class ExperimentService {
   Future<List<Experiment>> listExperiments({
     ExperimentStatus? status,
     ExperimentType? type,
-    String? projectId,
+    String? programId,
     String? hypothesisId,
   }) async {
     try {
@@ -25,7 +25,7 @@ class ExperimentService {
         queryParameters: {
           if (status != null) 'status': status.name,
           if (type != null) 'type': type.name,
-          if (projectId != null) 'projectId': projectId,
+          if (programId != null) 'programId': programId,
           if (hypothesisId != null) 'hypothesisId': hypothesisId,
         },
       );
@@ -43,7 +43,7 @@ class ExperimentService {
     int size = ZevaroConstants.defaultPageSize,
     ExperimentStatus? status,
     ExperimentType? type,
-    String? projectId,
+    String? programId,
   }) async {
     try {
       final response = await _apiClient.dio.get(
@@ -53,7 +53,7 @@ class ExperimentService {
           'size': size,
           if (status != null) 'status': status.name,
           if (type != null) 'type': type.name,
-          if (projectId != null) 'projectId': projectId,
+          if (programId != null) 'programId': programId,
         },
       );
       return PaginatedResponse.fromJson(
