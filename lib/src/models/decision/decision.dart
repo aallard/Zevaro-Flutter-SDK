@@ -120,6 +120,21 @@ class Decision with _$Decision {
     /// Tags for categorization.
     List<String>? tags,
 
+    /// Parent entity type (e.g., HYPOTHESIS, SPECIFICATION).
+    String? parentType,
+
+    /// Parent entity ID.
+    String? parentId,
+
+    /// Parent entity title.
+    String? parentTitle,
+
+    /// Associated workstream ID.
+    String? workstreamId,
+
+    /// Associated workstream name.
+    String? workstreamName,
+
     /// When the decision was created.
     required DateTime createdAt,
 

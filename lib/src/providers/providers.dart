@@ -63,3 +63,18 @@ export 'space/space_providers.dart';
 
 // Document
 export 'document/document_providers.dart';
+
+// Comment
+export 'comment/comment_providers.dart';
+
+// Attachment
+export 'attachment/attachment_providers.dart';
+
+// EntityLink
+export 'link/link_providers.dart';
+
+// Search
+export 'search/search_providers.dart';
+
+// Template
+export 'template/template_providers.dart';

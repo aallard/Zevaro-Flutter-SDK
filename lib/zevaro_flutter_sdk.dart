@@ -131,6 +131,31 @@ export 'src/models/space/space_models.dart';
 export 'src/models/document/document_models.dart';
 
 // ============================================
+// Models - Comment
+// ============================================
+export 'src/models/comment/comment_models.dart';
+
+// ============================================
+// Models - Attachment
+// ============================================
+export 'src/models/attachment/attachment_models.dart';
+
+// ============================================
+// Models - EntityLink
+// ============================================
+export 'src/models/link/link_models.dart';
+
+// ============================================
+// Models - Search
+// ============================================
+export 'src/models/search/search_models.dart';
+
+// ============================================
+// Models - Template
+// ============================================
+export 'src/models/template/template_models.dart';
+
+// ============================================
 // Services
 // ============================================
 export 'src/services/auth_service.dart';
@@ -153,6 +178,11 @@ export 'src/services/requirement_service.dart';
 export 'src/services/ticket_service.dart';
 export 'src/services/space_service.dart';
 export 'src/services/document_service.dart';
+export 'src/services/comment_service.dart';
+export 'src/services/attachment_service.dart';
+export 'src/services/entity_link_service.dart';
+export 'src/services/search_service.dart';
+export 'src/services/template_service.dart';
 
 // ============================================
 // Providers (State Management)

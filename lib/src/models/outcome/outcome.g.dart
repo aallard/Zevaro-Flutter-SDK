@@ -35,6 +35,8 @@ _$OutcomeImpl _$$OutcomeImplFromJson(Map<String, dynamic> json) =>
       ownerName: json['ownerName'] as String?,
       ownerAvatarUrl: json['ownerAvatarUrl'] as String?,
       teamName: json['teamName'] as String?,
+      workstreamId: json['workstreamId'] as String?,
+      workstreamName: json['workstreamName'] as String?,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
@@ -59,6 +61,8 @@ Map<String, dynamic> _$$OutcomeImplToJson(_$OutcomeImpl instance) =>
       'ownerName': instance.ownerName,
       'ownerAvatarUrl': instance.ownerAvatarUrl,
       'teamName': instance.teamName,
+      'workstreamId': instance.workstreamId,
+      'workstreamName': instance.workstreamName,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
     };

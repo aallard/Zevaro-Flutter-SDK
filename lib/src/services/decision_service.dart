@@ -540,6 +540,35 @@ class DecisionService {
     }
   }
 
+  /// Lists decisions with advanced filters for v2 endpoints.
+  Future<List<Decision>> listFiltered({
+    String? programId,
+    String? workstreamId,
+    String? parentType,
+    String? executionMode,
+    String? slaStatus,
+    String? portfolioId,
+  }) async {
+    try {
+      final params = <String, dynamic>{};
+      if (programId != null) params['programId'] = programId;
+      if (workstreamId != null) params['workstreamId'] = workstreamId;
+      if (parentType != null) params['parentType'] = parentType;
+      if (executionMode != null) params['executionMode'] = executionMode;
+      if (slaStatus != null) params['slaStatus'] = slaStatus;
+      if (portfolioId != null) params['portfolioId'] = portfolioId;
+      final response = await _apiClient.dio.get(
+        '/decisions/filtered',
+        queryParameters: params,
+      );
+      return (response.data as List)
+          .map((json) => Decision.fromJson(json as Map<String, dynamic>))
+          .toList();
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
   /// Gets decisions for a specific hypothesis.
   Future<List<Decision>> getDecisionsForHypothesis(String hypothesisId) async {
     try {

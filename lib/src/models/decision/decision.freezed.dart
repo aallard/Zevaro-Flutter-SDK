@@ -123,6 +123,21 @@ mixin _$Decision {
   /// Tags for categorization.
   List<String>? get tags => throw _privateConstructorUsedError;
 
+  /// Parent entity type (e.g., HYPOTHESIS, SPECIFICATION).
+  String? get parentType => throw _privateConstructorUsedError;
+
+  /// Parent entity ID.
+  String? get parentId => throw _privateConstructorUsedError;
+
+  /// Parent entity title.
+  String? get parentTitle => throw _privateConstructorUsedError;
+
+  /// Associated workstream ID.
+  String? get workstreamId => throw _privateConstructorUsedError;
+
+  /// Associated workstream name.
+  String? get workstreamName => throw _privateConstructorUsedError;
+
   /// When the decision was created.
   DateTime get createdAt => throw _privateConstructorUsedError;
 
@@ -181,6 +196,11 @@ abstract class $DecisionCopyWith<$Res> {
       int voteCount,
       Map<String, String>? externalRefs,
       List<String>? tags,
+      String? parentType,
+      String? parentId,
+      String? parentTitle,
+      String? workstreamId,
+      String? workstreamName,
       DateTime createdAt,
       DateTime updatedAt,
       List<DecisionVote>? votes,
@@ -245,6 +265,11 @@ class _$DecisionCopyWithImpl<$Res, $Val extends Decision>
     Object? voteCount = null,
     Object? externalRefs = freezed,
     Object? tags = freezed,
+    Object? parentType = freezed,
+    Object? parentId = freezed,
+    Object? parentTitle = freezed,
+    Object? workstreamId = freezed,
+    Object? workstreamName = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? votes = freezed,
@@ -387,6 +412,26 @@ class _$DecisionCopyWithImpl<$Res, $Val extends Decision>
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      parentType: freezed == parentType
+          ? _value.parentType
+          : parentType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parentId: freezed == parentId
+          ? _value.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parentTitle: freezed == parentTitle
+          ? _value.parentTitle
+          : parentTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      workstreamId: freezed == workstreamId
+          ? _value.workstreamId
+          : workstreamId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      workstreamName: freezed == workstreamName
+          ? _value.workstreamName
+          : workstreamName // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -570,6 +615,11 @@ abstract class _$$DecisionImplCopyWith<$Res>
       int voteCount,
       Map<String, String>? externalRefs,
       List<String>? tags,
+      String? parentType,
+      String? parentId,
+      String? parentTitle,
+      String? workstreamId,
+      String? workstreamName,
       DateTime createdAt,
       DateTime updatedAt,
       List<DecisionVote>? votes,
@@ -642,6 +692,11 @@ class __$$DecisionImplCopyWithImpl<$Res>
     Object? voteCount = null,
     Object? externalRefs = freezed,
     Object? tags = freezed,
+    Object? parentType = freezed,
+    Object? parentId = freezed,
+    Object? parentTitle = freezed,
+    Object? workstreamId = freezed,
+    Object? workstreamName = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? votes = freezed,
@@ -784,6 +839,26 @@ class __$$DecisionImplCopyWithImpl<$Res>
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      parentType: freezed == parentType
+          ? _value.parentType
+          : parentType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parentId: freezed == parentId
+          ? _value.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parentTitle: freezed == parentTitle
+          ? _value.parentTitle
+          : parentTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      workstreamId: freezed == workstreamId
+          ? _value.workstreamId
+          : workstreamId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      workstreamName: freezed == workstreamName
+          ? _value.workstreamName
+          : workstreamName // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -842,6 +917,11 @@ class _$DecisionImpl implements _Decision {
       this.voteCount = 0,
       final Map<String, String>? externalRefs,
       final List<String>? tags,
+      this.parentType,
+      this.parentId,
+      this.parentTitle,
+      this.workstreamId,
+      this.workstreamName,
       required this.createdAt,
       required this.updatedAt,
       final List<DecisionVote>? votes,
@@ -1034,6 +1114,26 @@ class _$DecisionImpl implements _Decision {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Parent entity type (e.g., HYPOTHESIS, SPECIFICATION).
+  @override
+  final String? parentType;
+
+  /// Parent entity ID.
+  @override
+  final String? parentId;
+
+  /// Parent entity title.
+  @override
+  final String? parentTitle;
+
+  /// Associated workstream ID.
+  @override
+  final String? workstreamId;
+
+  /// Associated workstream name.
+  @override
+  final String? workstreamName;
+
   /// When the decision was created.
   @override
   final DateTime createdAt;
@@ -1070,7 +1170,7 @@ class _$DecisionImpl implements _Decision {
 
   @override
   String toString() {
-    return 'Decision(id: $id, title: $title, description: $description, context: $context, options: $options, status: $status, priority: $priority, type: $type, owner: $owner, assignedTo: $assignedTo, outcome: $outcome, hypothesis: $hypothesis, team: $team, program: $program, queue: $queue, stakeholder: $stakeholder, slaHours: $slaHours, dueAt: $dueAt, overdue: $overdue, waitTimeHours: $waitTimeHours, escalationLevel: $escalationLevel, escalatedAt: $escalatedAt, escalatedTo: $escalatedTo, decidedBy: $decidedBy, decidedAt: $decidedAt, decisionRationale: $decisionRationale, selectedOption: $selectedOption, resolution: $resolution, wasEscalated: $wasEscalated, blockedItems: $blockedItems, commentCount: $commentCount, voteCount: $voteCount, externalRefs: $externalRefs, tags: $tags, createdAt: $createdAt, updatedAt: $updatedAt, votes: $votes, comments: $comments)';
+    return 'Decision(id: $id, title: $title, description: $description, context: $context, options: $options, status: $status, priority: $priority, type: $type, owner: $owner, assignedTo: $assignedTo, outcome: $outcome, hypothesis: $hypothesis, team: $team, program: $program, queue: $queue, stakeholder: $stakeholder, slaHours: $slaHours, dueAt: $dueAt, overdue: $overdue, waitTimeHours: $waitTimeHours, escalationLevel: $escalationLevel, escalatedAt: $escalatedAt, escalatedTo: $escalatedTo, decidedBy: $decidedBy, decidedAt: $decidedAt, decisionRationale: $decisionRationale, selectedOption: $selectedOption, resolution: $resolution, wasEscalated: $wasEscalated, blockedItems: $blockedItems, commentCount: $commentCount, voteCount: $voteCount, externalRefs: $externalRefs, tags: $tags, parentType: $parentType, parentId: $parentId, parentTitle: $parentTitle, workstreamId: $workstreamId, workstreamName: $workstreamName, createdAt: $createdAt, updatedAt: $updatedAt, votes: $votes, comments: $comments)';
   }
 
   @override
@@ -1132,6 +1232,16 @@ class _$DecisionImpl implements _Decision {
             const DeepCollectionEquality()
                 .equals(other._externalRefs, _externalRefs) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
+            (identical(other.parentType, parentType) ||
+                other.parentType == parentType) &&
+            (identical(other.parentId, parentId) ||
+                other.parentId == parentId) &&
+            (identical(other.parentTitle, parentTitle) ||
+                other.parentTitle == parentTitle) &&
+            (identical(other.workstreamId, workstreamId) ||
+                other.workstreamId == workstreamId) &&
+            (identical(other.workstreamName, workstreamName) ||
+                other.workstreamName == workstreamName) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -1178,6 +1288,11 @@ class _$DecisionImpl implements _Decision {
         voteCount,
         const DeepCollectionEquality().hash(_externalRefs),
         const DeepCollectionEquality().hash(_tags),
+        parentType,
+        parentId,
+        parentTitle,
+        workstreamId,
+        workstreamName,
         createdAt,
         updatedAt,
         const DeepCollectionEquality().hash(_votes),
@@ -1234,6 +1349,11 @@ abstract class _Decision implements Decision {
       final int voteCount,
       final Map<String, String>? externalRefs,
       final List<String>? tags,
+      final String? parentType,
+      final String? parentId,
+      final String? parentTitle,
+      final String? workstreamId,
+      final String? workstreamName,
       required final DateTime createdAt,
       required final DateTime updatedAt,
       final List<DecisionVote>? votes,
@@ -1379,6 +1499,26 @@ abstract class _Decision implements Decision {
 
   /// Tags for categorization.
   List<String>? get tags;
+  @override
+
+  /// Parent entity type (e.g., HYPOTHESIS, SPECIFICATION).
+  String? get parentType;
+  @override
+
+  /// Parent entity ID.
+  String? get parentId;
+  @override
+
+  /// Parent entity title.
+  String? get parentTitle;
+  @override
+
+  /// Associated workstream ID.
+  String? get workstreamId;
+  @override
+
+  /// Associated workstream name.
+  String? get workstreamName;
   @override
 
   /// When the decision was created.

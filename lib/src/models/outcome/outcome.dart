@@ -75,6 +75,12 @@ class Outcome with _$Outcome {
     /// Team's display name.
     String? teamName,
 
+    /// Associated workstream ID.
+    String? workstreamId,
+
+    /// Associated workstream name.
+    String? workstreamName,
+
     // Timestamps
 
     /// When the outcome was created.

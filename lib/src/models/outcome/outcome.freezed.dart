@@ -71,7 +71,14 @@ mixin _$Outcome {
   String? get ownerAvatarUrl =>
       throw _privateConstructorUsedError; // Embedded team info
   /// Team's display name.
-  String? get teamName => throw _privateConstructorUsedError; // Timestamps
+  String? get teamName => throw _privateConstructorUsedError;
+
+  /// Associated workstream ID.
+  String? get workstreamId => throw _privateConstructorUsedError;
+
+  /// Associated workstream name.
+  String? get workstreamName =>
+      throw _privateConstructorUsedError; // Timestamps
   /// When the outcome was created.
   DateTime get createdAt => throw _privateConstructorUsedError;
 
@@ -107,6 +114,8 @@ abstract class $OutcomeCopyWith<$Res> {
       String? ownerName,
       String? ownerAvatarUrl,
       String? teamName,
+      String? workstreamId,
+      String? workstreamName,
       DateTime createdAt,
       DateTime updatedAt});
 
@@ -144,6 +153,8 @@ class _$OutcomeCopyWithImpl<$Res, $Val extends Outcome>
     Object? ownerName = freezed,
     Object? ownerAvatarUrl = freezed,
     Object? teamName = freezed,
+    Object? workstreamId = freezed,
+    Object? workstreamName = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -220,6 +231,14 @@ class _$OutcomeCopyWithImpl<$Res, $Val extends Outcome>
           ? _value.teamName
           : teamName // ignore: cast_nullable_to_non_nullable
               as String?,
+      workstreamId: freezed == workstreamId
+          ? _value.workstreamId
+          : workstreamId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      workstreamName: freezed == workstreamName
+          ? _value.workstreamName
+          : workstreamName // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -270,6 +289,8 @@ abstract class _$$OutcomeImplCopyWith<$Res> implements $OutcomeCopyWith<$Res> {
       String? ownerName,
       String? ownerAvatarUrl,
       String? teamName,
+      String? workstreamId,
+      String? workstreamName,
       DateTime createdAt,
       DateTime updatedAt});
 
@@ -306,6 +327,8 @@ class __$$OutcomeImplCopyWithImpl<$Res>
     Object? ownerName = freezed,
     Object? ownerAvatarUrl = freezed,
     Object? teamName = freezed,
+    Object? workstreamId = freezed,
+    Object? workstreamName = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -382,6 +405,14 @@ class __$$OutcomeImplCopyWithImpl<$Res>
           ? _value.teamName
           : teamName // ignore: cast_nullable_to_non_nullable
               as String?,
+      workstreamId: freezed == workstreamId
+          ? _value.workstreamId
+          : workstreamId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      workstreamName: freezed == workstreamName
+          ? _value.workstreamName
+          : workstreamName // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -416,6 +447,8 @@ class _$OutcomeImpl implements _Outcome {
       this.ownerName,
       this.ownerAvatarUrl,
       this.teamName,
+      this.workstreamId,
+      this.workstreamName,
       required this.createdAt,
       required this.updatedAt})
       : _keyResults = keyResults;
@@ -508,6 +541,14 @@ class _$OutcomeImpl implements _Outcome {
   /// Team's display name.
   @override
   final String? teamName;
+
+  /// Associated workstream ID.
+  @override
+  final String? workstreamId;
+
+  /// Associated workstream name.
+  @override
+  final String? workstreamName;
 // Timestamps
   /// When the outcome was created.
   @override
@@ -519,7 +560,7 @@ class _$OutcomeImpl implements _Outcome {
 
   @override
   String toString() {
-    return 'Outcome(id: $id, tenantId: $tenantId, program: $program, teamId: $teamId, title: $title, description: $description, status: $status, priority: $priority, ownerId: $ownerId, targetDate: $targetDate, hypothesisCount: $hypothesisCount, activeHypothesisCount: $activeHypothesisCount, validatedHypothesisCount: $validatedHypothesisCount, pendingDecisionCount: $pendingDecisionCount, keyResults: $keyResults, ownerName: $ownerName, ownerAvatarUrl: $ownerAvatarUrl, teamName: $teamName, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Outcome(id: $id, tenantId: $tenantId, program: $program, teamId: $teamId, title: $title, description: $description, status: $status, priority: $priority, ownerId: $ownerId, targetDate: $targetDate, hypothesisCount: $hypothesisCount, activeHypothesisCount: $activeHypothesisCount, validatedHypothesisCount: $validatedHypothesisCount, pendingDecisionCount: $pendingDecisionCount, keyResults: $keyResults, ownerName: $ownerName, ownerAvatarUrl: $ownerAvatarUrl, teamName: $teamName, workstreamId: $workstreamId, workstreamName: $workstreamName, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -558,6 +599,10 @@ class _$OutcomeImpl implements _Outcome {
                 other.ownerAvatarUrl == ownerAvatarUrl) &&
             (identical(other.teamName, teamName) ||
                 other.teamName == teamName) &&
+            (identical(other.workstreamId, workstreamId) ||
+                other.workstreamId == workstreamId) &&
+            (identical(other.workstreamName, workstreamName) ||
+                other.workstreamName == workstreamName) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -586,6 +631,8 @@ class _$OutcomeImpl implements _Outcome {
         ownerName,
         ownerAvatarUrl,
         teamName,
+        workstreamId,
+        workstreamName,
         createdAt,
         updatedAt
       ]);
@@ -624,6 +671,8 @@ abstract class _Outcome implements Outcome {
       final String? ownerName,
       final String? ownerAvatarUrl,
       final String? teamName,
+      final String? workstreamId,
+      final String? workstreamName,
       required final DateTime createdAt,
       required final DateTime updatedAt}) = _$OutcomeImpl;
 
@@ -697,6 +746,14 @@ abstract class _Outcome implements Outcome {
   @override // Embedded team info
   /// Team's display name.
   String? get teamName;
+  @override
+
+  /// Associated workstream ID.
+  String? get workstreamId;
+  @override
+
+  /// Associated workstream name.
+  String? get workstreamName;
   @override // Timestamps
   /// When the outcome was created.
   DateTime get createdAt;
