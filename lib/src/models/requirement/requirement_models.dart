@@ -8,4 +8,5 @@ export 'requirement.dart';
 export 'requirement_dependency.dart';
 export 'requirement_priority.dart';
 export 'requirement_status.dart';
+export 'requirement_type.dart';
 export 'update_requirement_request.dart';
