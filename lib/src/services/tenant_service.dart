@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import '../core/api_client.dart';
 import '../models/tenant/tenant_models.dart';
 
+// TODO: TenantController does not exist in Core yet. All methods below are
+// aspirational and will fail until the backend is implemented.
 /// Service for tenant management operations.
 class TenantService {
   final ApiClient _apiClient;
@@ -33,7 +35,7 @@ class TenantService {
   /// Updates a tenant (admin only).
   Future<Tenant> updateTenant(String id, UpdateTenantRequest request) async {
     try {
-      final response = await _apiClient.dio.patch(
+      final response = await _apiClient.dio.put(
         '/tenants/$id',
         data: request.toJson(),
       );
@@ -46,7 +48,7 @@ class TenantService {
   /// Updates tenant settings.
   Future<Tenant> updateSettings(String id, TenantSettings settings) async {
     try {
-      final response = await _apiClient.dio.patch(
+      final response = await _apiClient.dio.put(
         '/tenants/$id/settings',
         data: settings.toJson(),
       );

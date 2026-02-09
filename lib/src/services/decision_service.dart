@@ -28,6 +28,13 @@ class DecisionService {
     DecisionType? type,
     String? requesterId,
     bool? slaBreached,
+    String? workstreamId,
+    String? parentType,
+    String? executionMode,
+    String? slaStatus,
+    String? portfolioId,
+    String sortBy = 'createdAt',
+    String sortDir = 'desc',
   }) async {
     try {
       final response = await _apiClient.dio.get(
@@ -35,6 +42,8 @@ class DecisionService {
         queryParameters: {
           'page': page,
           'size': size,
+          'sortBy': sortBy,
+          'sortDir': sortDir,
           if (hypothesisId != null) 'hypothesisId': hypothesisId,
           if (teamId != null) 'teamId': teamId,
           if (programId != null) 'programId': programId,
@@ -43,6 +52,11 @@ class DecisionService {
           if (type != null) 'type': type.name,
           if (requesterId != null) 'requesterId': requesterId,
           if (slaBreached != null) 'slaBreached': slaBreached,
+          if (workstreamId != null) 'workstreamId': workstreamId,
+          if (parentType != null) 'parentType': parentType,
+          if (executionMode != null) 'executionMode': executionMode,
+          if (slaStatus != null) 'slaStatus': slaStatus,
+          if (portfolioId != null) 'portfolioId': portfolioId,
         },
       );
       return PaginatedResponse.fromJson(
@@ -87,22 +101,13 @@ class DecisionService {
     }
   }
 
-  /// Gets SLA-breached decisions.
-  Future<List<Decision>> getSlaBreachedDecisions() async {
-    try {
-      final response = await _apiClient.dio.get('/decisions/sla-breached');
-      return (response.data as List)
-          .map((json) => Decision.fromJson(json as Map<String, dynamic>))
-          .toList();
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
+  // TODO: No Core endpoint for /decisions/sla-breached yet.
+  // Use listDecisions(slaBreached: true) to filter by SLA status instead.
 
   /// Gets decisions awaiting current user's input.
   Future<List<Decision>> getMyPendingDecisions() async {
     try {
-      final response = await _apiClient.dio.get('/decisions/mine/pending');
+      final response = await _apiClient.dio.get('/decisions/my-pending');
       return (response.data as List)
           .map((json) => Decision.fromJson(json as Map<String, dynamic>))
           .toList();
@@ -156,7 +161,7 @@ class DecisionService {
     UpdateDecisionRequest request,
   ) async {
     try {
-      final response = await _apiClient.dio.patch(
+      final response = await _apiClient.dio.put(
         '/decisions/$id',
         data: request.toJson(),
       );
@@ -262,8 +267,8 @@ class DecisionService {
       final response = await _apiClient.dio.post(
         '/decisions/$decisionId/comments',
         data: {
-          'content': content,
-          if (parentId != null) 'parentId': parentId,
+          'body': content,
+          if (parentId != null) 'parentCommentId': parentId,
         },
       );
       return DecisionComment.fromJson(response.data as Map<String, dynamic>);
@@ -294,9 +299,9 @@ class DecisionService {
     String content,
   ) async {
     try {
-      final response = await _apiClient.dio.patch(
+      final response = await _apiClient.dio.put(
         '/decisions/$decisionId/comments/$commentId',
-        data: {'content': content},
+        data: {'body': content},
       );
       return DecisionComment.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {
@@ -314,46 +319,8 @@ class DecisionService {
     }
   }
 
-  // --- Stakeholders ---
-
-  /// Adds a stakeholder to a decision.
-  Future<Decision> addStakeholder(String decisionId, String userId) async {
-    try {
-      final response = await _apiClient.dio.post(
-        '/decisions/$decisionId/stakeholders',
-        data: {'userId': userId},
-      );
-      return Decision.fromJson(response.data as Map<String, dynamic>);
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
-
-  /// Removes a stakeholder from a decision.
-  Future<Decision> removeStakeholder(String decisionId, String userId) async {
-    try {
-      final response = await _apiClient.dio
-          .delete('/decisions/$decisionId/stakeholders/$userId');
-      return Decision.fromJson(response.data as Map<String, dynamic>);
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
-
-  /// Searches decisions by title or description.
-  Future<List<Decision>> searchDecisions(String query) async {
-    try {
-      final response = await _apiClient.dio.get(
-        '/decisions/search',
-        queryParameters: {'q': query},
-      );
-      return (response.data as List)
-          .map((json) => Decision.fromJson(json as Map<String, dynamic>))
-          .toList();
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
+  // TODO: No Core endpoint for /decisions/{id}/stakeholders (add/remove).
+  // TODO: No Core endpoint for /decisions/search. Use SearchService instead.
 
   // --- Statistics ---
 
@@ -540,34 +507,9 @@ class DecisionService {
     }
   }
 
-  /// Lists decisions with advanced filters for v2 endpoints.
-  Future<List<Decision>> listFiltered({
-    String? programId,
-    String? workstreamId,
-    String? parentType,
-    String? executionMode,
-    String? slaStatus,
-    String? portfolioId,
-  }) async {
-    try {
-      final params = <String, dynamic>{};
-      if (programId != null) params['programId'] = programId;
-      if (workstreamId != null) params['workstreamId'] = workstreamId;
-      if (parentType != null) params['parentType'] = parentType;
-      if (executionMode != null) params['executionMode'] = executionMode;
-      if (slaStatus != null) params['slaStatus'] = slaStatus;
-      if (portfolioId != null) params['portfolioId'] = portfolioId;
-      final response = await _apiClient.dio.get(
-        '/decisions/filtered',
-        queryParameters: params,
-      );
-      return (response.data as List)
-          .map((json) => Decision.fromJson(json as Map<String, dynamic>))
-          .toList();
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
+  // NOTE: listFiltered was removed. Use listDecisions() instead — the
+  // /decisions/paged endpoint accepts all v2 filter params (programId,
+  // workstreamId, parentType, executionMode, slaStatus, portfolioId).
 
   /// Gets decisions for a specific hypothesis.
   Future<List<Decision>> getDecisionsForHypothesis(String hypothesisId) async {

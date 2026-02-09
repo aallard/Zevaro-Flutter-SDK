@@ -31,7 +31,7 @@ class OutcomeService {
           'page': page,
           'size': size,
           if (teamId != null) 'teamId': teamId,
-          if (programId != null) 'programId': programId,
+          if (programId != null) 'projectId': programId,
           if (status != null) 'status': status.name,
           if (priority != null) 'priority': priority.name,
           if (ownerId != null) 'ownerId': ownerId,
@@ -56,14 +56,28 @@ class OutcomeService {
     }
   }
 
-  /// Gets an outcome by ID with key results included.
-  Future<Outcome> getOutcomeWithKeyResults(String id) async {
+  // NOTE: getOutcomeWithKeyResults removed — Core doesn't support
+  // includeKeyResults param. Use getOutcome() + getKeyResults() separately.
+
+  /// Gets key results for an outcome.
+  Future<List<KeyResult>> getKeyResults(String outcomeId) async {
     try {
-      final response = await _apiClient.dio.get(
-        '/outcomes/$id',
-        queryParameters: {'includeKeyResults': true},
-      );
-      return Outcome.fromJson(response.data as Map<String, dynamic>);
+      final response =
+          await _apiClient.dio.get('/outcomes/$outcomeId/key-results');
+      return (response.data as List)
+          .map((json) => KeyResult.fromJson(json as Map<String, dynamic>))
+          .toList();
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  /// Gets a specific key result by ID.
+  Future<KeyResult> getKeyResult(String outcomeId, String keyResultId) async {
+    try {
+      final response = await _apiClient.dio
+          .get('/outcomes/$outcomeId/key-results/$keyResultId');
+      return KeyResult.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
     }
@@ -85,7 +99,7 @@ class OutcomeService {
   /// Updates an outcome.
   Future<Outcome> updateOutcome(String id, UpdateOutcomeRequest request) async {
     try {
-      final response = await _apiClient.dio.patch(
+      final response = await _apiClient.dio.put(
         '/outcomes/$id',
         data: request.toJson(),
       );
@@ -95,18 +109,8 @@ class OutcomeService {
     }
   }
 
-  /// Updates an outcome's status.
-  Future<Outcome> updateStatus(String id, OutcomeStatus status) async {
-    try {
-      final response = await _apiClient.dio.patch(
-        '/outcomes/$id/status',
-        data: {'status': status.name},
-      );
-      return Outcome.fromJson(response.data as Map<String, dynamic>);
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
+  // NOTE: updateStatus removed — Core uses lifecycle transitions
+  // (startOutcome, validateOutcome, invalidateOutcome, abandonOutcome).
 
   /// Deletes an outcome.
   Future<void> deleteOutcome(String id) async {
@@ -129,17 +133,7 @@ class OutcomeService {
     }
   }
 
-  /// Gets outcomes with pending decisions (blocked).
-  Future<List<Outcome>> getBlockedOutcomes() async {
-    try {
-      final response = await _apiClient.dio.get('/outcomes/blocked');
-      return (response.data as List)
-          .map((json) => Outcome.fromJson(json as Map<String, dynamic>))
-          .toList();
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
+  // TODO: No Core endpoint for GET /outcomes/blocked (getBlockedOutcomes).
 
   // --- Key Results ---
 
@@ -166,7 +160,7 @@ class OutcomeService {
     UpdateKeyResultRequest request,
   ) async {
     try {
-      final response = await _apiClient.dio.patch(
+      final response = await _apiClient.dio.put(
         '/outcomes/$outcomeId/key-results/$keyResultId',
         data: request.toJson(),
       );
@@ -176,17 +170,21 @@ class OutcomeService {
     }
   }
 
-  /// Updates a key result's current value (shorthand).
-  Future<KeyResult> updateKeyResultProgress(
+  /// Records progress on a key result.
+  Future<KeyResult> recordKeyResultProgress(
     String outcomeId,
     String keyResultId,
-    double currentValue,
+    double value,
   ) async {
-    return updateKeyResult(
-      outcomeId,
-      keyResultId,
-      UpdateKeyResultRequest(currentValue: currentValue),
-    );
+    try {
+      final response = await _apiClient.dio.post(
+        '/outcomes/$outcomeId/key-results/$keyResultId/progress',
+        queryParameters: {'value': value},
+      );
+      return KeyResult.fromJson(response.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
   }
 
   /// Deletes a key result.
@@ -199,20 +197,7 @@ class OutcomeService {
     }
   }
 
-  /// Searches outcomes by title or description.
-  Future<List<Outcome>> searchOutcomes(String query) async {
-    try {
-      final response = await _apiClient.dio.get(
-        '/outcomes/search',
-        queryParameters: {'q': query},
-      );
-      return (response.data as List)
-          .map((json) => Outcome.fromJson(json as Map<String, dynamic>))
-          .toList();
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
+  // TODO: No Core endpoint for GET /outcomes/search. Use SearchService instead.
 
   // --- Team & Overdue Queries ---
 

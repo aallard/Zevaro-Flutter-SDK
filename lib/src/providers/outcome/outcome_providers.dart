@@ -21,12 +21,7 @@ Future<List<Outcome>> myOutcomes(MyOutcomesRef ref) async {
   return outcomeService.getMyOutcomes();
 }
 
-/// Blocked outcomes (have pending decisions).
-@riverpod
-Future<List<Outcome>> blockedOutcomes(BlockedOutcomesRef ref) async {
-  final outcomeService = ref.watch(outcomeServiceProvider);
-  return outcomeService.getBlockedOutcomes();
-}
+// NOTE: blockedOutcomes removed — no Core endpoint for /outcomes/blocked.
 
 /// Outcome by ID.
 @riverpod
@@ -35,15 +30,8 @@ Future<Outcome> outcome(OutcomeRef ref, String id) async {
   return outcomeService.getOutcome(id);
 }
 
-/// Outcome with key results.
-@riverpod
-Future<Outcome> outcomeWithKeyResults(
-  OutcomeWithKeyResultsRef ref,
-  String id,
-) async {
-  final outcomeService = ref.watch(outcomeServiceProvider);
-  return outcomeService.getOutcomeWithKeyResults(id);
-}
+// NOTE: outcomeWithKeyResults removed — Core doesn't support
+// includeKeyResults param. Use outcome(id) + getKeyResults() separately.
 
 /// Outcomes list (paginated, filterable).
 @riverpod

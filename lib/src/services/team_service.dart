@@ -48,18 +48,8 @@ class TeamService {
     }
   }
 
-  /// Gets a team by ID with members included.
-  Future<Team> getTeamWithMembers(String id) async {
-    try {
-      final response = await _apiClient.dio.get(
-        '/teams/$id',
-        queryParameters: {'includeMembers': true},
-      );
-      return Team.fromJson(response.data as Map<String, dynamic>);
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
+  // NOTE: getTeamWithMembers removed — Core doesn't support includeMembers
+  // param. Use getTeam() + listMembers() separately instead.
 
   /// Creates a new team.
   Future<Team> createTeam(CreateTeamRequest request) async {
@@ -77,7 +67,7 @@ class TeamService {
   /// Updates a team.
   Future<Team> updateTeam(String id, UpdateTeamRequest request) async {
     try {
-      final response = await _apiClient.dio.patch(
+      final response = await _apiClient.dio.put(
         '/teams/$id',
         data: request.toJson(),
       );
@@ -145,7 +135,7 @@ class TeamService {
     TeamMemberRole role,
   ) async {
     try {
-      final response = await _apiClient.dio.patch(
+      final response = await _apiClient.dio.put(
         '/teams/$teamId/members/$memberId',
         data: {'role': role.name},
       );
@@ -164,29 +154,8 @@ class TeamService {
     }
   }
 
-  /// Leaves a team (current user).
-  Future<void> leaveTeam(String teamId) async {
-    try {
-      await _apiClient.dio.post('/teams/$teamId/leave');
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
-
-  /// Searches teams by name.
-  Future<List<Team>> searchTeams(String query) async {
-    try {
-      final response = await _apiClient.dio.get(
-        '/teams/search',
-        queryParameters: {'q': query},
-      );
-      return (response.data as List)
-          .map((json) => Team.fromJson(json as Map<String, dynamic>))
-          .toList();
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
+  // TODO: No Core endpoint for POST /teams/{id}/leave (leaveTeam).
+  // TODO: No Core endpoint for GET /teams/search (searchTeams).
 
   // --- Additional Queries ---
 
@@ -195,6 +164,17 @@ class TeamService {
     try {
       final response = await _apiClient.dio.get('/teams/slug/$slug');
       return Team.fromJson(response.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  /// Gets team workload data.
+  Future<Map<String, dynamic>> getTeamWorkload(String teamId) async {
+    try {
+      final response =
+          await _apiClient.dio.get('/teams/$teamId/workload');
+      return response.data as Map<String, dynamic>;
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
     }

@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../config/constants.dart';
 import '../core/api_client.dart';
-import '../core/api_response.dart';
 import '../models/user/user_models.dart';
 
 /// Service for user management operations.
@@ -32,53 +30,31 @@ class UserService {
     }
   }
 
-  /// Lists users with optional filters.
+  /// Lists users with optional department filter.
   ///
-  /// Returns a paginated response.
-  Future<PaginatedResponse<User>> listUsers({
-    int page = 0,
-    int size = ZevaroConstants.defaultPageSize,
-    UserRole? role,
-    UserDepartment? department,
-    bool? isActive,
-  }) async {
+  /// Core returns a plain list (not paginated).
+  Future<List<User>> listUsers({String? department}) async {
     try {
       final response = await _apiClient.dio.get(
         '/users',
         queryParameters: {
-          'page': page,
-          'size': size,
-          if (role != null) 'role': role.name.toUpperCase(),
-          if (department != null) 'department': department.name.toUpperCase(),
-          if (isActive != null) 'isActive': isActive,
+          if (department != null) 'department': department,
         },
       );
-      return PaginatedResponse.fromJson(
-        response.data as Map<String, dynamic>,
-        (json) => User.fromJson(json),
-      );
+      return (response.data as List)
+          .map((json) => User.fromJson(json as Map<String, dynamic>))
+          .toList();
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
     }
   }
 
-  /// Creates a new user (admin only).
-  Future<User> createUser(CreateUserRequest request) async {
-    try {
-      final response = await _apiClient.dio.post(
-        '/users',
-        data: request.toJson(),
-      );
-      return User.fromJson(response.data as Map<String, dynamic>);
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
+  // TODO: No Core endpoint for POST /users (createUser).
 
   /// Updates a user by ID.
   Future<User> updateUser(String id, UpdateUserRequest request) async {
     try {
-      final response = await _apiClient.dio.patch(
+      final response = await _apiClient.dio.put(
         '/users/$id',
         data: request.toJson(),
       );
@@ -88,18 +64,7 @@ class UserService {
     }
   }
 
-  /// Updates the current user's profile.
-  Future<User> updateProfile(UpdateUserRequest request) async {
-    try {
-      final response = await _apiClient.dio.patch(
-        '/users/me',
-        data: request.toJson(),
-      );
-      return User.fromJson(response.data as Map<String, dynamic>);
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
+  // TODO: No Core endpoint for PATCH /users/me (updateProfile).
 
   /// Deactivates a user (admin only).
   Future<void> deactivateUser(String id) async {
@@ -110,13 +75,20 @@ class UserService {
     }
   }
 
-  /// Searches users by name or email.
-  Future<List<User>> searchUsers(String query) async {
+  // TODO: No Core endpoint for GET /users/search (searchUsers).
+
+  /// Gets users by department.
+  Future<List<User>> getUsersByDepartment(String department) async {
+    return listUsers(department: department);
+  }
+
+  // TODO: No Core endpoint for filtering users by role.
+
+  /// Gets direct reports for a user.
+  Future<List<User>> getDirectReports(String userId) async {
     try {
-      final response = await _apiClient.dio.get(
-        '/users/search',
-        queryParameters: {'q': query},
-      );
+      final response =
+          await _apiClient.dio.get('/users/$userId/direct-reports');
       return (response.data as List)
           .map((json) => User.fromJson(json as Map<String, dynamic>))
           .toList();
@@ -125,41 +97,13 @@ class UserService {
     }
   }
 
-  /// Gets users by department.
-  Future<List<User>> getUsersByDepartment(UserDepartment department) async {
+  /// Assigns a role to a user.
+  Future<void> assignRole(String userId, String roleId) async {
     try {
-      final response = await _apiClient.dio.get(
-        '/users',
-        queryParameters: {
-          'department': department.name.toUpperCase(),
-          'size': ZevaroConstants.maxPageSize,
-        },
+      await _apiClient.dio.put(
+        '/users/$userId/role',
+        queryParameters: {'roleId': roleId},
       );
-      final paginated = PaginatedResponse.fromJson(
-        response.data as Map<String, dynamic>,
-        (json) => User.fromJson(json),
-      );
-      return paginated.content;
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
-
-  /// Gets users by role.
-  Future<List<User>> getUsersByRole(UserRole role) async {
-    try {
-      final response = await _apiClient.dio.get(
-        '/users',
-        queryParameters: {
-          'role': role.name.toUpperCase(),
-          'size': ZevaroConstants.maxPageSize,
-        },
-      );
-      final paginated = PaginatedResponse.fromJson(
-        response.data as Map<String, dynamic>,
-        (json) => User.fromJson(json),
-      );
-      return paginated.content;
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
     }

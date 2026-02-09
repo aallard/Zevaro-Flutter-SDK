@@ -33,7 +33,7 @@ class HypothesisService {
           'size': size,
           if (outcomeId != null) 'outcomeId': outcomeId,
           if (teamId != null) 'teamId': teamId,
-          if (programId != null) 'programId': programId,
+          if (programId != null) 'projectId': programId,
           if (status != null) 'status': status.name,
           if (confidence != null) 'confidence': confidence.name,
           if (ownerId != null) 'ownerId': ownerId,
@@ -58,18 +58,8 @@ class HypothesisService {
     }
   }
 
-  /// Gets a hypothesis by ID with metrics included.
-  Future<Hypothesis> getHypothesisWithMetrics(String id) async {
-    try {
-      final response = await _apiClient.dio.get(
-        '/hypotheses/$id',
-        queryParameters: {'includeMetrics': true},
-      );
-      return Hypothesis.fromJson(response.data as Map<String, dynamic>);
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
+  // NOTE: getHypothesisWithMetrics removed — Core doesn't support
+  // includeMetrics param on GET /hypotheses/{id}.
 
   /// Creates a new hypothesis.
   Future<Hypothesis> createHypothesis(CreateHypothesisRequest request) async {
@@ -90,7 +80,7 @@ class HypothesisService {
     UpdateHypothesisRequest request,
   ) async {
     try {
-      final response = await _apiClient.dio.patch(
+      final response = await _apiClient.dio.put(
         '/hypotheses/$id',
         data: request.toJson(),
       );
@@ -116,31 +106,8 @@ class HypothesisService {
     }
   }
 
-  /// Marks a hypothesis as validated.
-  Future<Hypothesis> validate(String id, {String? notes}) async {
-    try {
-      final response = await _apiClient.dio.post(
-        '/hypotheses/$id/validate',
-        data: notes != null ? {'notes': notes} : null,
-      );
-      return Hypothesis.fromJson(response.data as Map<String, dynamic>);
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
-
-  /// Marks a hypothesis as invalidated.
-  Future<Hypothesis> invalidate(String id, {String? notes}) async {
-    try {
-      final response = await _apiClient.dio.post(
-        '/hypotheses/$id/invalidate',
-        data: notes != null ? {'notes': notes} : null,
-      );
-      return Hypothesis.fromJson(response.data as Map<String, dynamic>);
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
+  // NOTE: validate/invalidate removed — Core uses transitionStatus() to
+  // move hypotheses through states, and concludeHypothesis() to finalize.
 
   /// Deletes a hypothesis.
   Future<void> deleteHypothesis(String id) async {
@@ -188,78 +155,10 @@ class HypothesisService {
     }
   }
 
-  // --- Metrics ---
+  // TODO: No Core endpoints for hypothesis metrics CRUD
+  // (/hypotheses/{id}/metrics). Metrics are not yet implemented in Core.
 
-  /// Adds a metric to a hypothesis.
-  Future<HypothesisMetric> addMetric(
-    String hypothesisId,
-    CreateHypothesisMetricRequest request,
-  ) async {
-    try {
-      final response = await _apiClient.dio.post(
-        '/hypotheses/$hypothesisId/metrics',
-        data: request.toJson(),
-      );
-      return HypothesisMetric.fromJson(response.data as Map<String, dynamic>);
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
-
-  /// Updates a hypothesis metric.
-  Future<HypothesisMetric> updateMetric(
-    String hypothesisId,
-    String metricId,
-    UpdateHypothesisMetricRequest request,
-  ) async {
-    try {
-      final response = await _apiClient.dio.patch(
-        '/hypotheses/$hypothesisId/metrics/$metricId',
-        data: request.toJson(),
-      );
-      return HypothesisMetric.fromJson(response.data as Map<String, dynamic>);
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
-
-  /// Records a metric measurement (shorthand for updating currentValue).
-  Future<HypothesisMetric> recordMeasurement(
-    String hypothesisId,
-    String metricId,
-    double currentValue,
-  ) async {
-    return updateMetric(
-      hypothesisId,
-      metricId,
-      UpdateHypothesisMetricRequest(currentValue: currentValue),
-    );
-  }
-
-  /// Deletes a hypothesis metric.
-  Future<void> deleteMetric(String hypothesisId, String metricId) async {
-    try {
-      await _apiClient.dio
-          .delete('/hypotheses/$hypothesisId/metrics/$metricId');
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
-
-  /// Searches hypotheses by statement or description.
-  Future<List<Hypothesis>> searchHypotheses(String query) async {
-    try {
-      final response = await _apiClient.dio.get(
-        '/hypotheses/search',
-        queryParameters: {'q': query},
-      );
-      return (response.data as List)
-          .map((json) => Hypothesis.fromJson(json as Map<String, dynamic>))
-          .toList();
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
+  // TODO: No Core endpoint for GET /hypotheses/search. Use SearchService.
 
   // --- Active & Stats Queries ---
 

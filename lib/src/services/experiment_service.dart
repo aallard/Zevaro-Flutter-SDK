@@ -25,7 +25,7 @@ class ExperimentService {
         queryParameters: {
           if (status != null) 'status': status.name,
           if (type != null) 'type': type.name,
-          if (programId != null) 'programId': programId,
+          if (programId != null) 'projectId': programId,
           if (hypothesisId != null) 'hypothesisId': hypothesisId,
         },
       );
@@ -53,7 +53,7 @@ class ExperimentService {
           'size': size,
           if (status != null) 'status': status.name,
           if (type != null) 'type': type.name,
-          if (programId != null) 'programId': programId,
+          if (programId != null) 'projectId': programId,
         },
       );
       return PaginatedResponse.fromJson(

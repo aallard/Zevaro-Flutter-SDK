@@ -13,19 +13,8 @@ StakeholderService stakeholderService(StakeholderServiceRef ref) {
   return StakeholderService(apiClient);
 }
 
-/// My stakeholder profile.
-@riverpod
-Future<Stakeholder> myStakeholderProfile(MyStakeholderProfileRef ref) async {
-  final stakeholderService = ref.watch(stakeholderServiceProvider);
-  return stakeholderService.getMyStakeholderProfile();
-}
-
-/// My stakeholder stats.
-@riverpod
-Future<StakeholderStats> myStakeholderStats(MyStakeholderStatsRef ref) async {
-  final stakeholderService = ref.watch(stakeholderServiceProvider);
-  return stakeholderService.getMyStats();
-}
+// NOTE: myStakeholderProfile removed — no Core endpoint for /stakeholders/me.
+// NOTE: myStakeholderStats removed — no Core endpoint for /stakeholders/me/stats.
 
 /// My pending responses.
 @riverpod
@@ -36,14 +25,8 @@ Future<List<StakeholderResponse>> myPendingResponses(
   return stakeholderService.getMyPendingResponses();
 }
 
-/// My overdue responses.
-@riverpod
-Future<List<StakeholderResponse>> myOverdueResponses(
-  MyOverdueResponsesRef ref,
-) async {
-  final stakeholderService = ref.watch(stakeholderServiceProvider);
-  return stakeholderService.getMyOverdueResponses();
-}
+// NOTE: myOverdueResponses removed — no Core endpoint for
+// /stakeholders/me/responses/overdue.
 
 /// Stakeholder leaderboard.
 @riverpod
@@ -66,14 +49,8 @@ Future<List<Stakeholder>> slowResponders(SlowRespondersRef ref) async {
   return stakeholderService.getSlowResponders();
 }
 
-/// Blocking stakeholders.
-@riverpod
-Future<List<Stakeholder>> blockingStakeholders(
-  BlockingStakeholdersRef ref,
-) async {
-  final stakeholderService = ref.watch(stakeholderServiceProvider);
-  return stakeholderService.getBlockingStakeholders();
-}
+// NOTE: blockingStakeholders removed — no Core endpoint for
+// /stakeholders/blocking.
 
 /// Stakeholder by user ID.
 @riverpod
@@ -82,21 +59,5 @@ Future<Stakeholder> stakeholder(StakeholderRef ref, String userId) async {
   return stakeholderService.getStakeholder(userId);
 }
 
-/// Stakeholder with stats.
-@riverpod
-Future<Stakeholder> stakeholderWithStats(
-  StakeholderWithStatsRef ref,
-  String userId,
-) async {
-  final stakeholderService = ref.watch(stakeholderServiceProvider);
-  return stakeholderService.getStakeholderWithStats(userId);
-}
-
-/// Tenant stakeholder metrics.
-@riverpod
-Future<Map<String, dynamic>> stakeholderMetrics(
-  StakeholderMetricsRef ref,
-) async {
-  final stakeholderService = ref.watch(stakeholderServiceProvider);
-  return stakeholderService.getTenantStakeholderMetrics();
-}
+// NOTE: stakeholderWithStats removed — Core doesn't support includeStats param.
+// NOTE: stakeholderMetrics (tenant-level) removed — no Core endpoint.

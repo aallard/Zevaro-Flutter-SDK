@@ -28,12 +28,8 @@ Future<Team> team(TeamRef ref, String id) async {
   return teamService.getTeam(id);
 }
 
-/// Team with members.
-@riverpod
-Future<Team> teamWithMembers(TeamWithMembersRef ref, String id) async {
-  final teamService = ref.watch(teamServiceProvider);
-  return teamService.getTeamWithMembers(id);
-}
+// NOTE: teamWithMembers removed — Core doesn't support includeMembers param.
+// Use team(id) + teamService.listMembers(id) separately.
 
 /// All teams (paginated).
 @riverpod

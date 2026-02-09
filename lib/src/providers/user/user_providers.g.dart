@@ -196,48 +196,31 @@ class _UserProviderElement extends AutoDisposeFutureProviderElement<User>
   String get id => (origin as UserProvider).id;
 }
 
-String _$userListHash() => r'05c28499be1cbd9039f0e8536c79f1bba3a73be1';
+String _$userListHash() => r'94482f66d91a253411764ec80c29c1a045c11267';
 
-abstract class _$UserList
-    extends BuildlessAutoDisposeAsyncNotifier<PaginatedResponse<User>> {
-  late final UserRole? role;
-  late final UserDepartment? department;
-  late final bool? isActive;
-
-  FutureOr<PaginatedResponse<User>> build({
-    UserRole? role,
-    UserDepartment? department,
-    bool? isActive,
-  });
-}
-
-/// Users list (paginated).
+/// Users list (Core returns a plain list, not paginated).
 ///
-/// Copied from [UserList].
-@ProviderFor(UserList)
+/// Copied from [userList].
+@ProviderFor(userList)
 const userListProvider = UserListFamily();
 
-/// Users list (paginated).
+/// Users list (Core returns a plain list, not paginated).
 ///
-/// Copied from [UserList].
-class UserListFamily extends Family<AsyncValue<PaginatedResponse<User>>> {
-  /// Users list (paginated).
+/// Copied from [userList].
+class UserListFamily extends Family<AsyncValue<List<User>>> {
+  /// Users list (Core returns a plain list, not paginated).
   ///
-  /// Copied from [UserList].
+  /// Copied from [userList].
   const UserListFamily();
 
-  /// Users list (paginated).
+  /// Users list (Core returns a plain list, not paginated).
   ///
-  /// Copied from [UserList].
+  /// Copied from [userList].
   UserListProvider call({
-    UserRole? role,
-    UserDepartment? department,
-    bool? isActive,
+    String? department,
   }) {
     return UserListProvider(
-      role: role,
       department: department,
-      isActive: isActive,
     );
   }
 
@@ -246,9 +229,7 @@ class UserListFamily extends Family<AsyncValue<PaginatedResponse<User>>> {
     covariant UserListProvider provider,
   ) {
     return call(
-      role: provider.role,
       department: provider.department,
-      isActive: provider.isActive,
     );
   }
 
@@ -267,23 +248,20 @@ class UserListFamily extends Family<AsyncValue<PaginatedResponse<User>>> {
   String? get name => r'userListProvider';
 }
 
-/// Users list (paginated).
+/// Users list (Core returns a plain list, not paginated).
 ///
-/// Copied from [UserList].
-class UserListProvider extends AutoDisposeAsyncNotifierProviderImpl<UserList,
-    PaginatedResponse<User>> {
-  /// Users list (paginated).
+/// Copied from [userList].
+class UserListProvider extends AutoDisposeFutureProvider<List<User>> {
+  /// Users list (Core returns a plain list, not paginated).
   ///
-  /// Copied from [UserList].
+  /// Copied from [userList].
   UserListProvider({
-    UserRole? role,
-    UserDepartment? department,
-    bool? isActive,
+    String? department,
   }) : this._internal(
-          () => UserList()
-            ..role = role
-            ..department = department
-            ..isActive = isActive,
+          (ref) => userList(
+            ref as UserListRef,
+            department: department,
+          ),
           from: userListProvider,
           name: r'userListProvider',
           debugGetCreateSourceHash:
@@ -292,9 +270,7 @@ class UserListProvider extends AutoDisposeAsyncNotifierProviderImpl<UserList,
                   : _$userListHash,
           dependencies: UserListFamily._dependencies,
           allTransitiveDependencies: UserListFamily._allTransitiveDependencies,
-          role: role,
           department: department,
-          isActive: isActive,
         );
 
   UserListProvider._internal(
@@ -304,94 +280,59 @@ class UserListProvider extends AutoDisposeAsyncNotifierProviderImpl<UserList,
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.role,
     required this.department,
-    required this.isActive,
   }) : super.internal();
 
-  final UserRole? role;
-  final UserDepartment? department;
-  final bool? isActive;
+  final String? department;
 
   @override
-  FutureOr<PaginatedResponse<User>> runNotifierBuild(
-    covariant UserList notifier,
+  Override overrideWith(
+    FutureOr<List<User>> Function(UserListRef provider) create,
   ) {
-    return notifier.build(
-      role: role,
-      department: department,
-      isActive: isActive,
-    );
-  }
-
-  @override
-  Override overrideWith(UserList Function() create) {
     return ProviderOverride(
       origin: this,
       override: UserListProvider._internal(
-        () => create()
-          ..role = role
-          ..department = department
-          ..isActive = isActive,
+        (ref) => create(ref as UserListRef),
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        role: role,
         department: department,
-        isActive: isActive,
       ),
     );
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<UserList, PaginatedResponse<User>>
-      createElement() {
+  AutoDisposeFutureProviderElement<List<User>> createElement() {
     return _UserListProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is UserListProvider &&
-        other.role == role &&
-        other.department == department &&
-        other.isActive == isActive;
+    return other is UserListProvider && other.department == department;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, role.hashCode);
     hash = _SystemHash.combine(hash, department.hashCode);
-    hash = _SystemHash.combine(hash, isActive.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
-mixin UserListRef
-    on AutoDisposeAsyncNotifierProviderRef<PaginatedResponse<User>> {
-  /// The parameter `role` of this provider.
-  UserRole? get role;
-
+mixin UserListRef on AutoDisposeFutureProviderRef<List<User>> {
   /// The parameter `department` of this provider.
-  UserDepartment? get department;
-
-  /// The parameter `isActive` of this provider.
-  bool? get isActive;
+  String? get department;
 }
 
-class _UserListProviderElement extends AutoDisposeAsyncNotifierProviderElement<
-    UserList, PaginatedResponse<User>> with UserListRef {
+class _UserListProviderElement
+    extends AutoDisposeFutureProviderElement<List<User>> with UserListRef {
   _UserListProviderElement(super.provider);
 
   @override
-  UserRole? get role => (origin as UserListProvider).role;
-  @override
-  UserDepartment? get department => (origin as UserListProvider).department;
-  @override
-  bool? get isActive => (origin as UserListProvider).isActive;
+  String? get department => (origin as UserListProvider).department;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

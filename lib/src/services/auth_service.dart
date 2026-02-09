@@ -146,57 +146,10 @@ class AuthService {
     return user.isExpired || user.expiresSoon;
   }
 
-  /// Requests a password reset email.
-  ///
-  /// Throws [NotFoundException] if the email is not found.
-  Future<void> forgotPassword(String email) async {
-    try {
-      await _apiClient.dio.post(
-        '/auth/forgot-password',
-        data: {'email': email},
-      );
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
-
-  /// Resets the password using a reset token.
-  ///
-  /// Throws [ValidationException] for invalid tokens or passwords.
-  Future<void> resetPassword(String token, String newPassword) async {
-    try {
-      await _apiClient.dio.post(
-        '/auth/reset-password',
-        data: {
-          'token': token,
-          'password': newPassword,
-        },
-      );
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
-
-  /// Changes the current user's password.
-  ///
-  /// Requires the current password for verification.
-  /// Throws [UnauthorizedException] if current password is incorrect.
-  Future<void> changePassword(
-    String currentPassword,
-    String newPassword,
-  ) async {
-    try {
-      await _apiClient.dio.post(
-        '/auth/change-password',
-        data: {
-          'currentPassword': currentPassword,
-          'newPassword': newPassword,
-        },
-      );
-    } on DioException catch (e) {
-      throw _apiClient.mapException(e);
-    }
-  }
+  // TODO: No Core endpoints for password management yet:
+  // - POST /auth/forgot-password
+  // - POST /auth/reset-password
+  // - POST /auth/change-password
 
   /// Decodes a JWT token payload.
   TokenPayload _decodeToken(String token) {

@@ -203,25 +203,6 @@ final blockingDecisionsProvider =
 );
 
 typedef BlockingDecisionsRef = AutoDisposeFutureProviderRef<List<Decision>>;
-String _$slaBreachedDecisionsHash() =>
-    r'c9a10dab8e0a7171b9f16597a3daf64d7807a832';
-
-/// SLA-breached decisions (need immediate attention).
-///
-/// Copied from [slaBreachedDecisions].
-@ProviderFor(slaBreachedDecisions)
-final slaBreachedDecisionsProvider =
-    AutoDisposeFutureProvider<List<Decision>>.internal(
-  slaBreachedDecisions,
-  name: r'slaBreachedDecisionsProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$slaBreachedDecisionsHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef SlaBreachedDecisionsRef = AutoDisposeFutureProviderRef<List<Decision>>;
 String _$myPendingDecisionsHash() =>
     r'0ae2e3150c97548da2cbb10ddeff189a6bdebca5';
 

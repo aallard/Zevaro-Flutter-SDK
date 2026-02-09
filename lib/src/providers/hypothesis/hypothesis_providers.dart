@@ -35,15 +35,8 @@ Future<Hypothesis> hypothesis(HypothesisRef ref, String id) async {
   return hypothesisService.getHypothesis(id);
 }
 
-/// Hypothesis with metrics.
-@riverpod
-Future<Hypothesis> hypothesisWithMetrics(
-  HypothesisWithMetricsRef ref,
-  String id,
-) async {
-  final hypothesisService = ref.watch(hypothesisServiceProvider);
-  return hypothesisService.getHypothesisWithMetrics(id);
-}
+// NOTE: hypothesisWithMetrics removed — Core doesn't support
+// includeMetrics param. Use hypothesis(id) instead.
 
 /// Hypotheses for an outcome.
 @riverpod

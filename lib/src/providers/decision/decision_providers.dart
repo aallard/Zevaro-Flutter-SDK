@@ -34,12 +34,8 @@ Future<List<Decision>> blockingDecisions(BlockingDecisionsRef ref) async {
   return decisionService.getBlockingDecisions();
 }
 
-/// SLA-breached decisions (need immediate attention).
-@riverpod
-Future<List<Decision>> slaBreachedDecisions(SlaBreachedDecisionsRef ref) async {
-  final decisionService = ref.watch(decisionServiceProvider);
-  return decisionService.getSlaBreachedDecisions();
-}
+// NOTE: slaBreachedDecisions removed — no Core endpoint for
+// /decisions/sla-breached. Use decisionList with slaBreached filter.
 
 /// My pending decisions (as stakeholder).
 @riverpod

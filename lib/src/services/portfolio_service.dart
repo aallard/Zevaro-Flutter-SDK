@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
 
+import '../config/constants.dart';
 import '../core/api_client.dart';
+import '../core/api_response.dart';
+import '../models/decision/decision_models.dart';
 import '../models/portfolio/portfolio_models.dart';
 import '../models/program/program.dart';
 
@@ -24,10 +27,15 @@ class PortfolioService {
     }
   }
 
-  /// Lists all portfolios.
-  Future<List<Portfolio>> list() async {
+  /// Lists all portfolios with optional status filter.
+  Future<List<Portfolio>> list({String? status}) async {
     try {
-      final response = await _apiClient.dio.get('/portfolios');
+      final response = await _apiClient.dio.get(
+        '/portfolios',
+        queryParameters: {
+          if (status != null) 'status': status,
+        },
+      );
       return (response.data as List)
           .map((json) => Portfolio.fromJson(json as Map<String, dynamic>))
           .toList();
@@ -84,6 +92,45 @@ class PortfolioService {
       final response = await _apiClient.dio.get('/portfolios/$id/programs');
       return (response.data as List)
           .map((json) => Program.fromJson(json as Map<String, dynamic>))
+          .toList();
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  /// Lists portfolios with pagination.
+  Future<PaginatedResponse<Portfolio>> listPaged({
+    int page = 0,
+    int size = ZevaroConstants.defaultPageSize,
+    String sortBy = 'createdAt',
+    String sortDir = 'desc',
+  }) async {
+    try {
+      final response = await _apiClient.dio.get(
+        '/portfolios/paged',
+        queryParameters: {
+          'page': page,
+          'size': size,
+          'sortBy': sortBy,
+          'sortDir': sortDir,
+        },
+      );
+      return PaginatedResponse.fromJson(
+        response.data as Map<String, dynamic>,
+        (json) => Portfolio.fromJson(json),
+      );
+    } on DioException catch (e) {
+      throw _apiClient.mapException(e);
+    }
+  }
+
+  /// Gets decisions for a portfolio.
+  Future<List<Decision>> getDecisions(String id) async {
+    try {
+      final response =
+          await _apiClient.dio.get('/portfolios/$id/decisions');
+      return (response.data as List)
+          .map((json) => Decision.fromJson(json as Map<String, dynamic>))
           .toList();
     } on DioException catch (e) {
       throw _apiClient.mapException(e);
