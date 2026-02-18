@@ -31,7 +31,9 @@ class ActivityService {
         '/activity',
         queryParameters: queryParams,
       );
-      return (response.data as List)
+      final data = response.data;
+      final List list = data is List ? data : (data as Map<String, dynamic>)['content'] as List;
+      return list
           .map((json) => ActivityEvent.fromJson(json as Map<String, dynamic>))
           .toList();
     } on DioException catch (e) {
